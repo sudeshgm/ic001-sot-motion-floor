@@ -1,0 +1,392 @@
+{
+ "scope": "KITTI only",
+ "headline_class": "Car",
+ "protocol": "ope (standard / protocol a)",
+ "learned_rule": "best family by point-estimate Success in that bin, chosen before the bootstrap; families = M2-Track and MBPTrack (GT-convention yaw)",
+ "floor": "cv_snap",
+ "bins": "single-axis point bins (<50, 50\u2013199, \u2265200) and motion bins (<0.5 m, \u22650.5 m); frame 0 excluded; no point-bin merge (GT census, already recorded)",
+ "bootstrap": {
+  "n_boot": 10000,
+  "seed": 0,
+  "ci": "percentile 95%"
+ },
+ "per_class": {
+  "Car": {
+   "n_tracklets": 120,
+   "n_frames_total": 6424,
+   "n_frames_binned": 6304,
+   "R_secondary": {
+    "late": "mbptrack_yawalt",
+    "R": 0.833278050284896,
+    "lo": 0.6116634939043236,
+    "hi": 0.9869305078804899,
+    "n_valid": 10000,
+    "threshold": 1.2,
+    "P5_supported": false
+   },
+   "primary_easy_hard_point_estimates": {
+    "hard_primary": {
+     "n_frames": 3077,
+     "n_tracklets": 101,
+     "frame_share_of_binned": 0.48810279187817257,
+     "floor": 23.435976600584986,
+     "per_family": {
+      "m2track": 59.84481637959051,
+      "mbptrack_yawalt": 65.71254468638284
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 42.276568085797855
+    },
+    "easy_primary": {
+     "n_frames": 3227,
+     "n_tracklets": 112,
+     "frame_share_of_binned": 0.5118972081218274,
+     "floor": 21.523861171366594,
+     "per_family": {
+      "m2track": 73.49318252246668,
+      "mbptrack_yawalt": 80.3246048961884
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 58.800743724821814
+    }
+   },
+   "verdict": {
+    "dataset_scope": "KITTI only",
+    "eligible_bins": {
+     "pts:pts0": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 33.46203071672355,
+      "lo": 25.902955231077613,
+      "hi": 40.63318299909585,
+      "n_frames": 2344,
+      "frame_share": 0.37182741116751267,
+      "n_tracklets": 99,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": false,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     },
+     "pts:pts1": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 61.28030751034891,
+      "lo": 50.41322030014059,
+      "hi": 68.47509889451251,
+      "n_frames": 1691,
+      "frame_share": 0.26824238578680204,
+      "n_tracklets": 107,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": false,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 60.72058175407668,
+      "lo": 50.31575553284817,
+      "hi": 69.75856374852658,
+      "n_frames": 2269,
+      "frame_share": 0.3599302030456853,
+      "n_tracklets": 91,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": false,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 49.53799200168385,
+      "lo": 41.8983943488889,
+      "hi": 56.11590660644264,
+      "n_frames": 4751,
+      "frame_share": 0.7536484771573604,
+      "n_tracklets": 115,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     }
+    },
+    "kill_conditions_hold_on_all_eligible": true,
+    "go_bins": [],
+    "go_bins_ge_40pct": [],
+    "formal_kill_requires_nuscenes": true,
+    "verdict_text": "KITTI side of rule: KILL conditions hold on every eligible decision bin (each bin with \u226520% of binned frames and \u226530 tracklets has learned \u2212 floor Success > 10 and a 95% lower bound > 5). Formal KILL needs the same on nuScenes, which has not been run.",
+    "formal_status": "KITTI-side KILL only; formal decision pending nuScenes"
+   }
+  },
+  "Pedestrian": {
+   "n_tracklets": 62,
+   "n_frames_total": 6088,
+   "n_frames_binned": 6026,
+   "R_secondary": {
+    "late": "mbptrack_yawalt",
+    "R": 0.638590618445592,
+    "lo": 0.4865422446065865,
+    "hi": 0.7713774906497347,
+    "n_valid": 10000,
+    "threshold": 1.2,
+    "P5_supported": false
+   },
+   "primary_easy_hard_point_estimates": {
+    "hard_primary": {
+     "n_frames": 649,
+     "n_tracklets": 39,
+     "frame_share_of_binned": 0.10769996681048788,
+     "floor": 34.26425269645608,
+     "per_family": {
+      "m2track": 55.09630200308166,
+      "mbptrack_yawalt": 59.93451463790447
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 25.670261941448388
+    },
+    "easy_primary": {
+     "n_frames": 5377,
+     "n_tracklets": 62,
+     "frame_share_of_binned": 0.8923000331895121,
+     "floor": 24.39696856983448,
+     "per_family": {
+      "m2track": 60.834573182071786,
+      "mbptrack_yawalt": 66.34880044634555
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 41.951831876511065
+    }
+   },
+   "verdict": {
+    "note": "Headline decision is Car; this class is reported for completeness and is KITTI-only.",
+    "dataset_scope": "KITTI only",
+    "eligible_bins": {
+     "pts:pts1": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 37.41965275212412,
+      "lo": 31.973474279828512,
+      "hi": 42.95767135593868,
+      "n_frames": 2707,
+      "frame_share": 0.44922004646531694,
+      "n_tracklets": 59,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 46.550112191473445,
+      "lo": 40.18466987280595,
+      "hi": 52.60422938020468,
+      "n_frames": 2674,
+      "frame_share": 0.4437437769664786,
+      "n_tracklets": 55,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 40.18936877076411,
+      "lo": 35.41330324945678,
+      "hi": 44.95754848270209,
+      "n_frames": 6020,
+      "frame_share": 0.9990043146365748,
+      "n_tracklets": 62,
+      "underpowered": false,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": true,
+      "kill_bin": true,
+      "go_bin": false
+     }
+    },
+    "kill_conditions_hold_on_all_eligible": true,
+    "go_bins": [],
+    "go_bins_ge_40pct": [],
+    "formal_kill_requires_nuscenes": true,
+    "verdict_text": "KITTI side of rule: KILL conditions hold on every eligible decision bin (each bin with \u226520% of binned frames and \u226530 tracklets has learned \u2212 floor Success > 10 and a 95% lower bound > 5). Formal KILL needs the same on nuScenes, which has not been run.",
+    "formal_status": "KITTI-side KILL only; formal decision pending nuScenes"
+   }
+  },
+  "Van": {
+   "n_tracklets": 16,
+   "n_frames_total": 1248,
+   "n_frames_binned": 1232,
+   "R_secondary": {
+    "late": "mbptrack_yawalt",
+    "R": 0.4610050629639411,
+    "lo": -0.4657578803540485,
+    "hi": 0.8635520184568168,
+    "n_valid": 10000,
+    "threshold": 1.2,
+    "P5_supported": false
+   },
+   "primary_easy_hard_point_estimates": {
+    "hard_primary": {
+     "n_frames": 502,
+     "n_tracklets": 13,
+     "frame_share_of_binned": 0.4074675324675325,
+     "floor": 30.0,
+     "per_family": {
+      "mbptrack_yawalt": 44.591633466135455
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 14.591633466135455
+    },
+    "easy_primary": {
+     "n_frames": 730,
+     "n_tracklets": 14,
+     "frame_share_of_binned": 0.5925324675324676,
+     "floor": 27.561643835616437,
+     "per_family": {
+      "mbptrack_yawalt": 70.94520547945206
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 43.38356164383562
+    }
+   },
+   "verdict": {
+    "note": "Headline decision is Car; this class is reported for completeness and is KITTI-only.",
+    "dataset_scope": "KITTI only",
+    "eligible_bins": {},
+    "kill_conditions_hold_on_all_eligible": false,
+    "go_bins": [],
+    "go_bins_ge_40pct": [],
+    "formal_kill_requires_nuscenes": true,
+    "verdict_text": "KITTI side of rule: no eligible decision bin meets the GO cell condition (gap \u2264 5 and 95% upper bound \u2264 10), and KILL conditions do not hold on every eligible bin (no eligible bins). Formal decision pending nuScenes.",
+    "formal_status": "KITTI-side INCONCLUSIVE; formal decision pending nuScenes"
+   }
+  },
+  "Cyclist": {
+   "n_tracklets": 8,
+   "n_frames_total": 308,
+   "n_frames_binned": 300,
+   "R_secondary": {
+    "late": "mbptrack_yawalt",
+    "R": -0.2631578947368421,
+    "lo": -2.6919120002561856,
+    "hi": 0.7196969696969697,
+    "n_valid": 9972,
+    "threshold": 1.2,
+    "P5_supported": false
+   },
+   "primary_easy_hard_point_estimates": {
+    "hard_primary": {
+     "n_frames": 19,
+     "n_tracklets": 5,
+     "frame_share_of_binned": 0.06333333333333334,
+     "floor": 69.60526315789474,
+     "per_family": {
+      "mbptrack_yawalt": 64.34210526315789
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": -5.26315789473685
+    },
+    "easy_primary": {
+     "n_frames": 281,
+     "n_tracklets": 8,
+     "frame_share_of_binned": 0.9366666666666666,
+     "floor": 55.22241992882562,
+     "per_family": {
+      "mbptrack_yawalt": 76.9306049822064
+     },
+     "best_family": "mbptrack_yawalt",
+     "gap_best": 21.70818505338078
+    }
+   },
+   "verdict": {
+    "note": "Headline decision is Car; this class is reported for completeness and is KITTI-only.",
+    "dataset_scope": "KITTI only",
+    "eligible_bins": {},
+    "kill_conditions_hold_on_all_eligible": false,
+    "go_bins": [],
+    "go_bins_ge_40pct": [],
+    "formal_kill_requires_nuscenes": true,
+    "verdict_text": "KITTI side of rule: no eligible decision bin meets the GO cell condition (gap \u2264 5 and 95% upper bound \u2264 10), and KILL conditions do not hold on every eligible bin (no eligible bins). Formal decision pending nuScenes.",
+    "formal_status": "KITTI-side INCONCLUSIVE; formal decision pending nuScenes"
+   }
+  }
+ },
+ "headline": {
+  "dataset_scope": "KITTI only",
+  "eligible_bins": {
+   "pts:pts0": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 33.46203071672355,
+    "lo": 25.902955231077613,
+    "hi": 40.63318299909585,
+    "n_frames": 2344,
+    "frame_share": 0.37182741116751267,
+    "n_tracklets": 99,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "pts:pts1": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 61.28030751034891,
+    "lo": 50.41322030014059,
+    "hi": 68.47509889451251,
+    "n_frames": 1691,
+    "frame_share": 0.26824238578680204,
+    "n_tracklets": 107,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "pts:pts2": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 60.72058175407668,
+    "lo": 50.31575553284817,
+    "hi": 69.75856374852658,
+    "n_frames": 2269,
+    "frame_share": 0.3599302030456853,
+    "n_tracklets": 91,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "mot:motLo": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 49.53799200168385,
+    "lo": 41.8983943488889,
+    "hi": 56.11590660644264,
+    "n_frames": 4751,
+    "frame_share": 0.7536484771573604,
+    "n_tracklets": 115,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": true,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   }
+  },
+  "kill_conditions_hold_on_all_eligible": true,
+  "go_bins": [],
+  "go_bins_ge_40pct": [],
+  "formal_kill_requires_nuscenes": true,
+  "verdict_text": "KITTI side of rule: KILL conditions hold on every eligible decision bin (each bin with \u226520% of binned frames and \u226530 tracklets has learned \u2212 floor Success > 10 and a 95% lower bound > 5). Formal KILL needs the same on nuScenes, which has not been run.",
+  "formal_status": "KITTI-side KILL only; formal decision pending nuScenes"
+ }
+}

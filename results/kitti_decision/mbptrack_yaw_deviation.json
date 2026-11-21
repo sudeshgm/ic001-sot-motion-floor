@@ -1,0 +1,61 @@
+{
+ "scope": "KITTI only",
+ "deviation": "MBPTrack harness camera\u2192velodyne yaw-convention self-check failed: frame-0 yaw max error 7.75e-3\u20137.97e-3 rad (reported as 7.8e-3 rad) versus the harness tolerance of 1e-4 rad. Centres match exactly. The harness CSV was left unchanged. Primary MBPTrack scores use the GT-convention yaw rescore (mbptrack_yawalt: yaw = -(rotation_y + \u03c0/2) from the raw camera box).",
+ "gpubot_statement": "The yawalt rescore changes results by at most 0.2 (GPU Bot MESSAGE_PRIMARY.txt).",
+ "source": "GPU Bot MESSAGE_PRIMARY.txt, remeasured from the same CSVs with ic001 metrics",
+ "overall_ope_success_delta": {
+  "Car": 0.08795143212951473,
+  "Pedestrian": -0.0332621550591341,
+  "Van": -0.024038461538467004,
+  "Cyclist": -0.01623376623376771
+ },
+ "per_class_measured_max_abs_success_delta": {
+  "Car": 0.17215189873417103,
+  "Pedestrian": 1.25,
+  "Van": 0.0767263427109981,
+  "Cyclist": 0.2631578947368354
+ },
+ "tiny_cells_exceeding_0_2": [
+  {
+   "category": "Pedestrian",
+   "group": "mot:motHi",
+   "delta_success": -0.8333333333333428,
+   "n_frames": 6,
+   "n_tracklets": 6
+  },
+  {
+   "category": "Pedestrian",
+   "group": "grid:p2|mHi",
+   "delta_success": -1.25,
+   "n_frames": 4,
+   "n_tracklets": 4
+  },
+  {
+   "category": "Cyclist",
+   "group": "pts:pts0",
+   "delta_success": 0.2631578947368354,
+   "n_frames": 19,
+   "n_tracklets": 5
+  },
+  {
+   "category": "Cyclist",
+   "group": "hard_primary",
+   "delta_success": 0.2631578947368354,
+   "n_frames": 19,
+   "n_tracklets": 5
+  },
+  {
+   "category": "Cyclist",
+   "group": "grid:p0|mLo",
+   "delta_success": 0.2631578947368354,
+   "n_frames": 19,
+   "n_tracklets": 5
+  }
+ ],
+ "precision_delta": 0.0,
+ "precision_unchanged": true,
+ "max_abs_overall_ope_success_delta": 0.08795143212951473,
+ "car_max_abs_group_ope_success_delta": 0.17215189873417103,
+ "headline_and_overall_within_0_2": true,
+ "note": "GPU Bot's 'at most 0.2' holds for every overall score (max |\u0394S| = 0.088 on Car ope) and for every Car group (max |\u0394S| = 0.172). Three tiny non-headline cells exceed 0.2: Pedestrian motHi (6 frames, \u0394S = \u22120.83), Pedestrian grid p2|mHi (4 frames, \u0394S = \u22121.25), and Cyclist pts0 / hard_primary (19 frames, \u0394S = +0.26). Precision is unchanged everywhere (centres match)."
+}
