@@ -2,13 +2,15 @@
 # Stream nuScenes v1.0-trainval meta + keyframe archives through tar, keeping ONLY
 # v1.0-trainval/*.json and val-split keyframe samples/LIDAR_TOP files. No .tgz is
 # stored. md5 of each full stream via tee, checked against the official md5.checksum.
-# Resumable per archive (done markers). Aborts if free disk would drop below 8 GB.
+# Resumable per archive (done markers). Aborts if free disk would drop below
+# MIN_FREE_GB (environment variable, default 8).
 # Usage: scripts/stream_nuscenes.sh   (logs: /workspace/ic001/logs/nuscenes)
+#        MIN_FREE_GB=6 scripts/stream_nuscenes.sh
 set -uo pipefail
 BASE=https://motional-nuscenes.s3.amazonaws.com/public/v1.0  # direct S3: ~24 MB/s here vs ~1.4 MB/s CloudFront
 ROOT=/workspace/ic001/data/nuscenes
 LOG=/workspace/ic001/logs/nuscenes
-MIN_FREE_KB=$((8*1024*1024))
+MIN_FREE_GB=${MIN_FREE_GB:-8}; MIN_FREE_KB=$((MIN_FREE_GB*1024*1024))
 PY=/workspace/ic001_venv/bin/python
 mkdir -p "$ROOT" "$LOG"
 cd "$LOG"
@@ -18,7 +20,7 @@ free_kb() { df -k --output=avail /workspace | tail -1 | tr -d ' '; }
 watchdog() {  # kill the pipeline if free disk drops below the floor
   while sleep 5; do
     if [ "$(free_kb)" -lt "$MIN_FREE_KB" ]; then
-      echo "ABORT: free disk below 8 GB" | tee -a "$LOG/ABORT"; pkill -P $$ curl; pkill -P $$ tar; exit 1
+      echo "ABORT: free disk below ${MIN_FREE_GB} GB" | tee -a "$LOG/ABORT"; pkill -P $$ curl; pkill -P $$ tar; exit 1
     fi
   done
 }
