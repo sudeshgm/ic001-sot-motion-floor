@@ -1,0 +1,63 @@
+{
+ "orig": {
+  "scenes": 150,
+  "samples": 6019,
+  "lidar_keyframes": 6019
+ },
+ "bicycle": {
+  "tracklets": 153,
+  "frames": 2292,
+  "slim_tracklets": 153,
+  "slim_frames": 2292,
+  "identical": true
+ },
+ "bus": {
+  "tracklets": 120,
+  "frames": 2953,
+  "slim_tracklets": 120,
+  "slim_frames": 2953,
+  "identical": true
+ },
+ "car": {
+  "tracklets": 3660,
+  "frames": 64159,
+  "slim_tracklets": 3660,
+  "slim_frames": 64159,
+  "identical": true
+ },
+ "motorcycle": {
+  "tracklets": 136,
+  "frames": 2419,
+  "slim_tracklets": 136,
+  "slim_frames": 2419,
+  "identical": true
+ },
+ "pedestrian": {
+  "tracklets": 1858,
+  "frames": 33227,
+  "slim_tracklets": 1858,
+  "slim_frames": 33227,
+  "identical": true
+ },
+ "trailer": {
+  "tracklets": 152,
+  "frames": 3352,
+  "slim_tracklets": 152,
+  "slim_frames": 3352,
+  "identical": true
+ },
+ "truck": {
+  "tracklets": 608,
+  "frames": 13587,
+  "slim_tracklets": 608,
+  "slim_frames": 13587,
+  "identical": true
+ },
+ "slim": {
+  "scenes": 150,
+  "samples": 6019,
+  "lidar_keyframes": 6019
+ },
+ "filename_or_transform_mismatches": 0,
+ "ALL_IDENTICAL": true
+}

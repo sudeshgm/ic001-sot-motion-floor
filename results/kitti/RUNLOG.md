@@ -10,3 +10,6 @@
 - V4 ground filter (20 random frames, seed 0, GT box + 0.5 m BEV): Car median 0.126 removed (0.00–0.52), Pedestrian median 0.107 (0.00–0.34). Reported, not tuned.
 - Deviations: none. The CV control is reported under re-init only (identical to last box under OPE, PREREG (d)).
 - Learned trackers not run yet (GPU jobs pending) → decision rule NOT applied.
+
+## 2026-11-21 — POST-HOC, SECONDARY, NOT PRE-REGISTERED velocity-heading check
+See `results/kitti_POSTHOC_velocity_heading/RUNLOG.md`. The frozen results above are unchanged and stay primary.

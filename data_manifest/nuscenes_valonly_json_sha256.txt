@@ -1,0 +1,19 @@
+# nuScenes v1.0-trainval metadata, VAL-ONLY slim tables (150 val scenes), built by scripts/slim_nuscenes_meta.py on 2026-11-21 15:01 IST
+# Source archive v1.0-trainval_meta.tgz: md5 537d3954ec34e5bcb89a35d4f6fb0d4a (same on two independent streams; official md5.checksum lists 3eee698806fcf52330faa2e682b9f3a1 -> MISMATCH, logged), sha256 db48746b10e3544d5ef619eaa3d687e3960626fe1b4422ed856711da5aa7325b, gzip -t OK
+# Original full JSON sha256s: data_manifest/nuscenes_trainval_meta_json_sha256.txt (re-verified OK before deletion)
+# Verification (data/nuscenes/valonly_verification.json, committed as results/nuscenes/valonly_verification.json): ALL_IDENTICAL true
+# Raw val counts original == slim: scenes 150, samples 6019, LIDAR_TOP keyframes 6019, vehicle.car instances 4543, vehicle.car annotations 80004
+# Slim tables live at data/nuscenes/v1.0-trainval/ after the originals were deleted (loader version name unchanged)
+faa644f811594bba91ea92ea3071d433d7ac9da44877269ab0b237a2c41fa497  v1.0-trainval/attribute.json
+24e27b4147704d2c2bce826b42a7587b74fb93fc9d9a57744055a6b8120d86a1  v1.0-trainval/calibrated_sensor.json
+c1bb50af5bee47fb4d16513e75d2d8a53cb79ec357a1a36fde3d1a5cb782bd01  v1.0-trainval/category.json
+8521e82cc7beac91e775038b01d6f1d15f2650259eb78034ca7269f73df9c43e  v1.0-trainval/ego_pose.json
+66d183a54e02c5ad447b1f8a6093cef28aedad4c1c4c651c79d284431e7fc70c  v1.0-trainval/instance.json
+69276bb78930d96e780be43fe7855cd40fa5fa9c9ab6918442b6a901c870bbad  v1.0-trainval/log.json
+10b4ca1ffff23a6a776197a23c1196e71a3b5fd7462698dd1c6132774f69663b  v1.0-trainval/map.json
+ef8ac5fb4a7e05e75aea5333ee939fdb4f15cf9aae771c02ce547af98a3a9f7a  v1.0-trainval/sample.json
+32e61544b76f35e2ff101ca563ac91e66e35d4b5a25189397bdd96a44aad59c4  v1.0-trainval/sample_annotation.json
+aceae7985ccfb87deef99ae32e80d9aa666cd4c8f2454474ed6ea8b16c1e4ee0  v1.0-trainval/sample_data.json
+b5890d27581915cd207cc8281a05eeaffcb3578d0906f52d6839e7800332b311  v1.0-trainval/scene.json
+a6bec6df1ad5bc3fd58c0be021ec1057a2c8ebef65c36283f077302e9663c88c  v1.0-trainval/sensor.json
+af80187aac79677b4f719556ce54a22b9e705ff8193f0a359eb781e50adff89f  v1.0-trainval/visibility.json
