@@ -1,0 +1,142 @@
+{
+ "Car": {
+  "n_tracklets": 120,
+  "n_binned_frames": 6304,
+  "bins": {
+   "pts:pts0": {
+    "frames": 2344,
+    "share": 0.37182741116751267,
+    "tracklets": 99
+   },
+   "pts:pts1": {
+    "frames": 1691,
+    "share": 0.26824238578680204,
+    "tracklets": 107
+   },
+   "pts:pts2": {
+    "frames": 2269,
+    "share": 0.3599302030456853,
+    "tracklets": 91
+   },
+   "mot:motHi": {
+    "frames": 1553,
+    "share": 0.2463515228426396,
+    "tracklets": 17
+   },
+   "mot:motLo": {
+    "frames": 4751,
+    "share": 0.7536484771573604,
+    "tracklets": 115
+   },
+   "hard_primary": {
+    "frames": 3077,
+    "share": 0.48810279187817257,
+    "tracklets": 101
+   }
+  }
+ },
+ "Pedestrian": {
+  "n_tracklets": 62,
+  "n_binned_frames": 6026,
+  "bins": {
+   "pts:pts0": {
+    "frames": 645,
+    "share": 0.10703617656820445,
+    "tracklets": 39
+   },
+   "pts:pts1": {
+    "frames": 2707,
+    "share": 0.44922004646531694,
+    "tracklets": 59
+   },
+   "pts:pts2": {
+    "frames": 2674,
+    "share": 0.4437437769664786,
+    "tracklets": 55
+   },
+   "mot:motHi": {
+    "frames": 6,
+    "share": 0.0009956853634251576,
+    "tracklets": 6
+   },
+   "mot:motLo": {
+    "frames": 6020,
+    "share": 0.9990043146365748,
+    "tracklets": 62
+   },
+   "hard_primary": {
+    "frames": 649,
+    "share": 0.10769996681048788,
+    "tracklets": 39
+   }
+  }
+ },
+ "Van": {
+  "n_tracklets": 16,
+  "n_binned_frames": 1232,
+  "bins": {
+   "pts:pts0": {
+    "frames": 501,
+    "share": 0.40665584415584416,
+    "tracklets": 13
+   },
+   "pts:pts1": {
+    "frames": 392,
+    "share": 0.3181818181818182,
+    "tracklets": 15
+   },
+   "pts:pts2": {
+    "frames": 339,
+    "share": 0.27516233766233766,
+    "tracklets": 11
+   },
+   "mot:motHi": {
+    "frames": 15,
+    "share": 0.012175324675324676,
+    "tracklets": 2
+   },
+   "mot:motLo": {
+    "frames": 1217,
+    "share": 0.9878246753246753,
+    "tracklets": 14
+   },
+   "hard_primary": {
+    "frames": 502,
+    "share": 0.4074675324675325,
+    "tracklets": 13
+   }
+  }
+ },
+ "Cyclist": {
+  "n_tracklets": 8,
+  "n_binned_frames": 300,
+  "bins": {
+   "pts:pts0": {
+    "frames": 19,
+    "share": 0.06333333333333334,
+    "tracklets": 5
+   },
+   "pts:pts1": {
+    "frames": 127,
+    "share": 0.42333333333333334,
+    "tracklets": 7
+   },
+   "pts:pts2": {
+    "frames": 154,
+    "share": 0.5133333333333333,
+    "tracklets": 8
+   },
+   "mot:motLo": {
+    "frames": 300,
+    "share": 1.0,
+    "tracklets": 8
+   },
+   "hard_primary": {
+    "frames": 19,
+    "share": 0.06333333333333334,
+    "tracklets": 5
+   }
+  }
+ },
+ "merge_point_bins_kitti": false
+}
