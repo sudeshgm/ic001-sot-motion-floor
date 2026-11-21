@@ -54,6 +54,12 @@ def gt_motion(tracklet: Tracklet) -> np.ndarray:
     return d
 
 
+def secondary_hard(fb: "FrameBins", spec: "BinSpec") -> np.ndarray:
+    """Secondary hard definition (choice e): all point bins below the top one
+    (KITTI <200, nuScenes <25) union high motion."""
+    return (fb.point_bin < spec.n_point_bins() - 1) | fb.high_motion
+
+
 @dataclass
 class FrameBins:
     point_bin: np.ndarray
@@ -84,8 +90,27 @@ def needs_merge(labels, tracklet_ids, min_tracklets: int = MIN_TRACKLETS_PER_CEL
     return any(v < min_tracklets for v in cell_tracklet_counts(labels, tracklet_ids).values())
 
 
-def tracklet_tertile_edges(per_tracklet_points: Sequence[float]) -> Tuple[float, float]:
-    """KITTI last-resort point bins: tertiles of a tracklet-level statistic
-    (computed from GT only, before any score is seen)."""
-    q = np.quantile(np.asarray(per_tracklet_points, dtype=float), [1 / 3, 2 / 3])
+def tracklet_tertile_edges(train_per_tracklet_points: Sequence[float]) -> Tuple[float, float]:
+    """KITTI last-resort point bins (PREREG choice l): tertiles of the
+    per-tracklet MEDIAN GT point count over the KITTI **train** split
+    (Open3DSOT scenes 0000-0016), computed from GT only. Pass train-split values."""
+    q = np.quantile(np.asarray(train_per_tracklet_points, dtype=float), [1 / 3, 2 / 3])
     return float(q[0]), float(q[1])
+
+
+def single_axis_labels(fb: "FrameBins") -> Tuple[List[str], List[str]]:
+    """Decision bins are single-axis (PREREG choice f): point bin and motion bin."""
+    return ([f"pts{int(p)}" for p in fb.point_bin],
+            ["motHi" if m else "motLo" for m in fb.high_motion])
+
+
+def merge_decision(per_class_point_bins: Dict[str, Sequence[int]],
+                   per_class_tracklets: Dict[str, Sequence[str]],
+                   min_tracklets: int = MIN_TRACKLETS_PER_CELL) -> bool:
+    """Per-dataset merge (PREREG choice l): merge point bins for the whole dataset
+    if any headline-class point bin holds < min_tracklets distinct tracklets."""
+    for c in per_class_point_bins:
+        labs = [f"p{int(b)}" for b in per_class_point_bins[c]]
+        if needs_merge(labs, per_class_tracklets[c], min_tracklets):
+            return True
+    return False

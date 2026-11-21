@@ -11,7 +11,9 @@ Methods
 ``cv_snap``   the floor: constant velocity + offset-preserving snap.
 Control 3 (KITTI only) = ``cv_snap`` with ``ego_comp=False``.
 
-Every numeric default below comes from PREREG_DRAFT.md (DRAFT, not frozen).
+Defaults follow PREREG.md (frozen): heading is always the previous box's yaw
+(choice k); OPE keeps the frame-1 GT size, re-init uses the previous GT box
+size (choice j); the CV control is only meaningful under re-init (choice d).
 """
 from __future__ import annotations
 
@@ -32,7 +34,6 @@ class FloorConfig:
     ground_clearance: float = 0.25  # [FIX a] keep points > 0.25 m above box bottom
     snap_bev_margin: float = 0.5  # predicted box expanded by 0.5 m in BEV
     snap_min_points: int = 5  # snap only if >= 5 non-ground points
-    heading_speed_thresh: float = 1.0  # m/s; above it yaw = atan2(v_y, v_x)
     ego_comp: bool = True  # False = control 3 (KITTI)
 
 
@@ -70,6 +71,8 @@ def track(tracklet: Tracklet, method: str = "cv_snap", protocol: str = "ope",
 
     Returns (predictions in each frame's sensor frame, per-step info).
     Frame 0 prediction = frame-0 GT box (Open3DSOT convention).
+    Under OPE, ``cv`` == ``last_box`` by construction (frame 2 is a zero-velocity
+    copy and velocity comes from the tracker's own centres).
     """
     if method not in METHODS:
         raise ValueError(f"unknown method {method}")
@@ -96,19 +99,18 @@ def track(tracklet: Tracklet, method: str = "cv_snap", protocol: str = "ope",
     for t in range(1, n):
         src = preds_w if protocol == "ope" else gt_w
         prev = src[t - 1]
-        prev = Box(prev.center, size, prev.yaw)
+        # OPE: frame-1 GT size fixed. Re-init: previous GT box incl. its size.
+        box_size = size if protocol == "ope" else prev.size
+        prev = Box(prev.center, box_size, prev.yaw)
         dt = max(ts[t] - ts[t - 1], 1e-6)
-        yaw = prev.yaw
+        yaw = prev.yaw  # heading from the previous box, never from velocity
         c = prev.c.copy()
         if method != "last_box" and t >= 2:
             prev2 = src[t - 2]
             dt_prev = max(ts[t - 1] - ts[t - 2], 1e-6)
             disp = prev.c - prev2.c  # floor's own last two centres (OPE)
             c = prev.c + disp * (dt / dt_prev)
-            speed = float(np.linalg.norm(disp[:2]) / dt_prev)
-            if speed > cfg.heading_speed_thresh:
-                yaw = float(np.arctan2(disp[1], disp[0]))
-        pred = Box(tuple(c), size, wrap_angle(yaw))
+        pred = Box(tuple(c), box_size, wrap_angle(yaw))
         info = StepInfo(False, 0, offset is not None)
 
         if method == "cv_snap":
@@ -129,9 +131,3 @@ def track(tracklet: Tracklet, method: str = "cv_snap", protocol: str = "ope",
 
     preds = [b.transform(np.linalg.inv(T)) for b, T in zip(preds_w, Ts)]
     return preds, infos
-
-
-def track_icp_yaw(*args, **kwargs):
-    """Sensitivity analysis (ICP yaw instead of heading rule). Not implemented
-    yet; not part of the headline or the first test."""
-    raise NotImplementedError("ICP-yaw sensitivity variant is not scaffolded yet")

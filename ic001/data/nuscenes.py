@@ -101,6 +101,7 @@ def index_nuscenes(root: str, category: str = "car", version: str = "v1.0-trainv
                 T_world_sensor=np.eye(4), timestamp=sd["timestamp"] * 1e-6,
                 load_points=_lidar_loader(os.path.join(root, sd["filename"]), T_gl),
                 meta=dict(scene=scene["name"], ann_token=a["token"],
+                          num_pts_override=a["num_lidar_pts"],  # PREREG choice h
                           num_lidar_pts=a["num_lidar_pts"],
                           visibility=a.get("visibility_token"))))
         out.append(Tracklet("nuscenes", inst["token"], category.lower(), frames,

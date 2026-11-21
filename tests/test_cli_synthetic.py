@@ -31,8 +31,14 @@ def test_floor_and_evaluate_synthetic(tmp_path, monkeypatch):
     rep = json.load(open(out))
     ope = rep["protocols"]["ope"]
     # identical boxes can give IoU = 1 - 1e-16 (shapely), missing th = 1.0 as in Open3DSOT
-    assert ope["overall_success"]["oracle"] >= 97.5
-    assert np.isclose(ope["overall_precision"]["oracle"], 100.0)
-    assert set(ope["overall_success"]) == {"last_box", "cv", "cv_snap", "cv_snap_noego", "oracle"}
-    assert all(v["best_family"] == "oracle" and v["gap"] >= 0 for v in ope["gap_vs_floor"].values())
-    assert rep["n_frames"] == 6 * 11  # frame 0 excluded from per-bin analysis by default
+    assert ope["success"]["overall_incl_frame0"]["oracle"] >= 97.5
+    assert np.isclose(ope["precision"]["overall_incl_frame0"]["oracle"], 100.0)
+    ov = ope["success"]["overall_incl_frame0"]
+    assert "cv" not in ov  # choice d: CV control not reported under OPE
+    assert "cv" in rep["protocols"]["reinit"]["success"]["overall_incl_frame0"]
+    assert all(v["best_family"] == "oracle" and v["gap"] >= 0
+               for v in ope["gap_vs_floor_primary"].values())
+    assert rep["n_frames_total"] == 6 * 12 and rep["n_frames_binned"] == 6 * 11  # choice g
+    assert ope["success"]["overall_incl_frame0"]["n_frames"] == 72
+    assert any(k.startswith("pts:") for k in ope["success"]) and "mot:motLo" in ope["success"]
+    assert ope["R_secondary_floor_to_best_learned"]["late"] == "oracle"

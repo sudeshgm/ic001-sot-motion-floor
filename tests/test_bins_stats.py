@@ -30,11 +30,29 @@ def test_gt_counts_and_motion_world_frame():
 
 
 def test_merge_and_tertiles():
+    from ic001.bins import merge_decision
     labels = ["a"] * 40 + ["b"] * 5
     tids = list(range(40)) + list(range(5))
     assert needs_merge(labels, tids)
-    lo, hi = tracklet_tertile_edges(np.arange(1, 10))
-    assert lo < hi
+    # per-dataset: one under-powered headline class bin -> merge for the dataset
+    ok_bins, ok_t = [0] * 40 + [1] * 40, [str(i) for i in range(80)]
+    bad_bins, bad_t = [0] * 40 + [1] * 5, [str(i) for i in range(45)]
+    assert merge_decision({"Car": ok_bins}, {"Car": ok_t}) is False
+    assert merge_decision({"Car": ok_bins, "Pedestrian": bad_bins},
+                          {"Car": ok_t, "Pedestrian": bad_t}) is True
+    lo, hi = tracklet_tertile_edges(np.arange(1, 10))  # train-split medians
+    assert lo == pytest.approx(11 / 3) and hi == pytest.approx(19 / 3)
+
+
+def test_single_axis_and_secondary_hard():
+    from ic001.bins import single_axis_labels, secondary_hard
+    fb = assign_bins(np.array([10, 100, 300]), np.array([np.nan, 0.6, 0.1]), KITTI_BINS)
+    pl, ml = single_axis_labels(fb)
+    assert pl == ["pts0", "pts1", "pts2"] and ml == ["motLo", "motHi", "motLo"]
+    assert fb.hard.tolist() == [True, True, False]
+    assert secondary_hard(fb, KITTI_BINS).tolist() == [True, True, False]
+    fb2 = assign_bins(np.array([100]), np.array([0.1]), KITTI_BINS)
+    assert fb2.hard.tolist() == [False] and secondary_hard(fb2, KITTI_BINS).tolist() == [True]
 
 
 def _table(n_trk=60, frames=20, gap_easy=2.0, gap_hard=20.0, seed=0):

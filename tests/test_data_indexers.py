@@ -78,6 +78,9 @@ def test_nuscenes_index_synthetic(tmp_path):
     assert np.allclose(f2.get_points(), [[3, 0, 1.8]])  # lidar -> ego -> global
     assert f2.timestamp == pytest.approx(1.0)
     assert index_nuscenes(root, "car", min_points=31) == []
+    # PREREG choice h: bin point counts come from num_lidar_pts
+    from ic001.bins import gt_point_counts
+    assert np.all(gt_point_counts(trs[0]) == 30)
     assert index_nuscenes(root, "pedestrian") == []
 
 

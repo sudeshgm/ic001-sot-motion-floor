@@ -20,19 +20,35 @@ def test_last_box_exact_on_static_object():
 
 
 def test_cv_exact_on_constant_velocity_after_frame2():
-    tr = make_tracklet(v=(1.0, 0.5, 0.0))  # 11 m/s -> heading rule active
+    tr = make_tracklet(v=(1.0, 0.5, 0.0), yaw=0.3)
     preds, _ = track(tr, "cv", protocol="reinit")
     _, d = score_boxes(preds, gts(tr))
     assert np.allclose(d[2:], 0, atol=1e-9)
     assert d[1] == pytest.approx(np.hypot(1.0, 0.5))  # frame 2 = zero-velocity copy
-    # heading rule: yaw follows velocity direction
-    assert preds[5].yaw == pytest.approx(np.arctan2(0.5, 1.0))
 
 
-def test_heading_kept_below_speed_threshold():
-    tr = make_tracklet(v=(0.05, 0.0, 0.0), yaw=0.4)  # 0.5 m/s < 1.0 m/s
-    preds, _ = track(tr, "cv")
-    assert all(p.yaw == pytest.approx(0.4) for p in preds)
+def test_heading_always_from_previous_box():
+    # PREREG choice k: never from velocity, even when fast
+    tr = make_tracklet(v=(1.0, 0.5, 0.0), yaw=0.4)  # 11 m/s, moving off-axis
+    for proto in ("ope", "reinit"):
+        for m in ("last_box", "cv", "cv_snap"):
+            preds, _ = track(tr, m, protocol=proto)
+            assert all(p.yaw == pytest.approx(0.4) for p in preds)
+
+
+def test_reinit_uses_previous_gt_size_and_yaw():
+    from ic001.geometry import Box
+    from ic001.tracklet import Frame, Tracklet
+    fr = [Frame(gt=Box((t * 1.0, 0, 0), (1.8, 4.0 + 0.1 * t, 1.5), 0.1 * t),
+                T_world_sensor=np.eye(4), timestamp=0.1 * t, points=np.zeros((0, 3)))
+          for t in range(5)]
+    tr = Tracklet("synthetic", "s", "Car", fr)
+    p_re, _ = track(tr, "cv", protocol="reinit")
+    for t in range(1, 5):
+        assert p_re[t].size == fr[t - 1].gt.size  # choice j
+        assert p_re[t].yaw == pytest.approx(fr[t - 1].gt.yaw)  # choice k
+    p_ope, _ = track(tr, "cv", protocol="ope")
+    assert all(p.size == fr[0].gt.size for p in p_ope)  # OPE keeps frame-1 size
 
 
 def test_ope_cv_without_snap_degenerates_to_last_box():
@@ -96,6 +112,11 @@ def test_determinism_v3():
     a, _ = track(tr, "cv_snap")
     b, _ = track(tr, "cv_snap")
     assert all(np.array_equal(x.c, y.c) and x.yaw == y.yaw for x, y in zip(a, b))
+
+
+def test_no_icp_variant():
+    import ic001.trackers as T
+    assert not hasattr(T, "track_icp_yaw")  # choice p: dropped
 
 
 def test_frame1_size_fixed_and_frame0_is_gt():
