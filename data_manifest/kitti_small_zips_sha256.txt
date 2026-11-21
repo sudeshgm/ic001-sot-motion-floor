@@ -1,0 +1,6 @@
+281b8824e82a0710685d0ab641d3f243cffb7af05aebfda550ecfa225742c463  data_tracking_calib.zip
+6ad1fa0125e3cddcbe4d182e41cd12a854a11b0c733b26c706595f6db5c254e0  data_tracking_label_2.zip
+0b93e47a01d9479b7aeffcad50c0a08566f723119b6dfb7a11da3466acaf02de  data_tracking_oxts.zip
+-rw-r--r-- 1 box box   89829 Nov 21 13:34 data_tracking_calib.zip
+-rw-r--r-- 1 box box 2259128 Nov 21 13:34 data_tracking_label_2.zip
+-rw-r--r-- 1 box box 8352970 Nov 21 13:34 data_tracking_oxts.zip
