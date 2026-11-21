@@ -42,3 +42,20 @@ def test_floor_and_evaluate_synthetic(tmp_path, monkeypatch):
     assert ope["success"]["overall_incl_frame0"]["n_frames"] == 72
     assert any(k.startswith("pts:") for k in ope["success"]) and "mot:motLo" in ope["success"]
     assert ope["R_secondary_floor_to_best_learned"]["late"] == "oracle"
+
+
+def test_shards_merge_to_identical_output(tmp_path, monkeypatch):
+    import subprocess, sys, os
+    fresh = lambda: [make_tracklet(n=6, v=(0.2 * k, 0, 0), tid=f"0019_{k}", seed=k) for k in range(5)]
+    monkeypatch.setattr(run, "require_frozen_prereg", lambda: "synthetic")
+    monkeypatch.setattr(run, "_index", lambda a: (fresh(), KITTI_BINS))  # cmd_floor frees points
+    full = tmp_path / "full.csv"
+    run.main(["floor", "--dataset", "kitti", "--root", "x", "--out", str(full)])
+    parts = []
+    for k in range(3):
+        p = tmp_path / f"s{k}.csv"; parts.append(str(p))
+        run.main(["floor", "--dataset", "kitti", "--root", "x", "--out", str(p), "--shard", f"{k}/3"])
+    merged = tmp_path / "merged.csv"
+    script = os.path.join(os.path.dirname(os.path.dirname(__file__)), "scripts", "merge_shards.py")
+    subprocess.run([sys.executable, script, str(merged), *parts], check=True)
+    assert merged.read_bytes() == full.read_bytes()

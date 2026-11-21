@@ -45,6 +45,9 @@ def _index(args):
 def cmd_floor(args):
     h = require_frozen_prereg()
     trs, _ = _index(args)
+    if args.shard:
+        k, n = (int(x) for x in args.shard.split("/"))
+        trs = trs[k::n]  # tracklets k, k+n, ...; merge with scripts/merge_shards.py
     variants = [("last_box", FloorConfig()), ("cv", FloorConfig()), ("cv_snap", FloorConfig())]
     if args.dataset == "kitti":
         variants.append(("cv_snap_noego", FloorConfig(ego_comp=False)))
@@ -198,6 +201,7 @@ def main(argv=None):
         s.add_argument("--category", default="Car")
         s.add_argument("--min-points", type=int, default=1)
         s.add_argument("--out", required=True)
+    sub.choices["floor"].add_argument("--shard", default=None, help="k/n: run every n-th tracklet from k")
     e = sub.choices["evaluate"]
     e.add_argument("--floor", required=True)
     e.add_argument("--learned", nargs="*", default=[])

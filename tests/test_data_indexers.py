@@ -99,8 +99,14 @@ def test_guard_blocks_without_prereg(tmp_path):
         require_frozen_prereg(str(tmp_path))
 
 
-def test_cli_refuses_without_frozen_prereg(tmp_path):
+def test_cli_refuses_without_frozen_prereg(tmp_path, monkeypatch):
     from ic001 import run
+    monkeypatch.setattr(run, "require_frozen_prereg", lambda: require_frozen_prereg(str(tmp_path)))
     with pytest.raises(PreregNotFrozen):
         run.main(["floor", "--dataset", "kitti", "--root", str(tmp_path),
                   "--out", str(tmp_path / "x.csv")])
+
+
+def test_repo_prereg_is_frozen():
+    h = require_frozen_prereg()  # real repo: PREREG.githash points at a commit
+    assert len(h) == 40
