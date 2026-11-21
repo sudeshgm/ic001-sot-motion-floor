@@ -116,4 +116,47 @@ Pedestrian (not headline): eligible bins pts1, pts2, and motLo also all meet the
 - `results/kitti_decision/tables.md` — all aggregate tables (overall, V1, per-bin and per-family gaps with CIs, secondary grid, R).
 - `results/kitti_decision/v1_kitti.json`, `decision_kitti.json`, `summary.json`, `mbptrack_yaw_deviation.json`.
 - `results/kitti_decision/kitti_{Car,Pedestrian,Van,Cyclist}_eval.json` — aggregate eval only.
-- `results/kitti/RUNLOG.md` — run log entry for this scoring pass.
+- `results/kitti/RUNLOG.md` — run log entry for the primary scoring pass.
+- `results/kitti_secondary/` — SECONDARY analyses (KITTI Car): oxts-compensated M2-Track and BAT; see the section below. Does not change the frozen decision above.
+
+## Secondary analyses (KITTI) — labelled SECONDARY
+
+**This section is SECONDARY / post-primary. It does not change the frozen KITTI-side KILL in the sections above, the frozen floor, or V1.** Formal first-test GO/KILL still waits on nuScenes. Spec: `SECONDARY_ANALYSES.md` #1 and #2. Full tables: `results/kitti_secondary/tables.md`.
+
+GPU Bot's oxts-compensated M2-Track and BAT KITTI Car outputs (`/workspace/gpubot/ic001-sot-kitti/outputs/sec_v1/`) were SHA-256 verified (every brief hash and every `SHA256SUMS_all.txt` entry matched) and re-scored with the same `ic001` path as the primary decision (same bins, Open3DSOT Success, 10,000 tracklet bootstrap, seed 0). Per-frame CSVs are not in the repo. Our scores match GPU Bot's `eval_bins_kitti_Car_secondary.json` exactly (max |Δ| = 0).
+
+Overall (protocol a / ope): M2-Track-oxts **66.45 / 79.05** (native 66.46 / 79.08); BAT **63.17 / 76.07** (native 63.18 / 76.09). Informational only, not a V1 gate: BAT vs paper 60.5 is +2.67 Success; vs the Open3DSOT README checkpoint 65.37 is −2.20 (the README asks for CUDA 10.x; this run was on a free Kaggle T4).
+
+### Gaps vs the floor (Car, ope)
+
+Gap = method − floor (`cv_snap`). High-motion is under-powered (17 tracklets), as in the primary record.
+
+| Method | Bin | Gap | 95% CI | n frames | Share | n tracklets | Eligible for a claim? |
+|---|---|---:|---|---:|---:|---:|---|
+| M2-Track-oxts | pts0 (<50) | 26.49 | [19.62, 33.83] | 2344 | 37.2% | 99 | yes |
+| M2-Track-oxts | pts1 (50–199) | 54.74 | [42.16, 63.10] | 1691 | 26.8% | 107 | yes |
+| M2-Track-oxts | pts2 (≥200) | 52.40 | [40.87, 63.02] | 2269 | 36.0% | 91 | yes |
+| M2-Track-oxts | motLo (<0.5 m) | 42.33 | [33.85, 49.98] | 4751 | 75.4% | 115 | yes |
+| M2-Track-oxts | motHi (≥0.5 m) | 46.64 | [17.70, 64.54] | 1553 | 24.6% | 17 | no |
+| BAT | pts0 (<50) | 28.05 | [22.03, 33.96] | 2344 | 37.2% | 99 | yes |
+| BAT | pts1 (50–199) | 53.40 | [41.33, 62.45] | 1691 | 26.8% | 107 | yes |
+| BAT | pts2 (≥200) | 42.49 | [31.17, 54.33] | 2269 | 36.0% | 91 | yes |
+| BAT | motLo (<0.5 m) | 38.66 | [31.56, 45.78] | 4751 | 75.4% | 115 | yes |
+| BAT | motHi (≥0.5 m) | 44.29 | [18.39, 61.70] | 1553 | 24.6% | 17 | no |
+
+No eligible bin has a gap near zero. The smallest eligible gap is M2-Track-oxts in the sparse (<50 point) bin, still **+26.49** with a 95% lower bound of 19.62.
+
+Giving M2-Track the ego pose at crop time does not close that gap, or even shrink it reliably: M2-Track-oxts minus plain M2-Track is **−0.96** overall [−4.18, 1.09], **−1.50** in pts<50 [−5.09, 1.81], **−0.55** in high motion (under-powered), and **−0.34** in ego-only frames [−2.65, 1.53]. The intervals cover 0 or sit slightly below it.
+
+### #1 Ego-motion split — NO-GO
+
+The pre-specified test uses Δgap = (uncompensated M2-Track − floor) in ego-only frames minus the same in static/static frames, plus the oxts-compensated gain. Ego cells match the 21 Nov GT census (BEV world × BEV sensor, 0.5 m): static/static 2,474 frames / 36 tracklets; ego-only 2,282 / 98. Co-moving and both-moving stay under-powered.
+
+**Δgap = −0.41**, 95% CI **[−12.74, 14.71]** (|Δgap| < 2; the interval covers 0). The oxts-compensated M2-Track gain on ego-only frames is **−0.34** (<1; overall −0.96). Under the pre-specified rule this is **NO-GO**: ego pose is not the source of the learned−floor gap, which also defuses the fairness objection (the floor uses `oxts`, the learned crop usually does not). The validity check holds: the no-ego floor (frozen control 3) collapses in ego-only frames (floor − no-ego = **+11.07** [7.27, 15.17]) and barely differs in static/static (+1.96, interval covers 0).
+
+### #2 BAT progress anchor (R_progress) — KITTI only, diagnostic
+
+R_progress = (share of the BAT → best-learned gain in primary-hard frames) / (share of frames that are primary-hard), using the frozen P5 formula. Best learned remains MBPTrack (GT-convention yaw).
+
+**R_progress = 0.497**, 95% CI **[0.173, 0.882]**. Total binned gain is 10.69 Success (>2, so R is defined). The interval is entirely below 1, so on KITTI the later gains are not concentrated in hard frames (H-refine direction; H-hard is not supported). This is KITTI-only; the pre-specified informative/uninformative call needs the same contrast on nuScenes as well. Floor → best R, restated on the same frames, remains **0.833** [0.612, 0.987], matching the primary record.
+

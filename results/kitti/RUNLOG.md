@@ -23,3 +23,7 @@ See `results/kitti_POSTHOC_velocity_heading/RUNLOG.md`. The frozen results above
 - Our ic001 Success/Precision match GPU Bot's `eval_bins_kitti_*.json` exactly (max |Δ| = 0). Offsets vs GPU Bot's native Car headline numbers (M2 67.43/81.04, MBP 73.67/85.19) are ≤ 0.10 Success and are the already-noted IoU-implementation difference, not a rescore mismatch.
 - Decision rule applied to KITTI only (Car, protocol a, single-axis bins, frame 0 excluded, no merge, 10,000 tracklet bootstrap, seed 0). Learned = best family by point estimate per bin (MBPTrack in every Car decision bin). Per-family gaps (M2-Track − floor and MBPTrack − floor) are also reported. **KITTI side of rule: KILL conditions hold on every eligible decision bin; formal KILL needs nuScenes, which has not been run.** Secondary R (Car, floor → MBPTrack) = 0.833, 95% CI [0.612, 0.987]; P5 not supported. Full tables in `results/kitti_decision/tables.md`.
 - `PREREG.md` and `PREREG_ADDENDUM_2026-11-21.md` were not edited. Frozen floor outputs in `results/kitti/` were not changed.
+
+## 2026-11-21 21:16 IST — SECONDARY analyses (KITTI Car): oxts-compensated M2-Track and BAT
+
+See `results/kitti_secondary/RUNLOG.md` and `RESULTS.md` (section "Secondary analyses (KITTI)"). The frozen floor in this directory and the primary KITTI-side decision in `results/kitti_decision/` are unchanged.
