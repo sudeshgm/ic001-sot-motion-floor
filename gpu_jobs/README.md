@@ -9,6 +9,7 @@ Approvals (Sudesh's own words, relayed and verified by Idea Launcher, 21 Nov 202
 | `mbptrack_first_test.md` | MBPTrack (official checkpoints) KITTI Car/Ped/Van/Cyc (+ nuScenes, phase 2), ope + reinit | ≈ 0.5–1 T4-h + env setup |
 | `m2track_oxts_crop.md` | **SECONDARY** (#1): M2-Track KITTI Car with an oxts-compensated search crop; same commit/checkpoint as the first test | ≈ 0.3 T4-h |
 | `bat_kitti_car.md` | **SECONDARY** (#2): BAT on KITTI Car, official Open3DSOT `bat_kitti_car.ckpt`; same env as M2-Track | ≈ 0.3 T4-h |
+| `nuscenes_learned.md` | M2-Track (nuScenes Car) + MBPTrack (Car/Ped/Truck/Trailer/Bus) on val keyframes, ope + reinit; informational V1 vs addendum | ≈ 3–6 T4-h |
 | `dump_open3dsot.py` | Harness: Open3DSOT model → per-frame CSV (untested on GPU) | — |
 | `dump_open3dsot_oxts.py` | Harness: M2-Track with oxts-compensated previous box/crop (yaw-only); KITTI only (untested on GPU) | — |
 | `dump_mbptrack.py` | Harness: MBPTrack → per-frame CSV, camera→velodyne conversion + self-check (untested on GPU) | — |
@@ -18,7 +19,7 @@ Approvals (Sudesh's own words, relayed and verified by Idea Launcher, 21 Nov 202
   - On Kaggle, first verify: `cd /kaggle/input/ic001-kitti-0019-0020/kitti && sha256sum -c kitti_sha256.txt --quiet` (paths in the manifest are relative to `kitti/`). Any mismatch → stop.
   - The `m2track_oxts_crop` job needs `oxts/0019.txt` and `oxts/0020.txt`. They are already in this layout and in the manifest; if an already-uploaded dataset is missing them, add `oxts/` and re-verify the manifest before that job.
   - The same root works for both loaders: Open3DSOT `path:` and MBPTrack `data_root_dir:` (`velodyne/`, `label_02/`, `calib/` directly under it).
-- **nuScenes (phase 2, CC BY-NC-SA 4.0 + nuScenes terms):** only after the CPU agent has the val keyframes on the box; a second private dataset `ic001-nuscenes-val-keyframes` (val `samples/LIDAR_TOP` + `v1.0-trainval/*.json`). Not available yet.
+- **nuScenes (CC BY-NC-SA 4.0 + nuScenes terms):** private dataset `ic001-nuscenes-val-keyframes` from `/workspace/ic001/data/nuscenes/` (6,019 val `samples/LIDAR_TOP` keyframes + slim val-only `v1.0-trainval/*.json`, **4,335,085,152 B ≈ 4.04 GiB**) plus `data_manifest/nuscenes_val_lidar_sha256.txt` and `nuscenes_valonly_json_sha256.txt`. Visibility must be Private; do not add collaborators. Verify both manifests on Kaggle before running (`gpu_jobs/nuscenes_learned.md`).
 
 ## What comes back to the box (small files only)
 Per job, per (dataset, class): one CSV with both protocols, exactly:

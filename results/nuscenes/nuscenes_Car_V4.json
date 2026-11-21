@@ -1,0 +1,102 @@
+[
+ {
+  "tracklet": "b4c18a9b7e9e40c1b603f2e5c8ca140c",
+  "frame_idx": 7,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "348fbb5614074e09950df53cafefc18e",
+  "frame_idx": 2,
+  "removed_fraction": NaN
+ },
+ {
+  "tracklet": "04e3959ddf8647a8906b2f4567021f85",
+  "frame_idx": 1,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "e83df9a6923c46b2b811c5cc809701af",
+  "frame_idx": 9,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "dbc3ee3af1be467eaa2e349c42f0f288",
+  "frame_idx": 3,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "4afeaa7773e34c3c9afa98fa0b492cc6",
+  "frame_idx": 0,
+  "removed_fraction": 0.75
+ },
+ {
+  "tracklet": "0d351b40ea004096abb7843d5e6193fa",
+  "frame_idx": 27,
+  "removed_fraction": NaN
+ },
+ {
+  "tracklet": "b783361076f24853959b15d591b46b3f",
+  "frame_idx": 8,
+  "removed_fraction": 0.2727272727272727
+ },
+ {
+  "tracklet": "16920ffbeab74a5fa251d264f97491aa",
+  "frame_idx": 6,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "c6bdc5501a4744999dde3fa2bb880aeb",
+  "frame_idx": 0,
+  "removed_fraction": 0.475
+ },
+ {
+  "tracklet": "ce2be0002ecb44cb9b9dae61868cb8d1",
+  "frame_idx": 21,
+  "removed_fraction": 0.641025641025641
+ },
+ {
+  "tracklet": "2eb83a6a5aa143658a149e0f40b9a7ab",
+  "frame_idx": 34,
+  "removed_fraction": 0.2530120481927711
+ },
+ {
+  "tracklet": "c98c58fc5ab54705a7abf2063b8e2ea8",
+  "frame_idx": 9,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "8095f3071b6c4a1db81c5c0b9d9db9e1",
+  "frame_idx": 31,
+  "removed_fraction": 0.18985270049099834
+ },
+ {
+  "tracklet": "a561fde5f28a4360b8a6fbadacd1e860",
+  "frame_idx": 4,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "ab3f018490a84071bb029a6318fcc1f3",
+  "frame_idx": 0,
+  "removed_fraction": 1.0
+ },
+ {
+  "tracklet": "8d23a7f84ceb48cda1caae71ae2c9040",
+  "frame_idx": 15,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "eac97a9c90954167b6c3913174fc4634",
+  "frame_idx": 8,
+  "removed_fraction": 0.5
+ },
+ {
+  "tracklet": "71facb1fae7a4872a1a5579dfec36f36",
+  "frame_idx": 16,
+  "removed_fraction": 0.0
+ },
+ {
+  "tracklet": "52e0bb8f7c624a3b9a7fddb4450dbe47",
+  "frame_idx": 28,
+  "removed_fraction": 0.6666666666666667
+ }
+]

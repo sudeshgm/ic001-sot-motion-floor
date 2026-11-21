@@ -1,0 +1,270 @@
+{
+ "bicycle": {
+  "n_tracklets": 153,
+  "n_frames_total": 2292,
+  "n_binned_frames": 2139,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 1527,
+    "share": 0.7138849929873773,
+    "tracklets": 145
+   },
+   "pts:pts1": {
+    "frames": 382,
+    "share": 0.17858812529219262,
+    "tracklets": 94
+   },
+   "pts:pts2": {
+    "frames": 230,
+    "share": 0.10752688172043011,
+    "tracklets": 57
+   },
+   "mot:motHi": {
+    "frames": 130,
+    "share": 0.06077606358111267,
+    "tracklets": 12
+   },
+   "mot:motLo": {
+    "frames": 2009,
+    "share": 0.9392239364188874,
+    "tracklets": 146
+   },
+   "hard_primary": {
+    "frames": 1574,
+    "share": 0.7358578775128565,
+    "tracklets": 145
+   }
+  }
+ },
+ "bus": {
+  "n_tracklets": 120,
+  "n_frames_total": 2953,
+  "n_binned_frames": 2833,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 769,
+    "share": 0.27144369925873635,
+    "tracklets": 94
+   },
+   "pts:pts1": {
+    "frames": 502,
+    "share": 0.17719731733145075,
+    "tracklets": 86
+   },
+   "pts:pts2": {
+    "frames": 1562,
+    "share": 0.5513589834098129,
+    "tracklets": 92
+   },
+   "mot:motHi": {
+    "frames": 733,
+    "share": 0.2587363219202259,
+    "tracklets": 51
+   },
+   "mot:motLo": {
+    "frames": 2100,
+    "share": 0.7412636780797741,
+    "tracklets": 108
+   },
+   "hard_primary": {
+    "frames": 1303,
+    "share": 0.45993646311330744,
+    "tracklets": 105
+   }
+  }
+ },
+ "car": {
+  "n_tracklets": 3660,
+  "n_frames_total": 64159,
+  "n_binned_frames": 60499,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 35909,
+    "share": 0.5935470007768724,
+    "tracklets": 3304
+   },
+   "pts:pts1": {
+    "frames": 7961,
+    "share": 0.1315889518835022,
+    "tracklets": 1989
+   },
+   "pts:pts2": {
+    "frames": 16629,
+    "share": 0.27486404733962544,
+    "tracklets": 1601
+   },
+   "mot:motHi": {
+    "frames": 9124,
+    "share": 0.15081241012248137,
+    "tracklets": 759
+   },
+   "mot:motLo": {
+    "frames": 51375,
+    "share": 0.8491875898775186,
+    "tracklets": 3087
+   },
+   "hard_primary": {
+    "frames": 40195,
+    "share": 0.6643911469611068,
+    "tracklets": 3365
+   }
+  }
+ },
+ "motorcycle": {
+  "n_tracklets": 136,
+  "n_frames_total": 2419,
+  "n_binned_frames": 2283,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 1590,
+    "share": 0.6964520367936925,
+    "tracklets": 133
+   },
+   "pts:pts1": {
+    "frames": 294,
+    "share": 0.1287779237844941,
+    "tracklets": 87
+   },
+   "pts:pts2": {
+    "frames": 399,
+    "share": 0.1747700394218134,
+    "tracklets": 64
+   },
+   "mot:motHi": {
+    "frames": 386,
+    "share": 0.16907577748576436,
+    "tracklets": 36
+   },
+   "mot:motLo": {
+    "frames": 1897,
+    "share": 0.8309242225142357,
+    "tracklets": 117
+   },
+   "hard_primary": {
+    "frames": 1702,
+    "share": 0.7455102934734997,
+    "tracklets": 133
+   }
+  }
+ },
+ "pedestrian": {
+  "n_tracklets": 1858,
+  "n_frames_total": 33227,
+  "n_binned_frames": 31369,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 24271,
+    "share": 0.7737256527144634,
+    "tracklets": 1772
+   },
+   "pts:pts1": {
+    "frames": 4054,
+    "share": 0.129235869807772,
+    "tracklets": 953
+   },
+   "pts:pts2": {
+    "frames": 3044,
+    "share": 0.09703847747776467,
+    "tracklets": 560
+   },
+   "mot:motHi": {
+    "frames": 10,
+    "share": 0.0003187860626733399,
+    "tracklets": 10
+   },
+   "mot:motLo": {
+    "frames": 31359,
+    "share": 0.9996812139373267,
+    "tracklets": 1798
+   },
+   "hard_primary": {
+    "frames": 24271,
+    "share": 0.7737256527144634,
+    "tracklets": 1772
+   }
+  }
+ },
+ "trailer": {
+  "n_tracklets": 152,
+  "n_frames_total": 3352,
+  "n_binned_frames": 3200,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 1101,
+    "share": 0.3440625,
+    "tracklets": 129
+   },
+   "pts:pts1": {
+    "frames": 625,
+    "share": 0.1953125,
+    "tracklets": 114
+   },
+   "pts:pts2": {
+    "frames": 1474,
+    "share": 0.460625,
+    "tracklets": 100
+   },
+   "mot:motHi": {
+    "frames": 207,
+    "share": 0.0646875,
+    "tracklets": 21
+   },
+   "mot:motLo": {
+    "frames": 2993,
+    "share": 0.9353125,
+    "tracklets": 143
+   },
+   "hard_primary": {
+    "frames": 1233,
+    "share": 0.3853125,
+    "tracklets": 130
+   }
+  }
+ },
+ "truck": {
+  "n_tracklets": 608,
+  "n_frames_total": 13587,
+  "n_binned_frames": 12979,
+  "missing_lidar_files": 0,
+  "bins": {
+   "pts:pts0": {
+    "frames": 5944,
+    "share": 0.4579705678403575,
+    "tracklets": 540
+   },
+   "pts:pts1": {
+    "frames": 2098,
+    "share": 0.16164573541875338,
+    "tracklets": 412
+   },
+   "pts:pts2": {
+    "frames": 4937,
+    "share": 0.3803836967408891,
+    "tracklets": 353
+   },
+   "mot:motHi": {
+    "frames": 1591,
+    "share": 0.12258263348486016,
+    "tracklets": 120
+   },
+   "mot:motLo": {
+    "frames": 11388,
+    "share": 0.8774173665151398,
+    "tracklets": 547
+   },
+   "hard_primary": {
+    "frames": 6834,
+    "share": 0.5265428769550813,
+    "tracklets": 552
+   }
+  }
+ },
+ "merge_point_bins_nuscenes": false,
+ "merge_rule": "if merge: point bins become <25 / >=25 for all classes (PREREG (l)); else stay <10 / 10-24 / >=25"
+}
