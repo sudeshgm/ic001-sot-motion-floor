@@ -1,8 +1,11 @@
 *.env
 secrets/
-data/
+/data/
 *.bin
 *.zip
 *.ckpt
 *.pth
 __pycache__/
+*.pyc
+.pytest_cache/
+runs/

@@ -1,0 +1,7 @@
+# Direct dependencies of the CPU side (pinned). Full lock: requirements-lock.txt
+numpy==2.5.5
+scipy==1.18.1
+shapely==2.2.0
+pandas==3.1.1
+pyquaternion==0.9.9
+pytest==9.2.0
