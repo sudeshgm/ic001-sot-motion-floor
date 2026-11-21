@@ -132,3 +132,14 @@ def test_bad_args():
         track(tr, "kalman")
     with pytest.raises(ValueError):
         track(tr, "cv", protocol="x")
+
+
+def test_posthoc_velocity_heading_variant():
+    # POST-HOC, SECONDARY: draft-v0 heading rule, opt-in only
+    tr = make_tracklet(v=(1.0, 0.5, 0.0), yaw=0.4)  # 11 m/s
+    p, _ = track(tr, "cv", protocol="reinit", cfg=FloorConfig(heading_mode="velocity"))
+    assert p[5].yaw == pytest.approx(np.arctan2(0.5, 1.0))
+    slow = make_tracklet(v=(0.05, 0.0, 0.0), yaw=0.4)  # 0.5 m/s < 1 m/s
+    p2, _ = track(slow, "cv", cfg=FloorConfig(heading_mode="velocity"))
+    assert all(x.yaw == pytest.approx(0.4) for x in p2)
+    assert FloorConfig().heading_mode == "previous_box"  # frozen primary unchanged

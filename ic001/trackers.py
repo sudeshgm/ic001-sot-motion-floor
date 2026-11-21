@@ -35,6 +35,12 @@ class FloorConfig:
     snap_bev_margin: float = 0.5  # predicted box expanded by 0.5 m in BEV
     snap_min_points: int = 5  # snap only if >= 5 non-ground points
     ego_comp: bool = True  # False = control 3 (KITTI)
+    # POST-HOC, SECONDARY, NOT PRE-REGISTERED (Sudesh, 21 Nov, after KITTI floor
+    # results): "velocity" = PREREG_DRAFT v0 heading rule (yaw = atan2(v_y, v_x)
+    # when world speed > heading_speed_thresh, else previous yaw). The frozen
+    # primary is "previous_box" (PREREG choice k).
+    heading_mode: str = "previous_box"
+    heading_speed_thresh: float = 1.0  # m/s, used only by heading_mode="velocity"
 
 
 def nonground_in_box(points_w: np.ndarray, box: Box, cfg: FloorConfig) -> np.ndarray:
@@ -110,6 +116,12 @@ def track(tracklet: Tracklet, method: str = "cv_snap", protocol: str = "ope",
             dt_prev = max(ts[t - 1] - ts[t - 2], 1e-6)
             disp = prev.c - prev2.c  # floor's own last two centres (OPE)
             c = prev.c + disp * (dt / dt_prev)
+            if cfg.heading_mode == "velocity":  # POST-HOC variant only
+                speed = float(np.linalg.norm(disp[:2]) / dt_prev)
+                if speed > cfg.heading_speed_thresh:
+                    yaw = float(np.arctan2(disp[1], disp[0]))
+            elif cfg.heading_mode != "previous_box":
+                raise ValueError(cfg.heading_mode)
         pred = Box(tuple(c), box_size, wrap_angle(yaw))
         info = StepInfo(False, 0, offset is not None)
 

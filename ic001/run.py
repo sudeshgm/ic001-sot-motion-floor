@@ -51,12 +51,16 @@ def cmd_floor(args):
     variants = [("last_box", FloorConfig()), ("cv", FloorConfig()), ("cv_snap", FloorConfig())]
     if args.dataset == "kitti":
         variants.append(("cv_snap_noego", FloorConfig(ego_comp=False)))
+    if args.posthoc_velocity_heading:
+        # POST-HOC, SECONDARY, NOT PRE-REGISTERED: velocity-heading variants only
+        v = FloorConfig(heading_mode="velocity")
+        variants = [("cv_POSTHOC_velhead", v), ("cv_snap_POSTHOC_velhead", v)]
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w", newline="") as f:
         w = csv.writer(f); w.writerow(FIELDS)
         for tr in trs:
             for name, cfg in variants:
-                m = "cv_snap" if name.startswith("cv_snap") else name
+                m = "cv_snap" if name.startswith("cv_snap") else ("cv" if name.startswith("cv") else name)
                 for proto in ("ope", "reinit"):
                     preds, _ = track(tr, m, proto, cfg)
                     for i, b in enumerate(preds):
@@ -78,7 +82,8 @@ def _read_preds(paths):
     return out
 
 
-FLOOR_METHODS = ("last_box", "cv", "cv_snap", "cv_snap_noego")
+FLOOR_METHODS = ("last_box", "cv", "cv_snap", "cv_snap_noego",
+                 "cv_POSTHOC_velhead", "cv_snap_POSTHOC_velhead")
 
 
 def _summ(table_scores, mask_groups):
@@ -124,7 +129,7 @@ def cmd_evaluate(args):
     for proto in ("ope", "reinit"):
         succ, prec = {}, {}
         for (m, p), d in preds.items():
-            if p != proto or (m == "cv" and proto == "ope"):
+            if p != proto or (m in ("cv", "cv_POSTHOC_velhead") and proto == "ope"):
                 continue  # choice d: CV control == last_box under OPE, not reported
             missing = [r for r in rows if (r[0], r[1]) not in d]
             if missing:
@@ -201,6 +206,8 @@ def main(argv=None):
         s.add_argument("--category", default="Car")
         s.add_argument("--min-points", type=int, default=1)
         s.add_argument("--out", required=True)
+    sub.choices["floor"].add_argument("--posthoc-velocity-heading", action="store_true",
+                                      help="POST-HOC, SECONDARY, NOT PRE-REGISTERED velocity-heading variants")
     sub.choices["floor"].add_argument("--shard", default=None, help="k/n: run every n-th tracklet from k")
     e = sub.choices["evaluate"]
     e.add_argument("--floor", required=True)
