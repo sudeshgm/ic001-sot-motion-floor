@@ -1,0 +1,485 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/ETZV6kIPsycaVdiIF1pPn5ZiaM8</id>
+  <title>arXiv Query: search_query=abs:"3D SOT"&amp;id_list=&amp;start=0&amp;max_results=40</title>
+  <updated>2026-11-21T07:14:23Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=abs:%223D+SOT%22&amp;start=0&amp;max_results=40&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>40</opensearch:itemsPerPage>
+  <opensearch:totalResults>16</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.16695v1</id>
+    <title>MAETrack: Unleashing the Potential of Pretrained Geometric Priors for 3D Single Object Tracking</title>
+    <updated>2026-09-15T06:21:44Z</updated>
+    <link href="https://arxiv.org/abs/2609.16695v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.16695v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large-scale pre-training has transformed representation learning in 2D vision, yet its transferability to 3D single object tracking (SOT) remains insufficiently understood. Directly fine-tuning self-supervised 3D encoders, such as masked autoencoders (MAE), often leads to sub-optimal adaptation because the reconstruction objective is not fully aligned with the spatial-temporal matching requirements of tracking. In this paper, we observe that this difficulty can be interpreted as a layer-wise transfer mismatch: shallow layers tend to preserve transferable geometric cues, while deeper layers become increasingly specialized to the reconstruction pretext task and are less suitable for downstream tracking. Based on this observation, we propose MAETrack, a lightweight adaptation framework for transferring pre-training MAE representations to 3D SOT. MAETrack includes Layer-Selective Initialization (LSI), which initializes only the shallow stages of the tracking backbone from pre-trained weights while re-initializing deeper stages, and Geometric Residual Gating (GRG), which reinforces structurally salient regions in the search BEV features before template-search fusion through residual spatial modulation. Extensive experiments on standard 3D SOT benchmarks show that MAETrack consistently improves upon vanilla fine-tuning baselines with limited computational overhead. More broadly, our results suggest that effective transfer from 3D reconstruction pre-training to 3D tracking is not merely a matter of partial fine-tuning, but depends on a tracking-oriented transfer principle that preserves shallow geometry while adapting deeper representations to the downstream objective.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-15T06:21:44Z</published>
+    <arxiv:comment>35 pages, 5 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+    <author>
+      <name>Qiwei Wang</name>
+    </author>
+    <author>
+      <name>Linyue Tan</name>
+    </author>
+    <author>
+      <name>Ziyu Liu</name>
+    </author>
+    <author>
+      <name>Ziyu Zhao</name>
+    </author>
+    <author>
+      <name>Xiaobo Lu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.07738v1</id>
+    <title>TFTrack: A Template-Free Framework for Efficient 3D Point Cloud Tracking</title>
+    <updated>2026-09-07T16:43:18Z</updated>
+    <link href="https://arxiv.org/abs/2609.07738v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.07738v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LiDAR-based 3D Single Object Tracking (3D SOT) is critical for robotic perception and navigation and aims to localize dynamic objects across frames in sparse point clouds. Existing methods, rooted in the Siamese tracking paradigm from 2D vision, rely on costly dual-input designs and excessive motion modeling guided by template priors, hindering their efficiency. Our in-depth analysis reveals: (i) the template paradigm is redundant, as the previous bounding box center encodes sufficient historical context; (ii) complex motion modeling is unnecessary, as geometric alignment provides adequate motion priors. Based on the above findings, we propose the first Template-Free Tracking framework (TFTrack). The novel framework eliminates the need for template-search pairings and operates directly on the current frame guided solely by the prior bounding box center and size. We instantiate this paradigm into three variants: TFTrack-Voxel, TFTrack-Pillar, and TFTrack-Point, to explore different 3D representations under a unified framework, ensuring flexibility across sparse and dense scenes. Extensive experiments on KITTI and nuScenes benchmarks show that TFTrack is competitive with leading template-based trackers, while reducing FLOPs by approximately 50% and running at approximately 120 FPS. By simplifying overcomplicated motion-centric designs, TFTrack establishes a new minimalist paradigm for efficient 3D point cloud tracking, paving the way for real-time and resource-efficient deployment in embedded robotic systems, such as autonomous vehicles. The code is available at https://github.com/tftrack-anonymous/TFTrack/tree/main.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-07T16:43:18Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhaofeng Hu</name>
+    </author>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+    <author>
+      <name>Jiahao Nie</name>
+    </author>
+    <author>
+      <name>Ziyu Zhao</name>
+    </author>
+    <author>
+      <name>Weizi Li</name>
+    </author>
+    <author>
+      <name>Ci-jyun Liang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2604.13789v1</id>
+    <title>Temporally Consistent Long-Term Memory for 3D Single Object Tracking</title>
+    <updated>2026-04-15T12:30:42Z</updated>
+    <link href="https://arxiv.org/abs/2604.13789v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2604.13789v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D Single Object Tracking (3D-SOT) aims to localize a target object across a sequence of LiDAR point clouds, given its 3D bounding box in the first frame. Recent methods have adopted a memory-based approach to utilize previously observed features of the target object, but remain limited to only a few recent frames. This work reveals that their temporal capacity is fundamentally constrained to short-term context due to severe temporal feature inconsistency and excessive memory overhead. To this end, we propose a robust long-term 3D-SOT framework, ChronoTrack, which preserves the temporal feature consistency while efficiently aggregating the diverse target features via long-term memory. Based on a compact set of learnable memory tokens, ChronoTrack leverages long-term information through two complementary objectives: a temporal consistency loss and a memory cycle consistency loss. The former enforces feature alignment across frames, alleviating temporal drift and improving the reliability of proposed long-term memory. In parallel, the latter encourages each token to encode diverse and discriminative target representations observed throughout the sequence via memory-point-memory cyclic walks. As a result, ChronoTrack achieves new state-of-the-art performance on multiple 3D-SOT benchmarks, demonstrating its effectiveness in long-term target modeling with compact memory while running at real-time speed of 42 FPS on a single RTX 4090 GPU. The code is available at https://github.com/ujaejoon/ChronoTrack</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-04-15T12:30:42Z</published>
+    <arxiv:comment>Accepted to CVPR 2026 Findings</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jaejoon Yoo</name>
+    </author>
+    <author>
+      <name>SuBeen Lee</name>
+    </author>
+    <author>
+      <name>Yerim Jeon</name>
+    </author>
+    <author>
+      <name>Miso Lee</name>
+    </author>
+    <author>
+      <name>Jae-Pil Heo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2509.11453v3</id>
+    <title>Beyond Frame-wise Tracking: A Trajectory-based Paradigm for Efficient Point Cloud Tracking</title>
+    <updated>2026-03-15T04:14:35Z</updated>
+    <link href="https://arxiv.org/abs/2509.11453v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2509.11453v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LiDAR-based 3D single object tracking (3D SOT) is a critical task in robotics and autonomous systems. Existing methods typically follow frame-wise motion estimation or a sequence-based paradigm. However, the two-frame methods are efficient but lack long-term temporal context, making them vulnerable in sparse or occluded scenes, while sequence-based methods that process multiple point clouds gain robustness at a significant computational cost. To resolve this dilemma, we propose a novel trajectory-based paradigm and its instantiation, TrajTrack. TrajTrack is a lightweight framework that enhances a base two-frame tracker by implicitly learning motion continuity from historical bounding box trajectories alone-without requiring additional, costly point cloud inputs. It first generates a fast, explicit motion proposal and then uses an implicit motion modeling module to predict the future trajectory, which in turn refines and corrects the initial proposal. Extensive experiments on the large-scale NuScenes benchmark show that TrajTrack achieves new state-of-the-art performance, dramatically improving tracking precision by 3.02% over a strong baseline while running at 55 FPS. Besides, we also demonstrate the strong generalizability of TrajTrack across different base trackers. Code is available at https://github.com/FiBonaCci225/TrajTrack.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-09-14T21:57:16Z</published>
+    <arxiv:comment>Acceptted in ICRA 2026</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>BaiChen Fan</name>
+    </author>
+    <author>
+      <name>Yuanxi Cui</name>
+    </author>
+    <author>
+      <name>Jian Li</name>
+    </author>
+    <author>
+      <name>Qin Wang</name>
+    </author>
+    <author>
+      <name>Shibo Zhao</name>
+    </author>
+    <author>
+      <name>Muqing Cao</name>
+    </author>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2507.19908v1</id>
+    <title>TrackAny3D: Transferring Pretrained 3D Models for Category-unified 3D Point Cloud Tracking</title>
+    <updated>2025-07-26T10:41:55Z</updated>
+    <link href="https://arxiv.org/abs/2507.19908v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2507.19908v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D LiDAR-based single object tracking (SOT) relies on sparse and irregular point clouds, posing challenges from geometric variations in scale, motion patterns, and structural complexity across object categories. Current category-specific approaches achieve good accuracy but are impractical for real-world use, requiring separate models for each category and showing limited generalization. To tackle these issues, we propose TrackAny3D, the first framework to transfer large-scale pretrained 3D models for category-agnostic 3D SOT. We first integrate parameter-efficient adapters to bridge the gap between pretraining and tracking tasks while preserving geometric priors. Then, we introduce a Mixture-of-Geometry-Experts (MoGE) architecture that adaptively activates specialized subnetworks based on distinct geometric characteristics. Additionally, we design a temporal context optimization strategy that incorporates learnable temporal tokens and a dynamic mask weighting module to propagate historical information and mitigate temporal drift. Experiments on three commonly-used benchmarks show that TrackAny3D establishes new state-of-the-art performance on category-agnostic 3D SOT, demonstrating strong generalization and competitiveness. We hope this work will enlighten the community on the importance of unified models and further expand the use of large-scale pretrained models in this field.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-07-26T10:41:55Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Mengmeng Wang</name>
+    </author>
+    <author>
+      <name>Haonan Wang</name>
+    </author>
+    <author>
+      <name>Yulong Li</name>
+    </author>
+    <author>
+      <name>Xiangjie Kong</name>
+    </author>
+    <author>
+      <name>Jiaxin Du</name>
+    </author>
+    <author>
+      <name>Guojiang Shen</name>
+    </author>
+    <author>
+      <name>Feng Xia</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.02129v1</id>
+    <title>GSOT3D: Towards Generic 3D Single Object Tracking in the Wild</title>
+    <updated>2024-12-03T03:34:18Z</updated>
+    <link href="https://arxiv.org/abs/2412.02129v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.02129v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we present a novel benchmark, GSOT3D, that aims at facilitating development of generic 3D single object tracking (SOT) in the wild. Specifically, GSOT3D offers 620 sequences with 123K frames, and covers a wide selection of 54 object categories. Each sequence is offered with multiple modalities, including the point cloud (PC), RGB image, and depth. This allows GSOT3D to support various 3D tracking tasks, such as single-modal 3D SOT on PC and multi-modal 3D SOT on RGB-PC or RGB-D, and thus greatly broadens research directions for 3D object tracking. To provide highquality per-frame 3D annotations, all sequences are labeled manually with multiple rounds of meticulous inspection and refinement. To our best knowledge, GSOT3D is the largest benchmark dedicated to various generic 3D object tracking tasks. To understand how existing 3D trackers perform and to provide comparisons for future research on GSOT3D, we assess eight representative point cloud-based tracking models. Our evaluation results exhibit that these models heavily degrade on GSOT3D, and more efforts are required for robust and generic 3D object tracking. Besides, to encourage future research, we present a simple yet effective generic 3D tracker, named PROT3D, that localizes the target object via a progressive spatial-temporal network and outperforms all current solutions by a large margin. By releasing GSOT3D, we expect to advance further 3D tracking in future research and applications. Our benchmark and model as well as the evaluation results will be publicly released at our webpage https://github.com/ailovejinx/GSOT3D.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-03T03:34:18Z</published>
+    <arxiv:comment>14 pages, 12 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Yifan Jiao</name>
+    </author>
+    <author>
+      <name>Yunhao Li</name>
+    </author>
+    <author>
+      <name>Junhua Ding</name>
+    </author>
+    <author>
+      <name>Qing Yang</name>
+    </author>
+    <author>
+      <name>Song Fu</name>
+    </author>
+    <author>
+      <name>Heng Fan</name>
+    </author>
+    <author>
+      <name>Libo Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.02049v3</id>
+    <title>3D Single-object Tracking in Point Clouds with High Temporal Variation</title>
+    <updated>2024-09-06T07:48:03Z</updated>
+    <link href="https://arxiv.org/abs/2408.02049v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.02049v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The high temporal variation of the point clouds is the key challenge of 3D single-object tracking (3D SOT). Existing approaches rely on the assumption that the shape variation of the point clouds and the motion of the objects across neighboring frames are smooth, failing to cope with high temporal variation data. In this paper, we present a novel framework for 3D SOT in point clouds with high temporal variation, called HVTrack. HVTrack proposes three novel components to tackle the challenges in the high temporal variation scenario: 1) A Relative-Pose-Aware Memory module to handle temporal point cloud shape variations; 2) a Base-Expansion Feature Cross-Attention module to deal with similar object distractions in expanded search areas; 3) a Contextual Point Guided Self-Attention module for suppressing heavy background noise. We construct a dataset with high temporal variation (KITTI-HV) by setting different frame intervals for sampling in the KITTI dataset. On the KITTI-HV with 5 frame intervals, our HVTrack surpasses the state-of-the-art tracker CXTracker by 11.3%/15.7% in Success/Precision.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-04T14:57:28Z</published>
+    <arxiv:comment>Accepted by ECCV24</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Qiao Wu</name>
+    </author>
+    <author>
+      <name>Kun Sun</name>
+    </author>
+    <author>
+      <name>Pei An</name>
+    </author>
+    <author>
+      <name>Mathieu Salzmann</name>
+    </author>
+    <author>
+      <name>Yanning Zhang</name>
+    </author>
+    <author>
+      <name>Jiaqi Yang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.01959v1</id>
+    <title>FlowTrack: Point-level Flow Network for 3D Single Object Tracking</title>
+    <updated>2024-07-02T05:31:34Z</updated>
+    <link href="https://arxiv.org/abs/2407.01959v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.01959v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D single object tracking (SOT) is a crucial task in fields of mobile robotics and autonomous driving. Traditional motion-based approaches achieve target tracking by estimating the relative movement of target between two consecutive frames. However, they usually overlook local motion information of the target and fail to exploit historical frame information effectively. To overcome the above limitations, we propose a point-level flow method with multi-frame information for 3D SOT task, called FlowTrack. Specifically, by estimating the flow for each point in the target, our method could capture the local motion details of target, thereby improving the tracking performance. At the same time, to handle scenes with sparse points, we present a learnable target feature as the bridge to efficiently integrate target information from past frames. Moreover, we design a novel Instance Flow Head to transform dense point-level flow into instance-level motion, effectively aggregating local motion information to obtain global target motion. Finally, our method achieves competitive performance with improvements of 5.9% on the KITTI dataset and 2.9% on NuScenes. The code will be made publicly available soon.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-02T05:31:34Z</published>
+    <arxiv:comment>Accepted by IROS2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Shuo Li</name>
+    </author>
+    <author>
+      <name>Yubo Cui</name>
+    </author>
+    <author>
+      <name>Zhiheng Li</name>
+    </author>
+    <author>
+      <name>Zheng Fang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.07495v2</id>
+    <title>PillarTrack:Boosting Pillar Representation for Transformer-based 3D Single Object Tracking on Point Clouds</title>
+    <updated>2025-05-18T13:40:12Z</updated>
+    <link href="https://arxiv.org/abs/2404.07495v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.07495v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LiDAR-based 3D single object tracking (3D SOT) is a critical issue in robotics and autonomous driving. Existing 3D SOT methods typically adhere to a point-based processing pipeline, wherein the re-sampling operation invariably leads to either redundant or missing information, thereby impacting performance. To address these issues, we propose PillarTrack, a novel pillar-based 3D SOT framework. First, we transform sparse point clouds into dense pillars to preserve the local and global geometrics. Second, we propose a Pyramid-Encoded Pillar Feature Encoder (PE-PFE) design to enhance the robustness of pillar feature for translation/rotation/scale. Third, we present an efficient Transformer-based backbone from the perspective of modality differences. Finally, we construct our PillarTrack based on above designs. Extensive experiments show that our method achieves comparable performance on the KITTI and NuScenes datasets, significantly enhancing the performance of the baseline.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-11T06:06:56Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Weisheng Xu</name>
+    </author>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+    <author>
+      <name>Jiaqi Xiong</name>
+    </author>
+    <author>
+      <name>Ziyu Zhao</name>
+    </author>
+    <author>
+      <name>Zhihang Yuan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.05960v2</id>
+    <title>EasyTrack: Efficient and Compact One-stream 3D Point Clouds Tracker</title>
+    <updated>2024-04-12T04:23:12Z</updated>
+    <link href="https://arxiv.org/abs/2404.05960v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.05960v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Most of 3D single object trackers (SOT) in point clouds follow the two-stream multi-stage 3D Siamese or motion tracking paradigms, which process the template and search area point clouds with two parallel branches, built on supervised point cloud backbones. In this work, beyond typical 3D Siamese or motion tracking, we propose a neat and compact one-stream transformer 3D SOT paradigm from the novel perspective, termed as \textbf{EasyTrack}, which consists of three special designs: 1) A 3D point clouds tracking feature pre-training module is developed to exploit the masked autoencoding for learning 3D point clouds tracking representations. 2) A unified 3D tracking feature learning and fusion network is proposed to simultaneously learns target-aware 3D features, and extensively captures mutual correlation through the flexible self-attention mechanism. 3) A target location network in the dense bird's eye view (BEV) feature space is constructed for target classification and regression. Moreover, we develop an enhanced version named EasyTrack++, which designs the center points interaction (CPI) strategy to reduce the ambiguous targets caused by the noise point cloud background information. The proposed EasyTrack and EasyTrack++ set a new state-of-the-art performance ($\textbf{18\%}$, $\textbf{40\%}$ and $\textbf{3\%}$ success gains) in KITTI, NuScenes, and Waymo while runing at \textbf{52.6fps} with few parameters (\textbf{1.3M}). The code will be available at https://github.com/KnightApple427/Easytrack.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-09T02:47:52Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Baojie Fan</name>
+    </author>
+    <author>
+      <name>Wuyang Zhou</name>
+    </author>
+    <author>
+      <name>Kai Wang</name>
+    </author>
+    <author>
+      <name>Shijun Zhou</name>
+    </author>
+    <author>
+      <name>Fengyu Xu</name>
+    </author>
+    <author>
+      <name>Jiandong Tian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.11204v2</id>
+    <title>Towards Category Unification of 3D Single Object Tracking on Point Clouds</title>
+    <updated>2024-09-08T05:31:38Z</updated>
+    <link href="https://arxiv.org/abs/2401.11204v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.11204v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Category-specific models are provenly valuable methods in 3D single object tracking (SOT) regardless of Siamese or motion-centric paradigms. However, such over-specialized model designs incur redundant parameters, thus limiting the broader applicability of 3D SOT task. This paper first introduces unified models that can simultaneously track objects across all categories using a single network with shared model parameters. Specifically, we propose to explicitly encode distinct attributes associated to different object categories, enabling the model to adapt to cross-category data. We find that the attribute variances of point cloud objects primarily occur from the varying size and shape (e.g., large and square vehicles v.s. small and slender humans). Based on this observation, we design a novel point set representation learning network inheriting transformer architecture, termed AdaFormer, which adaptively encodes the dynamically varying shape and size information from cross-category data in a unified manner. We further incorporate the size and shape prior derived from the known template targets into the model's inputs and learning objective, facilitating the learning of unified representation. Equipped with such designs, we construct two category-unified models SiamCUT and MoCUT.Extensive experiments demonstrate that SiamCUT and MoCUT exhibit strong generalization and training stability. Furthermore, our category-unified models outperform the category-specific counterparts by a significant margin (e.g., on KITTI dataset, 12% and 3% performance gains on the Siamese and motion paradigms). Our code will be available.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-20T10:38:28Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiahao Nie</name>
+    </author>
+    <author>
+      <name>Zhiwei He</name>
+    </author>
+    <author>
+      <name>Xudong Lv</name>
+    </author>
+    <author>
+      <name>Xueyi Zhou</name>
+    </author>
+    <author>
+      <name>Dong-Kyu Chae</name>
+    </author>
+    <author>
+      <name>Fei Xie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2312.06117v1</id>
+    <title>M3SOT: Multi-frame, Multi-field, Multi-space 3D Single Object Tracking</title>
+    <updated>2023-12-11T04:49:47Z</updated>
+    <link href="https://arxiv.org/abs/2312.06117v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2312.06117v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D Single Object Tracking (SOT) stands a forefront task of computer vision, proving essential for applications like autonomous driving. Sparse and occluded data in scene point clouds introduce variations in the appearance of tracked objects, adding complexity to the task. In this research, we unveil M3SOT, a novel 3D SOT framework, which synergizes multiple input frames (template sets), multiple receptive fields (continuous contexts), and multiple solution spaces (distinct tasks) in ONE model. Remarkably, M3SOT pioneers in modeling temporality, contexts, and tasks directly from point clouds, revisiting a perspective on the key factors influencing SOT. To this end, we design a transformer-based network centered on point cloud targets in the search area, aggregating diverse contextual representations and propagating target cues by employing historical frames. As M3SOT spans varied processing perspectives, we've streamlined the network-trimming its depth and optimizing its structure-to ensure a lightweight and efficient deployment for SOT applications. We posit that, backed by practical construction, M3SOT sidesteps the need for complex frameworks and auxiliary components to deliver sterling results. Extensive experiments on benchmarks such as KITTI, nuScenes, and Waymo Open Dataset demonstrate that M3SOT achieves state-of-the-art performance at 38 FPS. Our code and models are available at https://github.com/ywu0912/TeamCode.git.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-12-11T04:49:47Z</published>
+    <arxiv:comment>12 pages, 10 figures, 10 tables, AAAI 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <arxiv:journal_ref>AAAI 2024</arxiv:journal_ref>
+    <author>
+      <name>Jiaming Liu</name>
+    </author>
+    <author>
+      <name>Yue Wu</name>
+    </author>
+    <author>
+      <name>Maoguo Gong</name>
+    </author>
+    <author>
+      <name>Qiguang Miao</name>
+    </author>
+    <author>
+      <name>Wenping Ma</name>
+    </author>
+    <author>
+      <name>Can Qin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2303.09219v2</id>
+    <title>MixCycle: Mixup Assisted Semi-Supervised 3D Single Object Tracking with Cycle Consistency</title>
+    <updated>2023-08-16T14:12:42Z</updated>
+    <link href="https://arxiv.org/abs/2303.09219v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2303.09219v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D single object tracking (SOT) is an indispensable part of automated driving. Existing approaches rely heavily on large, densely labeled datasets. However, annotating point clouds is both costly and time-consuming. Inspired by the great success of cycle tracking in unsupervised 2D SOT, we introduce the first semi-supervised approach to 3D SOT. Specifically, we introduce two cycle-consistency strategies for supervision: 1) Self tracking cycles, which leverage labels to help the model converge better in the early stages of training; 2) forward-backward cycles, which strengthen the tracker's robustness to motion variations and the template noise caused by the template update strategy. Furthermore, we propose a data augmentation strategy named SOTMixup to improve the tracker's robustness to point cloud diversity. SOTMixup generates training samples by sampling points in two point clouds with a mixing rate and assigns a reasonable loss weight for training according to the mixing rate. The resulting MixCycle approach generalizes to appearance matching-based trackers. On the KITTI benchmark, based on the P2B tracker, MixCycle trained with $\textbf{10\%}$ labels outperforms P2B trained with $\textbf{100\%}$ labels, and achieves a $\textbf{28.4\%}$ precision improvement when using $\textbf{1\%}$ labels. Our code will be released at \url{https://github.com/Mumuqiao/MixCycle}.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-03-16T10:48:59Z</published>
+    <arxiv:comment>Accepted by ICCV23</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Qiao Wu</name>
+    </author>
+    <author>
+      <name>Jiaqi Yang</name>
+    </author>
+    <author>
+      <name>Kun Sun</name>
+    </author>
+    <author>
+      <name>Chu'ai Zhang</name>
+    </author>
+    <author>
+      <name>Yanning Zhang</name>
+    </author>
+    <author>
+      <name>Mathieu Salzmann</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2209.00860v1</id>
+    <title>Real-time 3D Single Object Tracking with Transformer</title>
+    <updated>2022-09-02T07:36:20Z</updated>
+    <link href="https://arxiv.org/abs/2209.00860v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2209.00860v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LiDAR-based 3D single object tracking is a challenging issue in robotics and autonomous driving. Currently, existing approaches usually suffer from the problem that objects at long distance often have very sparse or partially-occluded point clouds, which makes the features extracted by the model ambiguous. Ambiguous features will make it hard to locate the target object and finally lead to bad tracking results. To solve this problem, we utilize the powerful Transformer architecture and propose a Point-Track-Transformer (PTT) module for point cloud-based 3D single object tracking task. Specifically, PTT module generates fine-tuned attention features by computing attention weights, which guides the tracker focusing on the important features of the target and improves the tracking ability in complex scenarios. To evaluate our PTT module, we embed PTT into the dominant method and construct a novel 3D SOT tracker named PTT-Net. In PTT-Net, we embed PTT into the voting stage and proposal generation stage, respectively. PTT module in the voting stage could model the interactions among point patches, which learns context-dependent features. Meanwhile, PTT module in the proposal generation stage could capture the contextual information between object and background. We evaluate our PTT-Net on KITTI and NuScenes datasets. Experimental results demonstrate the effectiveness of PTT module and the superiority of PTT-Net, which surpasses the baseline by a noticeable margin, ~10% in the Car category. Meanwhile, our method also has a significant performance improvement in sparse scenarios. In general, the combination of transformer and tracking pipeline enables our PTT-Net to achieve state-of-the-art performance on both two datasets. Additionally, PTT-Net could run in real-time at 40FPS on NVIDIA 1080Ti GPU. Our code is open-sourced for the research community at https://github.com/shanjiayao/PTT.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-09-02T07:36:20Z</published>
+    <arxiv:comment>IEEE Transactions on Multimedia. arXiv admin note: text overlap with arXiv:2108.06455</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiayao Shan</name>
+    </author>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+    <author>
+      <name>Yubo Cui</name>
+    </author>
+    <author>
+      <name>Zheng Fang</name>
+    </author>
+    <arxiv:doi>10.1109/TMM.2022.3146714</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1109/TMM.2022.3146714" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2206.02619v2</id>
+    <title>VPIT: Real-time Embedded Single Object 3D Tracking Using Voxel Pseudo Images</title>
+    <updated>2024-08-24T19:17:33Z</updated>
+    <link href="https://arxiv.org/abs/2206.02619v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2206.02619v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose a novel voxel-based 3D single object tracking (3D SOT) method called Voxel Pseudo Image Tracking (VPIT). VPIT is the first method that uses voxel pseudo images for 3D SOT. The input point cloud is structured by pillar-based voxelization, and the resulting pseudo image is used as an input to a 2D-like Siamese SOT method. The pseudo image is created in the Bird's-eye View (BEV) coordinates, and therefore the objects in it have constant size. Thus, only the object rotation can change in the new coordinate system and not the object scale. For this reason, we replace multi-scale search with a multi-rotation search, where differently rotated search regions are compared against a single target representation to predict both position and rotation of the object. Experiments on KITTI Tracking dataset show that VPIT is the fastest 3D SOT method and maintains competitive Success and Precision values. Application of a SOT method in a real-world scenario meets with limitations such as lower computational capabilities of embedded devices and a latency-unforgiving environment, where the method is forced to skip certain data frames if the inference speed is not high enough. We implement a real-time evaluation protocol and show that other methods lose most of their performance on embedded devices, while VPIT maintains its ability to track the object.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-06-06T14:02:06Z</published>
+    <arxiv:comment>23 pages, 7 figures, 5 tables. This preprint has not undergone peer review (when applicable) or any post-submission improvements or corrections. The Version of Record of this article is published in Neural Computing and Applications (2024), and is available online at https://doi.org/10.1007/s00521-024-10259-2</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Illia Oleksiienko</name>
+    </author>
+    <author>
+      <name>Paraskevi Nousi</name>
+    </author>
+    <author>
+      <name>Nikolaos Passalis</name>
+    </author>
+    <author>
+      <name>Anastasios Tefas</name>
+    </author>
+    <author>
+      <name>Alexandros Iosifidis</name>
+    </author>
+    <arxiv:doi>10.1007/s00521-024-10259-2</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1007/s00521-024-10259-2" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2203.01730v1</id>
+    <title>Beyond 3D Siamese Tracking: A Motion-Centric Paradigm for 3D Single Object Tracking in Point Clouds</title>
+    <updated>2022-03-03T14:20:10Z</updated>
+    <link href="https://arxiv.org/abs/2203.01730v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2203.01730v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>3D single object tracking (3D SOT) in LiDAR point clouds plays a crucial role in autonomous driving. Current approaches all follow the Siamese paradigm based on appearance matching. However, LiDAR point clouds are usually textureless and incomplete, which hinders effective appearance matching. Besides, previous methods greatly overlook the critical motion clues among targets. In this work, beyond 3D Siamese tracking, we introduce a motion-centric paradigm to handle 3D SOT from a new perspective. Following this paradigm, we propose a matching-free two-stage tracker M^2-Track. At the 1^st-stage, M^2-Track localizes the target within successive frames via motion transformation. Then it refines the target box through motion-assisted shape completion at the 2^nd-stage. Extensive experiments confirm that M^2-Track significantly outperforms previous state-of-the-arts on three large-scale datasets while running at 57FPS (~8%, ~17%, and ~22%) precision gains on KITTI, NuScenes, and Waymo Open Dataset respectively). Further analysis verifies each component's effectiveness and shows the motion-centric paradigm's promising potential when combined with appearance matching.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-03-03T14:20:10Z</published>
+    <arxiv:comment>To appear in CVPR2022</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Chaoda Zheng</name>
+    </author>
+    <author>
+      <name>Xu Yan</name>
+    </author>
+    <author>
+      <name>Haiming Zhang</name>
+    </author>
+    <author>
+      <name>Baoyuan Wang</name>
+    </author>
+    <author>
+      <name>Shenghui Cheng</name>
+    </author>
+    <author>
+      <name>Shuguang Cui</name>
+    </author>
+    <author>
+      <name>Zhen Li</name>
+    </author>
+  </entry>
+</feed>

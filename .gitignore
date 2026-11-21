@@ -1,0 +1,8 @@
+*.env
+secrets/
+data/
+*.bin
+*.zip
+*.ckpt
+*.pth
+__pycache__/

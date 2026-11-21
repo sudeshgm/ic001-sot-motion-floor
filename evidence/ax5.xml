@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/axEd0vGvNFyynTqd4pAaztDosD0</id>
+  <title>arXiv Query: search_query=abs:"point cloud" AND abs:tracking AND (abs:"constant velocity" OR abs:"motion-only" OR abs:"training-free")&amp;id_list=&amp;start=0&amp;max_results=40</title>
+  <updated>2026-11-21T07:14:27Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=abs:%22point+cloud%22+AND+(abs:tracking+AND+(abs:%22constant+velocity%22+OR+(abs:%22motion-only%22+OR+abs:%22training-free%22)))&amp;start=0&amp;max_results=40&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>40</opensearch:itemsPerPage>
+  <opensearch:totalResults>6</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.34103v1</id>
+    <title>A Differentiable Optimization Framework for Registering Sequential Bounding Boxes with Point Cloud Stream</title>
+    <updated>2026-09-28T01:41:58Z</updated>
+    <link href="https://arxiv.org/abs/2609.34103v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.34103v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Refining a sequence of coarse 3D bounding boxes against a LiDAR point-cloud stream demands tracks that are geometrically accurate (high IoU) and temporally coherent (low roughness), preferably without training data. The usual recipe keeps the two concerns apart: register each frame independently, then smooth the trajectory afterwards with a Kalman~RTS or Savitzky--Golay filter. Smoothing displaces boxes from a geometric optimum and never re-optimises, so it trades accuracy for smoothness. We instead fold the temporal smoothness constraint into a training-free registration objective and solve for all poses jointly with L-BFGS. The payoff depends on how well the object is seen. On well-observed tracks it is large: within the low-roughness budget, the joint objective beats both post-hoc smoothers on paired multi-seed statistics and cuts roughness several-fold relative to frame-wise registration at matched accuracy. Treating visibility as an experimental variable exposes the limit. The advantage decays monotonically as views become one-sided, until it is indistinguishable from zero for near-edge-on objects and slightly negative under a ray-cast simulator with range-dependent density and ego motion, where the decoupled pipeline is in fact ahead at tight roughness budgets. We locate that boundary and trace it to one term: orientation alignment ties yaw to the estimated velocity and fails once that estimate is noisy. A ground-truth-free rule can choose the temporal scale and keep every track inside the roughness budget.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-28T01:41:58Z</published>
+    <arxiv:comment>accepted by AJCAI 26</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Xuesong Li</name>
+    </author>
+    <author>
+      <name>Jinguang Tong</name>
+    </author>
+    <author>
+      <name>Jie Hong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2609.06819v1</id>
+    <title>Drones as Annotators: Amodal 3D Auto-Labeling for Ground LiDAR with Aerial Priors</title>
+    <updated>2026-09-06T20:28:32Z</updated>
+    <link href="https://arxiv.org/abs/2609.06819v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.06819v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Scaling perception data in autonomous driving is hindered by manual 3D bounding box annotation, a costly and labor intensive process requiring substantial domain expertise. Existing auto-labeling methods reduce this burden, but most of them rely on onboard sensors, where a single ground-level viewpoint yields occluded and sparse observations and inaccurate object geometry. We introduce DAA (Drones as Annotators), a drone-assisted training-free framework for amodal 3D auto-labeling. DAA augments ground LiDAR with an aerial agent that provides less occluded vehicle detections with continuous tracks. Ground LiDAR, in turn, provides precise metric 3D geometry unavailable from aerial imagery alone. DAA exploits the two complementary yet heterogeneous modalities through a two-stage framework: (i) air-ground coordinate alignment unifies aerial detections and ground LiDAR scans into a shared map frame and bootstraps coarse 3D bounding boxes from the aligned aerial detections; (ii) EM-like amodal box refinement alternates between identifying the vehicle's foreground points and updating the coarse box from the identified foreground and aerial priors. We evaluate DAA on an air-ground cooperative perception dataset, where it consistently outperforms existing auto-labeling baselines. LiDAR detectors trained on DAA-generated labels remain competitive with those trained on manual annotations at moderate IoU thresholds. Evaluation against a reference vehicle with known poses and dimensions further confirms its accuracy. We also demonstrate that DAA transfers, without parameter retuning, from onboard to stationary roadside LiDAR and to multi-agent fused point clouds. Code and dataset will be released upon publication.</summary>
+    <category term="eess.IV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-06T20:28:32Z</published>
+    <arxiv:primary_category term="eess.IV"/>
+    <author>
+      <name>Tianheng Zhu</name>
+    </author>
+    <author>
+      <name>Zhenhao Wang</name>
+    </author>
+    <author>
+      <name>Yiheng Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2607.13891v1</id>
+    <title>PiVoT: A Variational Solution for Real-time Large-scale Multi-object Detection and Tracking under Heavy Clutter</title>
+    <updated>2026-07-15T14:35:24Z</updated>
+    <link href="https://arxiv.org/abs/2607.13891v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2607.13891v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Multi-object detection and tracking from noisy point clouds remain challenging in many data-scarce radar applications. Current Bayesian trackers based on Poisson measurement models offer a training-free solution but struggle to achieve accuracy and efficiency under severe clutter, large object populations, and full-resolution Doppler point clouds. We address this with PiVoT, a fast, clutter-resilient multi-object tracker for both positional and Doppler measurements. PiVoT performs end-to-end detection and tracking of a large and time-varying number of objects without external clustering or detectors, through joint inference of object states, shapes, existence probabilities, data association, and measurement rates. Its efficiency is driven by several variational inference innovations, such as theoretically justified birth pruning, quadratic-to-linear complexity reductions for exact updates, and a computationally efficient Doppler Poisson model. Experiments show that PiVoT substantially outperforms existing Bayesian trackers in challenging scenes, while also demonstrating exceptional scalability to a thousand objects, robustness to clutter visually inseparable from objects, and real-time operation on full-scale modern automotive radar datasets, where it attains performance comparable to a deep-learning detection benchmark as a training-free joint detector and tracker.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="eess.SP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-07-15T14:35:24Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Runze Gan</name>
+    </author>
+    <author>
+      <name>Qing Li</name>
+    </author>
+    <author>
+      <name>Simon J. Godsill</name>
+    </author>
+    <author>
+      <name>Mike E. Davies</name>
+    </author>
+    <author>
+      <name>James R. Hopgood</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2606.31136v1</id>
+    <title>FROST: Training-Free Few-Shot Segmentation with Frozen Features and Nonparametric Statistics</title>
+    <updated>2026-06-30T05:06:06Z</updated>
+    <link href="https://arxiv.org/abs/2606.31136v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2606.31136v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Few-shot segmentation asks a model to delineate a target class in a query image from only a handful of annotated examples, a setting most acute in remote sensing, where labels are scarce and the imagery departs sharply from the natural images on which vision backbones are pretrained. Prevailing approaches either train a segmenter on labelled episodes, which raises accuracy within the training distribution but binds the model to it, or reduce each class to a lossy summary of frozen features, a single prototype, a few cluster prototypes, or a discrete clustering, none of which preserves the internal structure of a multimodal class. We argue that a class is better described by a distribution than by a point, and that frozen self-supervised features already carry enough structure to estimate that distribution directly. We introduce FROST, a training-free few-shot segmenter that treats the reference foreground and background as two point clouds on the unit sphere of frozen DINOv3 features and labels each query token by a nonparametric density ratio, with a threshold the Bayes rule fixes at zero under equal priors. Because the variance of a density estimate shrinks as its sample grows, the decision sharpens as references accumulate, and every remaining quantity from the kernel bandwidth to the spatial gate is read from the support set rather than tuned. We develop FROST for overhead imagery, where a class is typically a scatter of many small and dissimilar instances that a density tracks but a lossy summary blurs. Across seventeen remote-sensing benchmarks FROST surpasses both training-free and learning-based methods, leading by 5.6 mIoU from a single annotated example and widening its lead as the support set grows, all while remaining among the smallest models compared. Code is available at https://github.com/jhpark-ai/FROST.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-06-30T05:06:06Z</published>
+    <arxiv:comment>20 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Junghwan Park</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.19735v1</id>
+    <title>VGGT-MPR: VGGT-Enhanced Multimodal Place Recognition in Autonomous Driving Environments</title>
+    <updated>2026-02-23T11:33:56Z</updated>
+    <link href="https://arxiv.org/abs/2602.19735v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.19735v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In autonomous driving, robust place recognition is critical for global localization and loop closure detection. While inter-modality fusion of camera and LiDAR data in multimodal place recognition (MPR) has shown promise in overcoming the limitations of unimodal counterparts, existing MPR methods basically attend to hand-crafted fusion strategies and heavily parameterized backbones that require costly retraining. To address this, we propose VGGT-MPR, a multimodal place recognition framework that adopts the Visual Geometry Grounded Transformer (VGGT) as a unified geometric engine for both global retrieval and re-ranking. In the global retrieval stage, VGGT extracts geometrically-rich visual embeddings through prior depth-aware and point map supervision, and densifies sparse LiDAR point clouds with predicted depth maps to improve structural representation. This enhances the discriminative ability of fused multimodal features and produces global descriptors for fast retrieval. Beyond global retrieval, we design a training-free re-ranking mechanism that exploits VGGT's cross-view keypoint-tracking capability. By combining mask-guided keypoint extraction with confidence-aware correspondence scoring, our proposed re-ranking mechanism effectively refines retrieval results without additional parameter optimization. Extensive experiments on large-scale autonomous driving benchmarks and our self-collected data demonstrate that VGGT-MPR achieves state-of-the-art performance, exhibiting strong robustness to severe environmental changes, viewpoint shifts, and occlusions. Our code and data will be made publicly available.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-23T11:33:56Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jingyi Xu</name>
+    </author>
+    <author>
+      <name>Zhangshuo Qi</name>
+    </author>
+    <author>
+      <name>Zhongmiao Yan</name>
+    </author>
+    <author>
+      <name>Xuyu Gao</name>
+    </author>
+    <author>
+      <name>Qianyun Jiao</name>
+    </author>
+    <author>
+      <name>Songpengcheng Xia</name>
+    </author>
+    <author>
+      <name>Xieyuanli Chen</name>
+    </author>
+    <author>
+      <name>Ling Pei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2602.18020v3</id>
+    <title>AWARE: Action-Entropy-Weighted and Attention-Guided Retrieval of Observation Evidence for Vision-Language-Action Models</title>
+    <updated>2026-10-27T02:02:48Z</updated>
+    <link href="https://arxiv.org/abs/2602.18020v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2602.18020v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Vision-Language-Action (VLA) models combine multimodal perception with robotic control, demonstrating remarkable potential for generalizable manipulation. Yet, enhancing their execution typically relies on auxiliary sensory inputs (e.g., depth, 3D point clouds) or costly fine-tuning. Inspired by the insight that Feed-Forward Networks (FFNs) act as key-value memory, we propose Action-Entropy-Weighted and Attention-Guided Retrieval of Observation Evidence (AWARE), an effective, training-free, and plug-and-play module for VLAs. Specifically, AWARE tracks layer-wise uncertainty via an element-wise Action Entropy metric, and retrieves observation evidence into the element's FFN through associative memory lookup. Crucially, the retrieved features are weighted by instruction-guided cross-modal attention to isolate task-relevant observation cues, while injection strength is adaptively scaled by the element's entropy and relative network depth. This selectively channels observation evidence to high-entropy action dimensions and deep layers where grounding decays, while leaving converged representations intact. Across LIBERO, SIMPLER, CALVIN, and real-world robot manipulation, AWARE consistently improves diverse VLA architectures with minimal computational overhead, achieving the largest gains on long-horizon tasks without architectural changes or additional training. Project page: https://jiabingyang01.github.io/AWARE/.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-02-20T06:22:21Z</published>
+    <arxiv:comment>Major revision: expanded continuous element-wise formulation (AWARE, evolved from v1 UAOR) and additional benchmarks (LIBERO, SIMPLER, CALVIN, and real-world manipulation)</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiabing Yang</name>
+    </author>
+    <author>
+      <name>Yixiang Chen</name>
+    </author>
+    <author>
+      <name>Yuan Xu</name>
+    </author>
+    <author>
+      <name>Peiyan Li</name>
+    </author>
+    <author>
+      <name>Zichen Wen</name>
+    </author>
+    <author>
+      <name>Bowen Fang</name>
+    </author>
+    <author>
+      <name>Chenhang Cui</name>
+    </author>
+    <author>
+      <name>Tao Yu</name>
+    </author>
+    <author>
+      <name>Qisen Ma</name>
+    </author>
+    <author>
+      <name>Kai Wang</name>
+    </author>
+    <author>
+      <name>Ziheng He</name>
+    </author>
+    <author>
+      <name>Wen Ye</name>
+    </author>
+    <author>
+      <name>Xiangnan Wu</name>
+    </author>
+    <author>
+      <name>Yingda Li</name>
+    </author>
+    <author>
+      <name>Yan Huang</name>
+    </author>
+    <author>
+      <name>Liang Wang</name>
+    </author>
+  </entry>
+</feed>

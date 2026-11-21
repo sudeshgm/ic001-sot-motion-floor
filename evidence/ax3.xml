@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/8HFjUmm6R2aLvbUUWUulf8YRw/M</id>
+  <title>arXiv Query: search_query=abs:"point cloud tracking"&amp;id_list=&amp;start=0&amp;max_results=40</title>
+  <updated>2026-11-21T07:14:19Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=abs:%22point+cloud+tracking%22&amp;start=0&amp;max_results=40&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>40</opensearch:itemsPerPage>
+  <opensearch:totalResults>6</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2609.07738v1</id>
+    <title>TFTrack: A Template-Free Framework for Efficient 3D Point Cloud Tracking</title>
+    <updated>2026-09-07T16:43:18Z</updated>
+    <link href="https://arxiv.org/abs/2609.07738v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2609.07738v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>LiDAR-based 3D Single Object Tracking (3D SOT) is critical for robotic perception and navigation and aims to localize dynamic objects across frames in sparse point clouds. Existing methods, rooted in the Siamese tracking paradigm from 2D vision, rely on costly dual-input designs and excessive motion modeling guided by template priors, hindering their efficiency. Our in-depth analysis reveals: (i) the template paradigm is redundant, as the previous bounding box center encodes sufficient historical context; (ii) complex motion modeling is unnecessary, as geometric alignment provides adequate motion priors. Based on the above findings, we propose the first Template-Free Tracking framework (TFTrack). The novel framework eliminates the need for template-search pairings and operates directly on the current frame guided solely by the prior bounding box center and size. We instantiate this paradigm into three variants: TFTrack-Voxel, TFTrack-Pillar, and TFTrack-Point, to explore different 3D representations under a unified framework, ensuring flexibility across sparse and dense scenes. Extensive experiments on KITTI and nuScenes benchmarks show that TFTrack is competitive with leading template-based trackers, while reducing FLOPs by approximately 50% and running at approximately 120 FPS. By simplifying overcomplicated motion-centric designs, TFTrack establishes a new minimalist paradigm for efficient 3D point cloud tracking, paving the way for real-time and resource-efficient deployment in embedded robotic systems, such as autonomous vehicles. The code is available at https://github.com/tftrack-anonymous/TFTrack/tree/main.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-09-07T16:43:18Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Zhaofeng Hu</name>
+    </author>
+    <author>
+      <name>Sifan Zhou</name>
+    </author>
+    <author>
+      <name>Jiahao Nie</name>
+    </author>
+    <author>
+      <name>Ziyu Zhao</name>
+    </author>
+    <author>
+      <name>Weizi Li</name>
+    </author>
+    <author>
+      <name>Ci-jyun Liang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.09991v1</id>
+    <title>Visual Object Tracking across Diverse Data Modalities: A Review</title>
+    <updated>2024-12-13T09:25:18Z</updated>
+    <link href="https://arxiv.org/abs/2412.09991v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.09991v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Visual Object Tracking (VOT) is an attractive and significant research area in computer vision, which aims to recognize and track specific targets in video sequences where the target objects are arbitrary and class-agnostic. The VOT technology could be applied in various scenarios, processing data of diverse modalities such as RGB, thermal infrared and point cloud. Besides, since no one sensor could handle all the dynamic and varying environments, multi-modal VOT is also investigated. This paper presents a comprehensive survey of the recent progress of both single-modal and multi-modal VOT, especially the deep learning methods. Specifically, we first review three types of mainstream single-modal VOT, including RGB, thermal infrared and point cloud tracking. In particular, we conclude four widely-used single-modal frameworks, abstracting their schemas and categorizing the existing inheritors. Then we summarize four kinds of multi-modal VOT, including RGB-Depth, RGB-Thermal, RGB-LiDAR and RGB-Language. Moreover, the comparison results in plenty of VOT benchmarks of the discussed modalities are presented. Finally, we provide recommendations and insightful observations, inspiring the future development of this fast-growing literature.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-13T09:25:18Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Mengmeng Wang</name>
+    </author>
+    <author>
+      <name>Teli Ma</name>
+    </author>
+    <author>
+      <name>Shuo Xin</name>
+    </author>
+    <author>
+      <name>Xiaojun Hou</name>
+    </author>
+    <author>
+      <name>Jiazheng Xing</name>
+    </author>
+    <author>
+      <name>Guang Dai</name>
+    </author>
+    <author>
+      <name>Jingdong Wang</name>
+    </author>
+    <author>
+      <name>Yong Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.20893v3</id>
+    <title>Adversarial Attacks on LiDAR-Based Tracking Across Road Users: Robustness Evaluation and Target-Aware Black-Box Method</title>
+    <updated>2025-10-22T04:40:14Z</updated>
+    <link href="https://arxiv.org/abs/2410.20893v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.20893v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this study, we delve into the robustness of neural network-based LiDAR point cloud tracking models under adversarial attacks, a critical aspect often overlooked in favor of performance enhancement. These models, despite incorporating advanced architectures like Transformer or Bird's Eye View (BEV), tend to neglect robustness in the face of challenges such as adversarial attacks, domain shifts, or data corruption. We instead focus on the robustness of the tracking models under the threat of adversarial attacks. We begin by establishing a unified framework for conducting adversarial attacks within the context of 3D object tracking, which allows us to thoroughly investigate both white-box and black-box attack strategies. For white-box attacks, we tailor specific loss functions to accommodate various tracking paradigms and extend existing methods such as FGSM, C\&amp;W, and PGD to the point cloud domain. In addressing black-box attack scenarios, we introduce a novel transfer-based approach, the Target-aware Perturbation Generation (TAPG) algorithm, with the dual objectives of achieving high attack performance and maintaining low perceptibility. This method employs a heuristic strategy to enforce sparse attack constraints and utilizes random sub-vector factorization to bolster transferability. Our experimental findings reveal a significant vulnerability in advanced tracking methods when subjected to both black-box and white-box attacks, underscoring the necessity for incorporating robustness against adversarial attacks into the design of LiDAR point cloud tracking models. Notably, compared to existing methods, the TAPG also strikes an optimal balance between the effectiveness of the attack and the concealment of the perturbations.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-28T10:20:38Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Shengjing Tian</name>
+    </author>
+    <author>
+      <name>Xiantong Zhao</name>
+    </author>
+    <author>
+      <name>Yuhao Bian</name>
+    </author>
+    <author>
+      <name>Yinan Han</name>
+    </author>
+    <author>
+      <name>Bin Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.05960v2</id>
+    <title>EasyTrack: Efficient and Compact One-stream 3D Point Clouds Tracker</title>
+    <updated>2024-04-12T04:23:12Z</updated>
+    <link href="https://arxiv.org/abs/2404.05960v2" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.05960v2" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Most of 3D single object trackers (SOT) in point clouds follow the two-stream multi-stage 3D Siamese or motion tracking paradigms, which process the template and search area point clouds with two parallel branches, built on supervised point cloud backbones. In this work, beyond typical 3D Siamese or motion tracking, we propose a neat and compact one-stream transformer 3D SOT paradigm from the novel perspective, termed as \textbf{EasyTrack}, which consists of three special designs: 1) A 3D point clouds tracking feature pre-training module is developed to exploit the masked autoencoding for learning 3D point clouds tracking representations. 2) A unified 3D tracking feature learning and fusion network is proposed to simultaneously learns target-aware 3D features, and extensively captures mutual correlation through the flexible self-attention mechanism. 3) A target location network in the dense bird's eye view (BEV) feature space is constructed for target classification and regression. Moreover, we develop an enhanced version named EasyTrack++, which designs the center points interaction (CPI) strategy to reduce the ambiguous targets caused by the noise point cloud background information. The proposed EasyTrack and EasyTrack++ set a new state-of-the-art performance ($\textbf{18\%}$, $\textbf{40\%}$ and $\textbf{3\%}$ success gains) in KITTI, NuScenes, and Waymo while runing at \textbf{52.6fps} with few parameters (\textbf{1.3M}). The code will be available at https://github.com/KnightApple427/Easytrack.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-09T02:47:52Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Baojie Fan</name>
+    </author>
+    <author>
+      <name>Wuyang Zhou</name>
+    </author>
+    <author>
+      <name>Kai Wang</name>
+    </author>
+    <author>
+      <name>Shijun Zhou</name>
+    </author>
+    <author>
+      <name>Fengyu Xu</name>
+    </author>
+    <author>
+      <name>Jiandong Tian</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.00571v3</id>
+    <title>DropMAE: Learning Representations via Masked Autoencoders with Spatial-Attention Dropout for Temporal Matching Tasks</title>
+    <updated>2025-04-04T15:53:08Z</updated>
+    <link href="https://arxiv.org/abs/2304.00571v3" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.00571v3" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper studies masked autoencoder (MAE) video pre-training for various temporal matching-based downstream tasks, i.e., object-level tracking tasks including video object tracking (VOT) and video object segmentation (VOS), self-supervised visual correspondence learning, dense tracking tasks including optical flow estimation and long-term point tracking, and 3D point cloud tracking. Specifically, our work explores to provide a general representation to boost the temporal matching ability in various downstream tracking tasks. To achieve this, we firstly find that a simple extension of MAE, which randomly masks out frame patches in videos and reconstruct the frame pixels, heavily relies on spatial cues while ignoring temporal relations for frame reconstruction, thus leading to sub-optimal temporal matching representations. To alleviate this, we propose DropMAE, which adaptively performs spatial-attention dropout in the frame reconstruction to facilitate temporal correspondence learning in videos. We obtain several important findings with DropMAE: 1) DropMAE is a strong and efficient temporal matching learner, which achieves better fine-tuning results on matching-based tasks than the ImageNet-based MAE with 2x faster pre-training speed. 2) DropMAE is effective for different tracking tasks, i.e., object-level matching tasks including VOT and VOS, dense tracking tasks including optical flow estimation and tracking any point (TAP), and even 3D tracking in the different modality of point cloud data. Since none exists, we build ViT-based trackers for different downstream tracking tasks, and our pre-trained DropMAE model can be directly loaded in these ViT-based trackers for fine-tuning without further modifications. Experiments on 6 downstream tracking tasks demonstrate the effectiveness of DropMAE as a general pre-trained representation for diverse tracking tasks.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-02T16:40:42Z</published>
+    <arxiv:comment>Extension of DropMAE for 6 temporal matching-based downstream tasks</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Qiangqiang Wu</name>
+    </author>
+    <author>
+      <name>Tianyu Yang</name>
+    </author>
+    <author>
+      <name>Ziquan Liu</name>
+    </author>
+    <author>
+      <name>Wei Lin</name>
+    </author>
+    <author>
+      <name>Baoyuan Wu</name>
+    </author>
+    <author>
+      <name>Antoni B. Chan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2112.02857v5</id>
+    <title>PTTR: Relational 3D Point Cloud Object Tracking with Transformer</title>
+    <updated>2022-03-30T05:25:15Z</updated>
+    <link href="https://arxiv.org/abs/2112.02857v5" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2112.02857v5" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In a point cloud sequence, 3D object tracking aims to predict the location and orientation of an object in the current search point cloud given a template point cloud. Motivated by the success of transformers, we propose Point Tracking TRansformer (PTTR), which efficiently predicts high-quality 3D tracking results in a coarse-to-fine manner with the help of transformer operations. PTTR consists of three novel designs. 1) Instead of random sampling, we design Relation-Aware Sampling to preserve relevant points to given templates during subsampling. 2) Furthermore, we propose a Point Relation Transformer (PRT) consisting of a self-attention and a cross-attention module. The global self-attention operation captures long-range dependencies to enhance encoded point features for the search area and the template, respectively. Subsequently, we generate the coarse tracking results by matching the two sets of point features via cross-attention. 3) Based on the coarse tracking results, we employ a novel Prediction Refinement Module to obtain the final refined prediction. In addition, we create a large-scale point cloud single object tracking benchmark based on the Waymo Open Dataset. Extensive experiments show that PTTR achieves superior point cloud tracking in both accuracy and efficiency.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-12-06T08:28:05Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Changqing Zhou</name>
+    </author>
+    <author>
+      <name>Zhipeng Luo</name>
+    </author>
+    <author>
+      <name>Yueru Luo</name>
+    </author>
+    <author>
+      <name>Tianrui Liu</name>
+    </author>
+    <author>
+      <name>Liang Pan</name>
+    </author>
+    <author>
+      <name>Zhongang Cai</name>
+    </author>
+    <author>
+      <name>Haiyu Zhao</name>
+    </author>
+    <author>
+      <name>Shijian Lu</name>
+    </author>
+  </entry>
+</feed>
