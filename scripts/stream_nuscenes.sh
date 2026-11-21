@@ -5,7 +5,7 @@
 # Resumable per archive (done markers). Aborts if free disk would drop below 8 GB.
 # Usage: scripts/stream_nuscenes.sh   (logs: /workspace/ic001/logs/nuscenes)
 set -uo pipefail
-BASE=https://d36yt3mvayqw5m.cloudfront.net/public/v1.0
+BASE=https://motional-nuscenes.s3.amazonaws.com/public/v1.0  # direct S3: ~24 MB/s here vs ~1.4 MB/s CloudFront
 ROOT=/workspace/ic001/data/nuscenes
 LOG=/workspace/ic001/logs/nuscenes
 MIN_FREE_KB=$((8*1024*1024))
