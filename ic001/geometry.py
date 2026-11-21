@@ -113,3 +113,36 @@ def iou_3d(a: Box, b: Box, open3dsot_compat: bool = True) -> float:
 
 def center_distance(a: Box, b: Box) -> float:
     return float(np.linalg.norm(a.c - b.c))
+
+
+def relative_sensor_transform(T_from: np.ndarray, T_to: np.ndarray) -> np.ndarray:
+    """4x4 map from the ``T_from`` sensor frame into the ``T_to`` sensor frame.
+
+    ``T_*`` are world-from-sensor poses, so this is ``inv(T_to) @ T_from``.
+    This is the oxts ego-compensation used to send a previous Velodyne box
+    (and its crop) into the current scan (T_t^{-1} · T_{t-1}).
+    """
+    return np.linalg.inv(T_to) @ T_from
+
+
+def compensate_box(box: Box, T_from: np.ndarray, T_to: np.ndarray) -> Box:
+    """Map ``box`` from sensor frame ``T_from`` into sensor frame ``T_to``.
+
+    The centre takes the full rigid transform; orientation keeps only the
+    yaw of that rotation (PREREG choice (o); boxes stay upright). Same rule
+    as ``Box.transform``. Used by the SECONDARY oxts-compensated M2-Track crop.
+    """
+    return box.transform(relative_sensor_transform(T_from, T_to))
+
+
+def compensate_points(points: np.ndarray, T_from: np.ndarray,
+                      T_to: np.ndarray) -> np.ndarray:
+    """Map points ``(N, >=3)`` from sensor frame ``T_from`` into ``T_to``.
+
+    Full rigid transform (unlike boxes, points keep roll/pitch).
+    """
+    T = relative_sensor_transform(T_from, T_to)
+    pts = np.asarray(points, dtype=float)
+    if pts.size == 0:
+        return np.zeros((0, 3))
+    return pts[:, :3] @ T[:3, :3].T + T[:3, 3]
