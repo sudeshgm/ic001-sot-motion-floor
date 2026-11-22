@@ -1,0 +1,26 @@
+{
+ "mbptrack_car_ope_closed_form_vs_rawcam_yawalt_max_abs_rad": 9.769962616701378e-15,
+ "mbptrack_car_ope_n_compared": 6424,
+ "frame0_centre_max_abs_m": 1.4210854715202004e-14,
+ "frame0_yaw_max_abs_rad_as_dumped": 0.007970598504843718,
+ "frame0_yaw_max_abs_rad_corrected": 4.440892098500626e-16,
+ "trackany3d_car_ope_as_dumped": {
+  "success": 73.32736612702367,
+  "precision": 85.20547945205479,
+  "n_frames": 6424
+ },
+ "trackany3d_car_ope_gt_convention": {
+  "success": 73.39624844333748,
+  "precision": 85.20547945205479,
+  "n_frames": 6424
+ },
+ "tracker_own_ope": {
+  "success": 73.42,
+  "precision": 85.24
+ },
+ "official_test": {
+  "success": 73.417,
+  "precision": 85.239,
+  "n_frames": 6424
+ }
+}

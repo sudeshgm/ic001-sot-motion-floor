@@ -1,0 +1,440 @@
+{
+ "generated": "2026-11-22 20:28 IST",
+ "verification": {
+  "run_dir": "trackany3d a_v3 (private, not copied)",
+  "sha_outputs": {
+   "file": "SHA256SUMS_outputs.txt",
+   "n_checked": 10,
+   "missing": [],
+   "mismatch": [],
+   "all_ok": true,
+   "sha256_of_sumfile": "a1cb5bab4713a0a529928cde0d965173b62f439212ace5ef0c1c366e3a7820ff"
+  },
+  "sha_all": {
+   "file": "SHA256SUMS_all.txt",
+   "n_checked": 58,
+   "missing": [],
+   "mismatch": [],
+   "all_ok": true,
+   "sha256_of_sumfile": "6fc8b1b4b994df00fc7a9b1a5e03865de6b312a9bf9a544f7b906df17a07cbdd"
+  },
+  "rowcounts": {
+   "kitti_car": {
+    "rows": 12848,
+    "expected": 12848,
+    "header_ok": true,
+    "sha256": "d10ed986c66382ef1497b8c062ea7d683ad8583077652e1f700a0eb3a5491bd0"
+   },
+   "kitti_pedestrian": {
+    "rows": 12176,
+    "expected": 12176,
+    "header_ok": true,
+    "sha256": "867b8d10d4c8c4ac67bdb23ac0f4e3ef4e2e925492d8c5244edd34b9ccfb8899"
+   },
+   "kitti_van": {
+    "rows": 2496,
+    "expected": 2496,
+    "header_ok": true,
+    "sha256": "5d2df6b9d2018e2ba1aff40ec8cf0e024ff629c26d0ac57201cb95b92df13887"
+   },
+   "kitti_cyclist": {
+    "rows": 616,
+    "expected": 616,
+    "header_ok": true,
+    "sha256": "c0ce9112d0daf679ec4f8dc859e844beeb1da6ba43d44a82870dabca32a9b912"
+   },
+   "nuscenes_car": {
+    "rows": 128318,
+    "expected": 128318,
+    "header_ok": true,
+    "sha256": "010347cb0d074dd4c8103cd83f37d1df111d9c4929630821c0f8b1ceebe5935c"
+   }
+  },
+  "prior_inputs": {
+   "kitti_first_test_dumps_SHA256SUMS_outputs": {
+    "file": "SHA256SUMS_outputs.txt",
+    "n_checked": 20,
+    "missing": [],
+    "mismatch": [],
+    "all_ok": true,
+    "sha256_of_sumfile": "c7095ac1107572048efbe14afcc022b0ab2ff382dab2e96a91d18b230e663711"
+   },
+   "nuscenes_first_test_dumps_SHA256SUMS_outputs": {
+    "file": "SHA256SUMS_outputs.txt",
+    "n_checked": 12,
+    "missing": [],
+    "mismatch": [],
+    "all_ok": true,
+    "sha256_of_sumfile": "0322a59489d99d1f2233012a8ddafd49e637a0b0ef961705628b701185a38582"
+   }
+  },
+  "run_meta": {
+   "rc": "0",
+   "wall_s": "20477",
+   "paid": "0"
+  },
+  "recon_patch_sha256": "8bf6b3eb106177cb02568324a716f3ff8241e8797c07f96937113e2338d5ad58",
+  "prereg_githash": "e31629c99566bd989094d3a3922374863f0ac163"
+ },
+ "reproduction_of_first_test_cells": {
+  "kitti_Car_max_abs_diff": 0.0,
+  "nuscenes_Car_max_abs_diff": 0.0
+ },
+ "v1": {
+  "kitti_Car": {
+   "tracker": "TrackAny3D",
+   "role": "V1 gate",
+   "paper": 73.4,
+   "paper_source": "TrackAny3D, ICCV 2025, arXiv:2507.19908, KITTI Car",
+   "ic001_success": 73.39624844333748,
+   "ic001_precision": 85.20547945205479,
+   "abs_diff_paper": 0.0037515566625216934,
+   "pass": true,
+   "official_test_success": 73.417,
+   "official_test_precision": 85.239,
+   "official_test_frames": 6424,
+   "official_abs_diff_paper": 0.016999999999995907,
+   "rule": "within 1.0 Success of the paper value (no separate documented checkpoint value)"
+  },
+  "nuscenes_Car": {
+   "tracker": "TrackAny3D",
+   "role": "informational",
+   "paper": 59.3,
+   "paper_source": "TrackAny3D, ICCV 2025, arXiv:2507.19908, nuScenes Car",
+   "ic001_success": 59.29129194657024,
+   "ic001_precision": 66.44722486323042,
+   "abs_diff_paper": 0.008708053429757001,
+   "pass": true,
+   "official_test_success": 59.291,
+   "official_test_precision": 66.448,
+   "official_test_frames": 64159,
+   "official_abs_diff_paper": 0.009000000000000341,
+   "rule": "within 1.0 Success of the paper value (no separate documented checkpoint value)"
+  }
+ },
+ "tracker_own_vs_ic001": {
+  "kitti_Car|ope": {
+   "tracker_success": 73.42,
+   "tracker_precision": 85.24,
+   "ic001_success": 73.39624844333748,
+   "ic001_precision": 85.20547945205479,
+   "d_success": -0.023751556662517714,
+   "d_precision": -0.034520547945206204,
+   "ic001_success_as_dumped_yaw": 73.32736612702367,
+   "d_success_as_dumped_yaw": -0.09263387297633585
+  },
+  "kitti_Car|reinit": {
+   "tracker_success": 80.62,
+   "tracker_precision": 91.44,
+   "ic001_success": 80.58180261519303,
+   "ic001_precision": 91.40683374844333,
+   "d_success": -0.03819738480697765,
+   "d_precision": -0.03316625155666486,
+   "ic001_success_as_dumped_yaw": 80.5175902864259,
+   "d_success_as_dumped_yaw": -0.10240971357410444
+  },
+  "kitti_Pedestrian|ope": {
+   "tracker_success": 59.6,
+   "tracker_precision": 85.09,
+   "ic001_success": 59.58648160315374,
+   "ic001_precision": 85.06488173455979,
+   "d_success": -0.01351839684625844,
+   "d_precision": -0.025118265440212895,
+   "ic001_success_as_dumped_yaw": 59.57046649145861,
+   "d_success_as_dumped_yaw": -0.02953350854139103
+  },
+  "kitti_Pedestrian|reinit": {
+   "tracker_success": 75.69,
+   "tracker_precision": 94.58,
+   "ic001_success": 75.68782851511169,
+   "ic001_precision": 94.55527266754271,
+   "d_success": -0.002171484888307873,
+   "d_precision": -0.024727332457288753,
+   "ic001_success_as_dumped_yaw": 75.6750985545335,
+   "d_success_as_dumped_yaw": -0.014901445466492191
+  },
+  "kitti_Van|ope": {
+   "tracker_success": 69.62,
+   "tracker_precision": 82.51,
+   "ic001_success": 69.61738782051282,
+   "ic001_precision": 82.48397435897436,
+   "d_success": -0.0026121794871869497,
+   "d_precision": -0.02602564102564031,
+   "ic001_success_as_dumped_yaw": 69.6113782051282,
+   "d_success_as_dumped_yaw": -0.008621794871800148
+  },
+  "kitti_Van|reinit": {
+   "tracker_success": 79.15,
+   "tracker_precision": 88.62,
+   "ic001_success": 79.15264423076923,
+   "ic001_precision": 88.5917467948718,
+   "d_success": 0.0026442307692207123,
+   "d_precision": -0.028253205128208947,
+   "ic001_success_as_dumped_yaw": 79.07852564102564,
+   "d_success_as_dumped_yaw": -0.07147435897437049
+  },
+  "kitti_Cyclist|ope": {
+   "tracker_success": 74.28,
+   "tracker_precision": 93.59,
+   "ic001_success": 74.26136363636364,
+   "ic001_precision": 93.53084415584415,
+   "d_success": -0.018636363636360898,
+   "d_precision": -0.05915584415585329,
+   "ic001_success_as_dumped_yaw": 74.04220779220779,
+   "d_success_as_dumped_yaw": -0.23779220779221077
+  },
+  "kitti_Cyclist|reinit": {
+   "tracker_success": 80.56,
+   "tracker_precision": 95.03,
+   "ic001_success": 80.52759740259741,
+   "ic001_precision": 94.97564935064935,
+   "d_success": -0.032402597402594324,
+   "d_precision": -0.0543506493506527,
+   "ic001_success_as_dumped_yaw": 80.45454545454545,
+   "d_success_as_dumped_yaw": -0.10545454545454902
+  },
+  "nuscenes_Car|ope": {
+   "tracker_success": 59.29,
+   "tracker_precision": 66.45,
+   "ic001_success": 59.29129194657024,
+   "ic001_precision": 66.44722486323042,
+   "d_success": 0.0012919465702410093,
+   "d_precision": -0.002775136769585629
+  },
+  "nuscenes_Car|reinit": {
+   "tracker_success": 78.21,
+   "tracker_precision": 84.8,
+   "ic001_success": 78.21264358858461,
+   "ic001_precision": 84.79254664193644,
+   "d_success": 0.0026435885846183282,
+   "d_precision": -0.007453358063557403
+  }
+ },
+ "decision": {
+  "headline_class": "Car",
+  "protocol": "ope (protocol a)",
+  "application": "single re-application after the first test returned INCONCLUSIVE (PREREG \u00a78)",
+  "learned_rule": "best family by point-estimate Success in each bin, chosen before the bootstrap; families = M2-Track, MBPTrack, TrackAny3D (PREREG families; BAT is a secondary anchor, not a decision family)",
+  "floor": "cv_snap",
+  "bootstrap": {
+   "n_boot": 10000,
+   "seed": 0,
+   "ci": "percentile 95%",
+   "unit": "tracklet"
+  },
+  "eligibility": {
+   "min_share_of_binned_frames": 0.2,
+   "min_tracklets": 30
+  },
+  "kitti_side": {
+   "eligible_bins": [
+    "mot:motLo",
+    "pts:pts0",
+    "pts:pts1",
+    "pts:pts2"
+   ],
+   "kill_all_eligible": true,
+   "go_bins": [],
+   "go_bins_ge_40": [],
+   "not_kill_eligible": []
+  },
+  "nuscenes_side": {
+   "eligible_bins": [
+    "mot:motLo",
+    "pts:pts0",
+    "pts:pts2"
+   ],
+   "kill_all_eligible": false,
+   "go_bins": [],
+   "go_bins_ge_40": [],
+   "not_kill_eligible": [
+    "pts:pts0"
+   ]
+  },
+  "first_test_status_recomputed": "INCONCLUSIVE",
+  "formal_status": "INCONCLUSIVE",
+  "follows": "No further re-application. Under PREREG \u00a78 the rule is re-applied once with TrackAny3D; this is that re-application."
+ },
+ "cells": {
+  "kitti_Car": {
+   "pts:pts0": {
+    "best_family": "trackany3d",
+    "gap": 33.47482935153583,
+    "lo": 25.969821993164828,
+    "hi": 40.560525704723716,
+    "n_frames": 2344,
+    "frame_share": 0.37182741116751267,
+    "n_tracklets": 99,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "pts:pts1": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 61.28030751034891,
+    "lo": 50.41322030014059,
+    "hi": 68.47509889451251,
+    "n_frames": 1691,
+    "frame_share": 0.26824238578680204,
+    "n_tracklets": 107,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "pts:pts2": {
+    "best_family": "trackany3d",
+    "gap": 61.47201410312913,
+    "lo": 50.53716728812743,
+    "hi": 71.01867975171271,
+    "n_frames": 2269,
+    "frame_share": 0.3599302030456853,
+    "n_tracklets": 91,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "mot:motHi": {
+    "best_family": "mbptrack_yawalt",
+    "gap": 54.3979394719897,
+    "lo": 27.817465944942818,
+    "hi": 69.1881038647343,
+    "n_frames": 1553,
+    "frame_share": 0.2463515228426396,
+    "n_tracklets": 17,
+    "underpowered": true,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": false,
+    "kill_bin": false,
+    "go_bin": false
+   },
+   "mot:motLo": {
+    "best_family": "trackany3d",
+    "gap": 49.69480109450642,
+    "lo": 41.857241244527835,
+    "hi": 56.49172337388714,
+    "n_frames": 4751,
+    "frame_share": 0.7536484771573604,
+    "n_tracklets": 115,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": true,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   }
+  },
+  "nuscenes_Car": {
+   "pts:pts0": {
+    "best_family": "mbptrack",
+    "gap": 9.639018073463482,
+    "lo": 7.969945423505716,
+    "hi": 11.287044676750368,
+    "n_frames": 35909,
+    "frame_share": 0.5935470007768724,
+    "n_tracklets": 3304,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": true,
+    "eligible": true,
+    "kill_bin": false,
+    "go_bin": false
+   },
+   "pts:pts1": {
+    "best_family": "mbptrack",
+    "gap": 42.98926014319809,
+    "lo": 40.9572608853637,
+    "hi": 44.955639022612445,
+    "n_frames": 7961,
+    "frame_share": 0.1315889518835022,
+    "n_tracklets": 1989,
+    "underpowered": false,
+    "share_ge_20": false,
+    "share_ge_40": false,
+    "eligible": false,
+    "kill_bin": false,
+    "go_bin": false
+   },
+   "pts:pts2": {
+    "best_family": "mbptrack",
+    "gap": 46.83399482831198,
+    "lo": 44.5684170108984,
+    "hi": 49.09475739232425,
+    "n_frames": 16629,
+    "frame_share": 0.27486404733962544,
+    "n_tracklets": 1601,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": false,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   },
+   "mot:motHi": {
+    "best_family": "mbptrack",
+    "gap": 20.34798334064007,
+    "lo": 17.928472186814467,
+    "hi": 22.83286540045837,
+    "n_frames": 9124,
+    "frame_share": 0.15081241012248137,
+    "n_tracklets": 759,
+    "underpowered": false,
+    "share_ge_20": false,
+    "share_ge_40": false,
+    "eligible": false,
+    "kill_bin": false,
+    "go_bin": false
+   },
+   "mot:motLo": {
+    "best_family": "mbptrack",
+    "gap": 24.944282238442824,
+    "lo": 23.263684338729004,
+    "hi": 26.580333409852383,
+    "n_frames": 51375,
+    "frame_share": 0.8491875898775186,
+    "n_tracklets": 3087,
+    "underpowered": false,
+    "share_ge_20": true,
+    "share_ge_40": true,
+    "eligible": true,
+    "kill_bin": true,
+    "go_bin": false
+   }
+  }
+ },
+ "yaw_probe": {
+  "mbptrack_car_ope_closed_form_vs_rawcam_yawalt_max_abs_rad": 9.769962616701378e-15,
+  "mbptrack_car_ope_n_compared": 6424,
+  "frame0_centre_max_abs_m": 1.4210854715202004e-14,
+  "frame0_yaw_max_abs_rad_as_dumped": 0.007970598504843718,
+  "frame0_yaw_max_abs_rad_corrected": 4.440892098500626e-16,
+  "trackany3d_car_ope_as_dumped": {
+   "success": 73.32736612702367,
+   "precision": 85.20547945205479,
+   "n_frames": 6424
+  },
+  "trackany3d_car_ope_gt_convention": {
+   "success": 73.39624844333748,
+   "precision": 85.20547945205479,
+   "n_frames": 6424
+  },
+  "tracker_own_ope": {
+   "success": 73.42,
+   "precision": 85.24
+  },
+  "official_test": {
+   "success": 73.417,
+   "precision": 85.239,
+   "n_frames": 6424
+  }
+ }
+}

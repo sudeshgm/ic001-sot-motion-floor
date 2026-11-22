@@ -1,5 +1,36 @@
 # IC001 results
 
+**Final decision after the single re-application with TrackAny3D (22 November 2026): INCONCLUSIVE.** See "Final decision (with TrackAny3D)" directly below. The first-test record that follows is unchanged.
+
+## Final decision (with TrackAny3D)
+
+The first test returned INCONCLUSIVE, so PREREG §8 adds TrackAny3D and re-applies the same rule **once**. This is that re-application. Nothing else changed: same headline class (Car), protocol a (OPE), floor (`cv_snap`), single-axis bins, eligibility (≥ 20% of binned frames and ≥ 30 tracklets), tracklet bootstrap (10,000 draws, seed 0), and `ic001` Success / Precision. Learned in a bin = the best of M2-Track, MBPTrack and TrackAny3D by point estimate, chosen before the bootstrap. The same code restricted to M2-Track + MBPTrack reproduces the recorded first-test cells exactly (max |Δ| = 0). Full tables: `results/trackany3d_final/tables.md`; log: `results/trackany3d_final/RUNLOG.md`.
+
+**V1 (dated addendum).** TrackAny3D KITTI Car: ic001 Success **73.40** / Precision 85.21 (official test 73.417 / 85.239 over 6,424 frames) vs paper 73.4 → **PASS**. nuScenes Car (informational): **59.29** / 66.45 (official test 59.291 / 66.448 over 64,159 frames) vs paper 59.30 → PASS.
+
+**KITTI yaw convention.** The dump harness takes yaw from the camera box's length axis rotated into the velodyne frame. ic001 GT uses −(rotation_y + π/2). The two differ by ≤ 7.97e-3 rad (0.46°), the same issue recorded for MBPTrack. TrackAny3D KITTI yaw is converted to the GT convention by a closed-form, calibration-only inverse (`ic001/kitti_yaw.py`; no GT, no scores). On the MBPTrack dump it reproduces the raw-quaternion GT-convention yaw to 1e-14 rad, and it brings the frame-0 yaw error to 4e-16 rad. With it, ic001 scores TrackAny3D KITTI Car OPE at 73.40 vs the tracker's own 73.42 (as-dumped yaw: 73.33). nuScenes needs no correction.
+
+| Dataset | Bin | Best family | Gap | 95% CI | Share of binned frames | Tracklets | Status |
+|---|---|---|---:|---|---:|---:|---|
+| KITTI | pts <50 | TrackAny3D | 33.47 | [25.97, 40.56] | 37.2% | 99 | KILL cell |
+| KITTI | pts 50–199 | MBPTrack | 61.28 | [50.41, 68.48] | 26.8% | 107 | KILL cell |
+| KITTI | pts ≥200 | TrackAny3D | 61.47 | [50.54, 71.02] | 36.0% | 91 | KILL cell |
+| KITTI | motion <0.5 m | TrackAny3D | 49.69 | [41.86, 56.49] | 75.4% | 115 | KILL cell |
+| KITTI | motion ≥0.5 m | MBPTrack | 54.40 | [27.82, 69.19] | 24.6% | 17 | not eligible (<30 tracklets) |
+| nuScenes | pts <10 | MBPTrack | 9.64 | [7.97, 11.29] | 59.4% | 3,304 | eligible; neither GO nor KILL |
+| nuScenes | pts 10–24 | MBPTrack | 42.99 | [40.96, 44.96] | 13.2% | 1,989 | not eligible (<20% of frames) |
+| nuScenes | pts ≥25 | MBPTrack | 46.83 | [44.57, 49.09] | 27.5% | 1,601 | KILL cell |
+| nuScenes | motion <2.5 m | MBPTrack | 24.94 | [23.26, 26.58] | 84.9% | 3,087 | KILL cell |
+| nuScenes | motion ≥2.5 m | MBPTrack | 20.35 | [17.93, 22.83] | 15.1% | 759 | not eligible (<20% of frames) |
+
+TrackAny3D does not displace MBPTrack anywhere on nuScenes Car. In the deciding cell (fewer than 10 points), Success is MBPTrack 52.43, TrackAny3D 48.69, M2-Track 44.28, floor 42.80. TrackAny3D alone is 5.90 [4.29, 7.49] above the floor there; this per-family value is not used by the rule. On KITTI, TrackAny3D is best in three of the four eligible bins, and every eligible KITTI bin stays a KILL cell. In the <50-point bin TrackAny3D leads MBPTrack by only 0.01 Success. With the as-dumped yaw MBPTrack would lead instead, but the gap (33.47) and its KILL status are the same.
+
+**Verdict.** KITTI meets the KILL condition on every eligible bin. nuScenes does not, because the fewer-than-10-points bin has a gap of 9.64 [7.97, 11.29]. No GO cell exists on either dataset. The rule therefore returns **INCONCLUSIVE**. This was the single re-application §8 allows, so the rule is not applied again. INCONCLUSIVE is not a kill, but the rule also gives no GO.
+
+**TrackAny3D licence and citation.** The TrackAny3D repository (pinned commit `2f01dc84`) has no licence file. Its code and checkpoints were used for evaluation only and are not redistributed: no code, weights or per-frame outputs are in this repository, only aggregate scores. Citation: M. Wang, H. Wang, Y. Li, X. Kong, J. Du, G. Shen, F. Xia, *TrackAny3D: Transferring Pretrained 3D Models for Category-unified 3D Point Cloud Tracking*, ICCV 2025, arXiv:2507.19908.
+
+**Run deviations.** Official-test configs used `eval_cfg.num_workers = 0` (torch 1.8 DataLoader workers segfaulted). The single allowed source patch was `RECON.py` `map_location` `cuda:1` → `cpu`. Neither change affects the model or the metric.
+
 **Formal first-test decision (22 November 2026): INCONCLUSIVE.** Headline class **Car**, protocol a (standard one-pass evaluation). The frozen rule is applied on both KITTI and nuScenes.
 
 On KITTI, every eligible Car decision bin meets the KILL cell condition (learned − floor Success > 10 and a 95% lower bound > 5). On nuScenes, the same holds for the ≥25-point bin and the low-motion bin, but **not** for the largest bin: cars with fewer than 10 LiDAR points (59.4% of binned frames, 35,909 frames, 3,304 tracklets). There the best learned family (MBPTrack) minus the floor is **9.64** Success, 95% CI **[7.97, 11.29]**. That is neither a KILL cell (the gap is not greater than 10) nor a GO cell (the gap is not ≤ 5, and the upper bound is not ≤ 10). The GO clause does not fire: KITTI has no GO cell, including none with ≥ 40% of frames. Per the frozen pre-registration, TrackAny3D is to be added and the same rule re-applied once.
@@ -207,6 +238,7 @@ Pedestrian (not headline): eligible bins pts1, pts2, and motLo also all meet the
 - `results/kitti_decision/v1_kitti.json`, `decision_kitti.json`, `summary.json`, `mbptrack_yaw_deviation.json`.
 - `results/kitti_decision/kitti_{Car,Pedestrian,Van,Cyclist}_eval.json` — aggregate eval only.
 - `results/kitti/RUNLOG.md` and `results/nuscenes/RUNLOG.md` — run log entries.
+- `results/trackany3d_final/` — TrackAny3D V1, yaw-convention probe, decision cells with TrackAny3D, final verdict (`tables.md`, `summary.json`, `*_eval.json`, `yaw_probe.json`, `RUNLOG.md`, `checksums.txt`). Aggregate only.
 - `results/kitti_secondary/` — SECONDARY analyses (KITTI Car): oxts-compensated M2-Track and BAT; see the section below. Does not change the formal decision.
 
 ## Secondary analyses (KITTI) — labelled SECONDARY

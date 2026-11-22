@@ -1,0 +1,455 @@
+{
+ "dataset": "kitti",
+ "category": "Cyclist",
+ "n_tracklets": 8,
+ "n_frames_total": 308,
+ "n_frames_binned": 300,
+ "protocols": {
+  "ope": {
+   "success": {
+    "overall_incl_frame0": {
+     "cv_snap": 57.20779220779221,
+     "last_box": 10.081168831168831,
+     "mbptrack_yawalt": 76.68831168831169,
+     "trackany3d": 74.26136363636364,
+     "trackany3d_asdumped": 74.04220779220779,
+     "n_frames": 308
+    },
+    "pts:pts0": {
+     "cv_snap": 69.60526315789474,
+     "last_box": 20.13157894736842,
+     "mbptrack_yawalt": 64.34210526315789,
+     "trackany3d": 66.44736842105263,
+     "trackany3d_asdumped": 66.1842105263158,
+     "n_frames": 19
+    },
+    "pts:pts1": {
+     "cv_snap": 64.31102362204724,
+     "last_box": 7.381889763779528,
+     "mbptrack_yawalt": 73.91732283464567,
+     "trackany3d": 71.00393700787401,
+     "trackany3d_asdumped": 70.96456692913385,
+     "n_frames": 127
+    },
+    "pts:pts2": {
+     "cv_snap": 47.72727272727273,
+     "last_box": 6.525974025974026,
+     "mbptrack_yawalt": 79.41558441558442,
+     "trackany3d": 76.68831168831169,
+     "trackany3d_asdumped": 76.33116883116882,
+     "n_frames": 154
+    },
+    "mot:motLo": {
+     "cv_snap": 56.13333333333333,
+     "last_box": 7.75,
+     "mbptrack_yawalt": 76.13333333333334,
+     "trackany3d": 73.63333333333334,
+     "trackany3d_asdumped": 73.41666666666667,
+     "n_frames": 300
+    }
+   },
+   "precision": {
+    "overall_incl_frame0": {
+     "cv_snap": 81.12012987012987,
+     "last_box": 12.13474025974026,
+     "mbptrack_yawalt": 94.11525974025975,
+     "trackany3d": 93.53084415584415,
+     "trackany3d_asdumped": 93.53084415584415
+    },
+    "pts:pts0": {
+     "cv_snap": 91.97368421052632,
+     "last_box": 32.5,
+     "mbptrack_yawalt": 91.44736842105263,
+     "trackany3d": 91.71052631578948,
+     "trackany3d_asdumped": 91.71052631578948
+    },
+    "pts:pts1": {
+     "cv_snap": 85.3740157480315,
+     "last_box": 9.448818897637794,
+     "mbptrack_yawalt": 93.24803149606299,
+     "trackany3d": 92.30314960629921,
+     "trackany3d_asdumped": 92.30314960629921
+    },
+    "pts:pts2": {
+     "cv_snap": 75.42207792207792,
+     "last_box": 7.402597402597403,
+     "mbptrack_yawalt": 94.96753246753246,
+     "trackany3d": 94.54545454545455,
+     "trackany3d_asdumped": 94.54545454545455
+    },
+    "mot:motLo": {
+     "cv_snap": 80.68333333333334,
+     "last_box": 9.858333333333333,
+     "mbptrack_yawalt": 94.01666666666667,
+     "trackany3d": 93.41666666666667,
+     "trackany3d_asdumped": 93.41666666666667
+    }
+   },
+   "n_tracklets": {
+    "overall_incl_frame0": 8,
+    "pts:pts0": 5,
+    "pts:pts1": 7,
+    "pts:pts2": 8,
+    "mot:motLo": 8
+   },
+   "gap_best_learned[with_trackany3d]": {
+    "families": [
+     "mbptrack_yawalt",
+     "trackany3d"
+    ],
+    "cells": {
+     "pts:pts0": {
+      "best_family": "trackany3d",
+      "gap": -3.1578947368421098,
+      "lo": -10.357142857142858,
+      "hi": 2.5,
+      "n_frames": 19,
+      "frame_share": 0.06333333333333334,
+      "n_tracklets": 5,
+      "underpowered": true,
+      "share_ge_20": false,
+      "share_ge_40": false,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts1": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 9.60629921259843,
+      "lo": -3.6,
+      "hi": 27.14999421430221,
+      "n_frames": 127,
+      "frame_share": 0.42333333333333334,
+      "n_tracklets": 7,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 31.688311688311693,
+      "lo": 12.113095238095237,
+      "hi": 53.086837783806914,
+      "n_frames": 154,
+      "frame_share": 0.5133333333333333,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 20.000000000000007,
+      "lo": 5.948275862068965,
+      "hi": 36.389830508474574,
+      "n_frames": 300,
+      "frame_share": 1.0,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     }
+    }
+   },
+   "gap_best_learned[first_test_m2_mbp]": {
+    "families": [
+     "mbptrack_yawalt"
+    ],
+    "cells": {
+     "pts:pts0": {
+      "best_family": "mbptrack_yawalt",
+      "gap": -5.26315789473685,
+      "lo": -26.875,
+      "hi": 11.25,
+      "n_frames": 19,
+      "frame_share": 0.06333333333333334,
+      "n_tracklets": 5,
+      "underpowered": true,
+      "share_ge_20": false,
+      "share_ge_40": false,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts1": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 9.60629921259843,
+      "lo": -3.6,
+      "hi": 27.14999421430221,
+      "n_frames": 127,
+      "frame_share": 0.42333333333333334,
+      "n_tracklets": 7,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 31.688311688311693,
+      "lo": 12.113095238095237,
+      "hi": 53.086837783806914,
+      "n_frames": 154,
+      "frame_share": 0.5133333333333333,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 20.000000000000007,
+      "lo": 5.948275862068965,
+      "hi": 36.389830508474574,
+      "n_frames": 300,
+      "frame_share": 1.0,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     }
+    }
+   },
+   "gap_per_family": {
+    "mbptrack_yawalt": {
+     "pts:pts0": {
+      "best_family": "mbptrack_yawalt",
+      "gap": -5.26315789473685,
+      "lo": -26.875,
+      "hi": 11.25,
+      "n_frames": 19,
+      "frame_share": 0.06333333333333334,
+      "n_tracklets": 5,
+      "underpowered": true,
+      "share_ge_20": false,
+      "share_ge_40": false,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts1": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 9.60629921259843,
+      "lo": -3.6,
+      "hi": 27.14999421430221,
+      "n_frames": 127,
+      "frame_share": 0.42333333333333334,
+      "n_tracklets": 7,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 31.688311688311693,
+      "lo": 12.113095238095237,
+      "hi": 53.086837783806914,
+      "n_frames": 154,
+      "frame_share": 0.5133333333333333,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "mbptrack_yawalt",
+      "gap": 20.000000000000007,
+      "lo": 5.948275862068965,
+      "hi": 36.389830508474574,
+      "n_frames": 300,
+      "frame_share": 1.0,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     }
+    },
+    "trackany3d": {
+     "pts:pts0": {
+      "best_family": "trackany3d",
+      "gap": -3.1578947368421098,
+      "lo": -10.357142857142858,
+      "hi": 2.5,
+      "n_frames": 19,
+      "frame_share": 0.06333333333333334,
+      "n_tracklets": 5,
+      "underpowered": true,
+      "share_ge_20": false,
+      "share_ge_40": false,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts1": {
+      "best_family": "trackany3d",
+      "gap": 6.69291338582677,
+      "lo": -6.16,
+      "hi": 22.965988372093012,
+      "n_frames": 127,
+      "frame_share": 0.42333333333333334,
+      "n_tracklets": 7,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "pts:pts2": {
+      "best_family": "trackany3d",
+      "gap": 28.96103896103896,
+      "lo": 8.794914464487785,
+      "hi": 51.04184877622377,
+      "n_frames": 154,
+      "frame_share": 0.5133333333333333,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     },
+     "mot:motLo": {
+      "best_family": "trackany3d",
+      "gap": 17.500000000000007,
+      "lo": 3.247588424437299,
+      "hi": 33.35795252489328,
+      "n_frames": 300,
+      "frame_share": 1.0,
+      "n_tracklets": 8,
+      "underpowered": true,
+      "share_ge_20": true,
+      "share_ge_40": true,
+      "eligible": false,
+      "kill_bin": false,
+      "go_bin": false
+     }
+    }
+   },
+   "R_secondary_floor_to_best_learned": {
+    "late": "mbptrack_yawalt",
+    "R": -0.2631578947368421,
+    "lo": -2.6919120002561856,
+    "hi": 0.7196969696969697,
+    "n_valid": 9972,
+    "threshold": 1.2,
+    "P5_supported": false
+   }
+  },
+  "reinit": {
+   "success": {
+    "overall_incl_frame0": {
+     "cv_snap": 91.13636363636364,
+     "last_box": 65.12987012987013,
+     "mbptrack_yawalt": 78.87987012987013,
+     "trackany3d": 80.52759740259741,
+     "trackany3d_asdumped": 80.45454545454545,
+     "n_frames": 308
+    },
+    "pts:pts0": {
+     "cv_snap": 81.1842105263158,
+     "last_box": 60.921052631578945,
+     "mbptrack_yawalt": 70.13157894736842,
+     "trackany3d": 73.28947368421052,
+     "trackany3d_asdumped": 73.28947368421052,
+     "n_frames": 19
+    },
+    "pts:pts1": {
+     "cv_snap": 91.16141732283465,
+     "last_box": 63.20866141732284,
+     "mbptrack_yawalt": 76.24015748031496,
+     "trackany3d": 82.9724409448819,
+     "trackany3d_asdumped": 82.89370078740157,
+     "n_frames": 127
+    },
+    "pts:pts2": {
+     "cv_snap": 92.01298701298701,
+     "last_box": 65.55194805194805,
+     "mbptrack_yawalt": 81.16883116883118,
+     "trackany3d": 78.50649350649351,
+     "trackany3d_asdumped": 78.44155844155844,
+     "n_frames": 154
+    },
+    "mot:motLo": {
+     "cv_snap": 90.96666666666667,
+     "last_box": 64.26666666666667,
+     "mbptrack_yawalt": 78.38333333333334,
+     "trackany3d": 80.06666666666666,
+     "trackany3d_asdumped": 80.0,
+     "n_frames": 300
+    }
+   },
+   "precision": {
+    "overall_incl_frame0": {
+     "cv_snap": 97.07792207792208,
+     "last_box": 84.33441558441558,
+     "mbptrack_yawalt": 94.55357142857143,
+     "trackany3d": 94.97564935064935,
+     "trackany3d_asdumped": 94.97564935064935
+    },
+    "pts:pts0": {
+     "cv_snap": 95.13157894736842,
+     "last_box": 82.5,
+     "mbptrack_yawalt": 92.23684210526316,
+     "trackany3d": 93.28947368421052,
+     "trackany3d_asdumped": 93.28947368421052
+    },
+    "pts:pts1": {
+     "cv_snap": 97.30314960629923,
+     "last_box": 83.12992125984252,
+     "mbptrack_yawalt": 94.03543307086615,
+     "trackany3d": 95.96456692913385,
+     "trackany3d_asdumped": 95.96456692913385
+    },
+    "pts:pts2": {
+     "cv_snap": 97.1103896103896,
+     "last_box": 84.87012987012987,
+     "mbptrack_yawalt": 95.09740259740259,
+     "trackany3d": 94.22077922077922,
+     "trackany3d_asdumped": 94.22077922077922
+    },
+    "mot:motLo": {
+     "cv_snap": 97.06666666666666,
+     "last_box": 83.98333333333333,
+     "mbptrack_yawalt": 94.46666666666667,
+     "trackany3d": 94.9,
+     "trackany3d_asdumped": 94.9
+    }
+   },
+   "n_tracklets": {
+    "overall_incl_frame0": 8,
+    "pts:pts0": 5,
+    "pts:pts1": 7,
+    "pts:pts2": 8,
+    "mot:motLo": 8
+   }
+  }
+ }
+}
