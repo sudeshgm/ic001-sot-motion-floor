@@ -10,9 +10,12 @@ Approvals (Sudesh's own words, relayed and verified by Idea Launcher, 21 Nov 202
 | `m2track_oxts_crop.md` | **SECONDARY** (#1): M2-Track KITTI Car with an oxts-compensated search crop; same commit/checkpoint as the first test | ≈ 0.3 T4-h |
 | `bat_kitti_car.md` | **SECONDARY** (#2): BAT on KITTI Car, official Open3DSOT `bat_kitti_car.ckpt`; same env as M2-Track | ≈ 0.3 T4-h |
 | `nuscenes_learned.md` | M2-Track (nuScenes Car) + MBPTrack (Car/Ped/Truck/Trailer/Bus) on val keyframes, ope + reinit; informational V1 vs addendum | ≈ 3–6 T4-h |
+| `trackany3d.md` | TrackAny3D official unified checkpoints, KITTI test (Car/Ped/Van/Cyc) + nuScenes val keyframes (Car/Ped/Truck/Trailer/Bus), ope + reinit; V1 on KITTI Car vs paper 73.4 | ≈ 8–14 T4-h, two free sessions |
 | `dump_open3dsot.py` | Harness: Open3DSOT model → per-frame CSV (untested on GPU) | — |
 | `dump_open3dsot_oxts.py` | Harness: M2-Track with oxts-compensated previous box/crop (yaw-only); KITTI only (untested on GPU) | — |
 | `dump_mbptrack.py` | Harness: MBPTrack → per-frame CSV, camera→velodyne conversion + self-check (untested on GPU) | — |
+| `dump_trackany3d.py` | Harness: TrackAny3D → per-frame CSV, same schema and self-checks as the MBPTrack harness (untested on GPU) | — |
+| `patch_nuscenes_maps.py` | Allow nuscenes-devkit to load the slim val-keyframes root with an empty `map.json` | — |
 
 ## Data: PRIVATE Kaggle dataset (never public; licence-restricted)
 - **KITTI (CC BY-NC-SA 3.0, non-commercial):** create a **private** Kaggle dataset `ic001-kitti-0019-0020` from the box folder `/workspace/ic001/data/kitti/` (contents: `velodyne/0019/*.bin` (1,060 files), `velodyne/0020/*.bin` (836 files), `label_02/*.txt`, `calib/*.txt`, `oxts/*.txt`, ~3.67 GB) plus `data_manifest/kitti_sha256.txt` from this repo. Visibility must be Private; do not add collaborators.
@@ -27,7 +30,7 @@ Per job, per (dataset, class): one CSV with both protocols, exactly:
 dataset,category,tracklet_id,frame_idx,protocol,method,cx,cy,cz,w,l,h,yaw
 ```
 - Boxes in the Open3DSOT scoring frame: KITTI velodyne frame of that frame; nuScenes global. `yaw` = rotation about +z of the box length axis. Frame 0 = the given GT box.
-- `tracklet_id`: KITTI `"%04d_%d" % (scene, track_id)`; nuScenes `instance_token`. `frame_idx` 0-based in frame order. `protocol` ∈ {`ope`, `reinit`}. `method` ∈ {`m2track`, `mbptrack`, `m2track_oxts`, `bat`}.
+- `tracklet_id`: KITTI `"%04d_%d" % (scene, track_id)`; nuScenes `instance_token`. `frame_idx` 0-based in frame order. `protocol` ∈ {`ope`, `reinit`}. `method` ∈ {`m2track`, `mbptrack`, `m2track_oxts`, `bat`, `trackany3d`}.
 - Also: the repo's own Success/Precision printout for protocol ope (V1), harness printouts, `pip freeze` / `conda list`, `nvidia-smi`, tracker repo commit, SHA-256 of each checkpoint, wall times, list of environment deviations.
 - Never return point clouds, features or dataset files.
 
@@ -39,3 +42,5 @@ dataset,category,tracklet_id,frame_idx,protocol,method,cx,cy,cz,w,l,h,yaw
 Applies only to the first-test jobs (`m2track_first_test.md`, `mbptrack_first_test.md`), protocol ope, KITTI Car. The repo's own number must be within 1.0 Success of **either** the paper value **or** the documented official-checkpoint value, when one exists: M2-Track paper 65.5 / Open3DSOT README checkpoint 67.43; MBPTrack paper 73.4 (no separate checkpoint value). Outside → stop and report; no tuning, no re-runs with other seeds/settings.
 
 The SECONDARY jobs (`m2track_oxts_crop.md`, `bat_kitti_car.md`) are **not** part of V1 or of the frozen GO / KILL rule. Do not apply this stop rule to them.
+
+`trackany3d.md` uses the same ±1.0 Success tolerance under protocol ope. V1 is official KITTI Car Success within 1.0 of the paper value **73.4** (no class-specific documented checkpoint value). nuScenes Car (paper 59.30) is informational. Outside the KITTI Car tolerance → stop and report; no tuning.
