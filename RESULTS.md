@@ -1,15 +1,101 @@
-# IC001 results — KITTI only (21 November 2026)
+# IC001 results
 
-**Scope: KITTI only.** Open3DSOT test scenes 0019–0020. The frozen decision rule is defined on both KITTI and nuScenes. The nuScenes floor and learned scores have not been run, so this file records the V1 outcomes and the **KITTI side** of the rule. It does not declare a formal KILL, GO, or INCONCLUSIVE for the first test.
+**Formal first-test decision (22 November 2026): INCONCLUSIVE.** Headline class **Car**, protocol a (standard one-pass evaluation). The frozen rule is applied on both KITTI and nuScenes.
+
+On KITTI, every eligible Car decision bin meets the KILL cell condition (learned − floor Success > 10 and a 95% lower bound > 5). On nuScenes, the same holds for the ≥25-point bin and the low-motion bin, but **not** for the largest bin: cars with fewer than 10 LiDAR points (59.4% of binned frames, 35,909 frames, 3,304 tracklets). There the best learned family (MBPTrack) minus the floor is **9.64** Success, 95% CI **[7.97, 11.29]**. That is neither a KILL cell (the gap is not greater than 10) nor a GO cell (the gap is not ≤ 5, and the upper bound is not ≤ 10). The GO clause does not fire: KITTI has no GO cell, including none with ≥ 40% of frames. Per the frozen pre-registration, TrackAny3D is to be added and the same rule re-applied once.
 
 - Pre-registration: `PREREG.md`, frozen at `e31629c` (`PREREG.githash`). This file does not edit it.
-- V1 tolerance: approved addendum `PREREG_ADDENDUM_2026-11-21.md` (this file does not edit the addendum either).
+- V1 tolerance: dated addendum `PREREG_ADDENDUM_2026-11-21.md` (this file does not edit the addendum either).
 - Protocol: standard one-pass evaluation (protocol a / `ope`), headline class **Car**.
-- Floor: pre-registered `cv_snap` in `results/kitti/` (unchanged).
-- Learned boxes: GPU Bot primary outputs in `/workspace/gpubot/ic001-sot-kitti/outputs/v1/`, SHA-256 verified against `SHA256SUMS_outputs.txt` (all OK). Re-scored with `ic001` metrics (PREREG §6). MBPTrack uses the GT-convention yaw (`mbptrack_yawalt`); see the recorded deviation below.
-- Aggregate tables and JSON: `results/kitti_decision/`. Per-frame CSVs are KITTI-derived and are **not** committed.
+- Floor: pre-registered `cv_snap` in `results/kitti/` and `results/nuscenes/` (unchanged).
+- Learned boxes were re-scored with `ic001` metrics (PREREG §6). KITTI MBPTrack uses the GT-convention yaw (`mbptrack_yawalt`); see the recorded KITTI deviation below. nuScenes frame-0 boxes already match the index GT (centres exact; yaw error ≤ 4.4e-16 rad), so no yaw correction was applied there.
+- Aggregate tables: `results/kitti_decision/` and `results/nuscenes_decision/`. Per-frame CSVs are dataset-derived and are **not** committed.
+
+## Formal first-test decision (PREREG §8, Car, protocol a)
+
+Decision bins are single-axis. nuScenes: point bins `<10`, `10–24`, `≥25` and motion bins `<2.5 m`, `≥2.5 m`. KITTI bins are unchanged from the record below. Frame 0 is excluded from every per-bin score. No point-bin merge on either dataset (GT censuses already recorded). Learned in a bin = the best family by point-estimate Success in that bin, chosen before the bootstrap. Gap = learned − floor (`cv_snap`), tracklet bootstrap 10,000 resamples, seed 0, percentile 95% CI. Cells with fewer than 30 tracklets, or with fewer than 20% of binned frames, cannot drive GO / KILL.
+
+**KILL** requires the cell conditions on every eligible bin of **both** datasets. **GO** requires a qualifying close-gap cell on each dataset, or one KITTI bin with ≥ 40% of frames. Anything else is **INCONCLUSIVE**.
+
+### nuScenes Car — best learned − floor (headline half)
+
+Shares are of the 60,499 binned Car frames. Best family is MBPTrack in every bin.
+
+| Bin | Best family | Floor | Learned | Gap | 95% CI | n frames | Share | n tracklets | Eligible? |
+|---|---|---:|---:|---:|---|---:|---:|---:|---|
+| pts0 (<10) | MBPTrack | 42.80 | 52.43 | 9.64 | [7.97, 11.29] | 35909 | 59.4% | 3304 | yes (≥40%); neither GO nor KILL cell |
+| pts1 (10–24) | MBPTrack | 24.09 | 67.08 | 42.99 | [40.96, 44.96] | 7961 | 13.2% | 1989 | **no** (<20% of frames) |
+| pts2 (≥25) | MBPTrack | 27.06 | 73.90 | 46.83 | [44.57, 49.09] | 16629 | 27.5% | 1601 | yes (≥20%); KILL cell |
+| motLo (<2.5 m) | MBPTrack | 41.13 | 66.08 | 24.94 | [23.26, 26.58] | 51375 | 84.9% | 3087 | yes (≥40%); KILL cell |
+| motHi (≥2.5 m) | MBPTrack | 7.17 | 27.52 | 20.35 | [17.93, 22.83] | 9124 | 15.1% | 759 | **no** (<20% of frames) |
+
+The pts0 bin is why nuScenes is not a KILL half: the gap is 9.64, just under the threshold of 10, and the confidence interval crosses 10.
+
+### Same bins, each family separately (nuScenes Car)
+
+| Family | Bin | Floor | Learned | Gap | 95% CI | Eligible? |
+|---|---|---:|---:|---:|---|---|
+| M2-Track | pts0 | 42.80 | 44.28 | 1.49 | [−0.29, 3.24] | yes; would be a GO cell |
+| M2-Track | pts1 | 24.09 | 63.27 | 39.18 | [37.14, 41.18] | no |
+| M2-Track | pts2 | 27.06 | 73.09 | 46.03 | [43.85, 48.23] | yes; KILL cell |
+| M2-Track | motLo | 41.13 | 59.54 | 18.41 | [16.59, 20.18] | yes; KILL cell |
+| M2-Track | motHi | 7.17 | 27.42 | 20.25 | [17.66, 22.89] | no |
+| MBPTrack | pts0 | 42.80 | 52.43 | 9.64 | [7.97, 11.29] | yes; neither GO nor KILL cell |
+| MBPTrack | pts1 | 24.09 | 67.08 | 42.99 | [40.96, 44.96] | no |
+| MBPTrack | pts2 | 27.06 | 73.90 | 46.83 | [44.57, 49.09] | yes; KILL cell |
+| MBPTrack | motLo | 41.13 | 66.08 | 24.94 | [23.26, 26.58] | yes; KILL cell |
+| MBPTrack | motHi | 7.17 | 27.52 | 20.35 | [17.93, 22.83] | no |
+
+M2-Track is within about 1.5 Success of the floor on the <10-point bin, and that per-family interval would meet the GO cell condition. It does **not** enter the formal rule, because MBPTrack is the better family in that bin (52.43 vs 44.28).
+
+Other classes are reported in `results/nuscenes_decision/tables.md` and do not drive the headline. Pedestrian, Truck, and Trailer have KILL cells on every eligible bin. Bus does not: its <10-point bin has gap 11.91 but a 95% lower bound of 4.65, which is not greater than 5.
+
+### Secondary ratio R (nuScenes)
+
+R = (share of gain from the floor to the best learned tracker in primary-hard frames) / (share of frames that are primary-hard). Best learned overall on nuScenes Car is MBPTrack.
+
+**R = 0.490**, 95% CI **[0.445, 0.532]**. Total gain is well above 2 Success, so R is defined. The interval is entirely below 1, and P5 (R > 1.2 with the CI excluding 1) is **not** supported. R is secondary and is not a GO / KILL claim.
+
+SECONDARY analysis #2 (R_progress from BAT to the best learned tracker) is **not computed** on nuScenes: BAT was not run on this dataset.
+
+### Predicted effects (nuScenes Car; not the decision rule)
+
+- P3 (<25-point frames: learned − floor ≥ 15): 43,870 frames (72.5% of binned, 3,385 tracklets); floor 39.40, MBPTrack 55.09, gap **15.69**. P3 holds as a point estimate.
+- P4 (frames where floor ≈ learned, per-frame gap ≤ 5, should be ≤ 30%): 27,598 / 60,499 binned frames (**45.6%**). P4 does not hold.
+
+Primary easy (33.6% of binned frames): floor 29.49, MBPTrack 78.22, gap 48.74. Primary hard (66.4%): floor 39.31, MBPTrack 51.19, gap 11.88.
+
+## nuScenes scores (val, keyframes, LIDAR_TOP)
+
+Floor numbers below are the already-frozen `cv_snap` results in `results/nuscenes/` (commit `38d18f1`); re-scoring the same floor CSVs against the index reproduced them exactly (max |Δ| = 0). Learned numbers are ic001 re-scores of the v3 learned-tracker dumps. They match the run-dir `eval_bins_nuscenes_*.json` exactly (max |Δ| = 0). Offsets versus the tracker-native dump-log headlines are at most 0.01 and come from rounding of those native figures, not from a rescore mismatch.
+
+### Overall Success / Precision (protocol a, includes frame 0)
+
+| Class | Tracklets / frames | last_box | Floor (cv_snap) | M2-Track | MBPTrack |
+|---|---|---:|---:|---:|---:|
+| Car | 3,660 / 64,159 | 57.39 / 63.57 | 39.59 / 42.16 | 57.21 / 65.73 | 62.46 / 70.41 |
+| Pedestrian | 1,858 / 33,227 | 21.42 / 33.32 | 16.97 / 29.70 | — | 45.38 / 74.06 |
+| Truck | 608 / 13,587 | 62.67 / 63.20 | 34.14 / 30.40 | — | 62.16 / 63.24 |
+| Trailer | 152 / 3,352 | 73.88 / 71.17 | 39.16 / 31.76 | — | 65.07 / 61.30 |
+| Bus | 120 / 2,953 | 44.02 / 40.35 | 26.98 / 20.48 | — | 55.08 / 51.34 |
+
+M2-Track has an official nuScenes checkpoint for Car only. Bicycle and Motorcycle have a frozen floor but no first-test learned checkpoint.
+
+Car re-init (diagnostic, not the headline): floor 83.79 / 88.54, constant velocity 90.36 / 92.94, last box 78.16 / 78.05, M2-Track 78.83 / 84.87, MBPTrack 79.80 / 84.94.
+
+### Informational V1 (nuScenes Car, protocol a)
+
+V1 still gates on KITTI Car only (both gates already PASS; see below). nuScenes Car uses the same dated-addendum tolerance and is informational.
+
+| Tracker | Our Success / Precision | Paper | Δ paper | Documented checkpoint | Δ ckpt | Informational |
+|---|---:|---:|---:|---:|---:|---|
+| M2-Track | **57.21 / 65.73** | 55.85 / 65.09 | 1.36 (not within 1.0) | 57.22 / 65.72 (Open3DSOT README, `mmtrack_nuscenes_car.ckpt`) | **0.01** (within 1.0) | **PASS** (via the checkpoint reference) |
+| MBPTrack | **62.46 / 70.41** | 62.47 / 70.41 | **0.01** (within 1.0) | none (paper value only) | — | **PASS** |
+
+Verification of the learned-tracker dumps: every SHA-256 in `SHA256SUMS_outputs.txt`, `SHA256SUMS_all.txt` (files present in the run directory), and `SHA256SUMS_eval.txt` matched. Dump keys match the frozen nuScenes index exactly (Car 128,318 rows = 64,159 frames × 2 protocols, for both families; Pedestrian 66,454; Truck 27,174; Trailer 6,704; Bus 5,906; missing = 0, extra = 0). `run_meta`: rc=0, wall_s=23082, paid=0, finished 22 Nov 2026, 09:38:06 IST. An earlier failed run tree (v1, rc=3, no dumps) was not used. Code pins recorded in the run: ic001 `38d18f1`, Open3DSOT `f08451d`, MBPTrack3D `e5670d1`.
 
 ## V1 reproduction (KITTI Car, protocol a)
+
 
 V1 still gates on KITTI Car only. Under the approved addendum, a tracker **passes** if its ic001-rescored Success is within **1.0** of *either* the paper value *or* a documented official-checkpoint value. MBPTrack is checked against its paper value only (no documented checkpoint Success distinct from the paper was identified). Precision is recorded and is not a gate.
 
@@ -109,19 +195,23 @@ Pedestrian (not headline): eligible bins pts1, pts2, and motLo also all meet the
 
 **KITTI side of rule: KILL conditions hold on every eligible decision bin** (each bin with ≥ 20% of binned frames and ≥ 30 tracklets has learned − floor Success > 10 and a 95% lower bound > 5). The GO conditions do not hold on KITTI (no eligible bin, including the ≥ 40% low-motion bin, has gap ≤ 5 and a 95% upper bound ≤ 10).
 
-**A formal KILL needs the same on nuScenes, which has not been run.** This is not a formal first-test decision.
+**This KITTI-side result is unchanged.** Combined with the nuScenes half below, the formal first-test decision is **INCONCLUSIVE**.
 
 ## Files
 
-- `results/kitti_decision/tables.md` — all aggregate tables (overall, V1, per-bin and per-family gaps with CIs, secondary grid, R).
+- `results/nuscenes_decision/tables.md` — nuScenes aggregate tables (overall, informational V1, per-bin and per-family gaps with CIs, R, formal decision).
+- `results/nuscenes_decision/v1_nuscenes.json`, `decision_nuscenes.json`, `summary.json`, `verification.json`.
+- `results/nuscenes_decision/nuscenes_{Car,Pedestrian,Truck,Trailer,Bus}_eval.json` — aggregate eval only.
+- `results/nuscenes/` — frozen nuScenes floor and controls (unchanged).
+- `results/kitti_decision/tables.md` — KITTI aggregate tables (overall, V1, per-bin and per-family gaps with CIs, secondary grid, R).
 - `results/kitti_decision/v1_kitti.json`, `decision_kitti.json`, `summary.json`, `mbptrack_yaw_deviation.json`.
 - `results/kitti_decision/kitti_{Car,Pedestrian,Van,Cyclist}_eval.json` — aggregate eval only.
-- `results/kitti/RUNLOG.md` — run log entry for the primary scoring pass.
-- `results/kitti_secondary/` — SECONDARY analyses (KITTI Car): oxts-compensated M2-Track and BAT; see the section below. Does not change the frozen decision above.
+- `results/kitti/RUNLOG.md` and `results/nuscenes/RUNLOG.md` — run log entries.
+- `results/kitti_secondary/` — SECONDARY analyses (KITTI Car): oxts-compensated M2-Track and BAT; see the section below. Does not change the formal decision.
 
 ## Secondary analyses (KITTI) — labelled SECONDARY
 
-**This section is SECONDARY / post-primary. It does not change the frozen KITTI-side KILL in the sections above, the frozen floor, or V1.** Formal first-test GO/KILL still waits on nuScenes. Spec: `SECONDARY_ANALYSES.md` #1 and #2. Full tables: `results/kitti_secondary/tables.md`.
+**This section is SECONDARY / post-primary. It does not change the formal first-test decision (INCONCLUSIVE), the frozen floor, or V1.** Spec: `SECONDARY_ANALYSES.md` #1 and #2. Full tables: `results/kitti_secondary/tables.md`.
 
 GPU Bot's oxts-compensated M2-Track and BAT KITTI Car outputs (`/workspace/gpubot/ic001-sot-kitti/outputs/sec_v1/`) were SHA-256 verified (every brief hash and every `SHA256SUMS_all.txt` entry matched) and re-scored with the same `ic001` path as the primary decision (same bins, Open3DSOT Success, 10,000 tracklet bootstrap, seed 0). Per-frame CSVs are not in the repo. Our scores match GPU Bot's `eval_bins_kitti_Car_secondary.json` exactly (max |Δ| = 0).
 
@@ -158,5 +248,5 @@ The pre-specified test uses Δgap = (uncompensated M2-Track − floor) in ego-on
 
 R_progress = (share of the BAT → best-learned gain in primary-hard frames) / (share of frames that are primary-hard), using the frozen P5 formula. Best learned remains MBPTrack (GT-convention yaw).
 
-**R_progress = 0.497**, 95% CI **[0.173, 0.882]**. Total binned gain is 10.69 Success (>2, so R is defined). The interval is entirely below 1, so on KITTI the later gains are not concentrated in hard frames (H-refine direction; H-hard is not supported). This is KITTI-only; the pre-specified informative/uninformative call needs the same contrast on nuScenes as well. Floor → best R, restated on the same frames, remains **0.833** [0.612, 0.987], matching the primary record.
+**R_progress = 0.497**, 95% CI **[0.173, 0.882]**. Total binned gain is 10.69 Success (>2, so R is defined). The interval is entirely below 1, so on KITTI the later gains are not concentrated in hard frames (H-refine direction; H-hard is not supported). This is KITTI-only. SECONDARY #2 also asks for BAT on nuScenes Car; that run is not available, so the pre-specified informative/uninformative call (CI excludes 1 on at least one dataset vs covers 1 on both) is not completed. Floor → best R on these KITTI frames remains **0.833** [0.612, 0.987], matching the primary KITTI record.
 

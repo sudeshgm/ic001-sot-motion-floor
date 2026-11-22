@@ -1,0 +1,36 @@
+{
+ "run_dir": "/workspace/gpubot/ic001-nuscenes/outputs/v3",
+ "run_meta": {
+  "rc": 0,
+  "wall_s": 23082,
+  "paid": 0,
+  "finished_at": "2026-11-22T04:08:06Z",
+  "finished_ist": "2026-11-22 09:38:06"
+ },
+ "sha_outputs": {
+  "file": "SHA256SUMS_outputs.txt",
+  "all_ok": true,
+  "missing": [],
+  "n": 12
+ },
+ "sha_all_present": {
+  "file": "SHA256SUMS_all.txt",
+  "all_ok": true,
+  "missing": [],
+  "n": 25
+ },
+ "sha_eval": {
+  "file": "SHA256SUMS_eval.txt",
+  "all_ok": true,
+  "missing": [],
+  "n": 5
+ },
+ "bundle_equals_manifest": true,
+ "bundle_job_log": "COMMITS.txt: OK\ndriver.sh: OK\ndump_mbptrack_rawcam.py: OK\nic001_666a9e0.tarball: OK\nic001_db936e3.tarball: OK\nmbptrack3d_e5670d1.tarball: OK\nopen3dsot_f08451d.tarball: OK\nmbptrack_kitti_car.ckpt: OK\nmbptrack_kitti_cyc.ckpt: OK\nmbptrack_kitti_ped.ckpt: OK\nmbptrack_kitti_van.ckpt: OK\nic001env.tgz.part00: OK\nic001env.tgz.part01: OK\nic001env.tgz.part02: OK",
+ "index_key_match": "PASS (exact; see this run's stdout; missing=0 extra=0 all classes)",
+ "pins": {
+  "ic001": "38d18f109793150d3ab588c6d7aa5abda9fc312f",
+  "trackers": "Open3DSOT f08451ddf133d40c9bfadd6358040c569b5f71a9\nMBPTrack3D e5670d122a8fc129189ef826ec470bbeb51eb5ef\nic001 38d18f109793150d3ab588c6d7aa5abda9fc312f\ndump_mbptrack.py (NuscenesKITTIMem harness addition) sha256=0a386b26e36fd296b3a2d78fd3ea3bd0ad6b34684e95ae32faaf48dd0b67bce8",
+  "prereg": "e31629c99566bd989094d3a3922374863f0ac163"
+ }
+}

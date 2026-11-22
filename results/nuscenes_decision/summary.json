@@ -1,0 +1,506 @@
+{
+ "generated": "2026-11-22 10:22 IST",
+ "verification": {
+  "run_dir": "/workspace/gpubot/ic001-nuscenes/outputs/v3",
+  "run_meta": {
+   "rc": 0,
+   "wall_s": 23082,
+   "paid": 0,
+   "finished_at": "2026-11-22T04:08:06Z",
+   "finished_ist": "2026-11-22 09:38:06"
+  },
+  "sha_outputs": {
+   "file": "SHA256SUMS_outputs.txt",
+   "all_ok": true,
+   "missing": [],
+   "n": 12
+  },
+  "sha_all_present": {
+   "file": "SHA256SUMS_all.txt",
+   "all_ok": true,
+   "missing": [],
+   "n": 25
+  },
+  "sha_eval": {
+   "file": "SHA256SUMS_eval.txt",
+   "all_ok": true,
+   "missing": [],
+   "n": 5
+  },
+  "bundle_equals_manifest": true,
+  "bundle_job_log": "COMMITS.txt: OK\ndriver.sh: OK\ndump_mbptrack_rawcam.py: OK\nic001_666a9e0.tarball: OK\nic001_db936e3.tarball: OK\nmbptrack3d_e5670d1.tarball: OK\nopen3dsot_f08451d.tarball: OK\nmbptrack_kitti_car.ckpt: OK\nmbptrack_kitti_cyc.ckpt: OK\nmbptrack_kitti_ped.ckpt: OK\nmbptrack_kitti_van.ckpt: OK\nic001env.tgz.part00: OK\nic001env.tgz.part01: OK\nic001env.tgz.part02: OK",
+  "index_key_match": "PASS (exact; see this run's stdout; missing=0 extra=0 all classes)",
+  "pins": {
+   "ic001": "38d18f109793150d3ab588c6d7aa5abda9fc312f",
+   "trackers": "Open3DSOT f08451ddf133d40c9bfadd6358040c569b5f71a9\nMBPTrack3D e5670d122a8fc129189ef826ec470bbeb51eb5ef\nic001 38d18f109793150d3ab588c6d7aa5abda9fc312f\ndump_mbptrack.py (NuscenesKITTIMem harness addition) sha256=0a386b26e36fd296b3a2d78fd3ea3bd0ad6b34684e95ae32faaf48dd0b67bce8",
+   "prereg": "e31629c99566bd989094d3a3922374863f0ac163"
+  }
+ },
+ "v1": {
+  "role": "informational (V1 gates on KITTI Car only; KITTI gates already PASS)",
+  "protocol": "ope",
+  "dataset": "nuscenes",
+  "rule": "dated addendum 21 Nov 2026: within 1.0 Success of paper or documented checkpoint",
+  "rows": [
+   {
+    "success": 57.210679717576646,
+    "paper": 55.85,
+    "abs_diff_paper": 1.3606797175766445,
+    "within_1_of_paper": false,
+    "checkpoint": 57.22,
+    "abs_diff_checkpoint": 0.009320282423352921,
+    "within_1_of_checkpoint": true,
+    "pass": true,
+    "role": "informational",
+    "paper_source": "arXiv:2203.01730v1, Table 2",
+    "checkpoint_source": "Open3DSOT README Reproduction, mmtrack_nuscenes_car.ckpt",
+    "rule": "within 1.0 Success of either the paper value or the documented checkpoint value",
+    "display": "M2-Track",
+    "class": "Car",
+    "method": "m2track",
+    "precision": 65.72635951308467
+   },
+   {
+    "success": 62.45651428482364,
+    "paper": 62.47,
+    "abs_diff_paper": 0.013485715176358326,
+    "within_1_of_paper": true,
+    "checkpoint": null,
+    "abs_diff_checkpoint": null,
+    "within_1_of_checkpoint": null,
+    "pass": true,
+    "role": "informational",
+    "paper_source": "arXiv:2303.05071v1, Table 3",
+    "checkpoint_source": null,
+    "rule": "within 1.0 Success of the paper value (no documented checkpoint value)",
+    "display": "MBPTrack",
+    "class": "Car",
+    "method": "mbptrack",
+    "precision": 70.4113998036129
+   }
+  ],
+  "all_informational_pass": true
+ },
+ "decision": {
+  "headline_class": "Car",
+  "protocol": "ope (standard / protocol a)",
+  "learned_rule": "best family by point-estimate Success in that bin, chosen before the bootstrap; families = M2-Track and MBPTrack on nuScenes Car (no yaw correction; frame-0 matches GT)",
+  "floor": "cv_snap",
+  "bins": "single-axis point bins (<10, 10\u201324, \u226525) and motion bins (<2.5 m, \u22652.5 m); frame 0 excluded; no point-bin merge (GT census, already recorded)",
+  "bootstrap": {
+   "n_boot": 10000,
+   "seed": 0,
+   "ci": "percentile 95%"
+  },
+  "kitti_side": {
+   "dataset": "KITTI",
+   "eligible_bins": {
+    "pts:pts0": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 33.46203071672355,
+     "lo": 25.902955231077613,
+     "hi": 40.63318299909585,
+     "n_frames": 2344,
+     "frame_share": 0.37182741116751267,
+     "n_tracklets": 99,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "pts:pts1": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 61.28030751034891,
+     "lo": 50.41322030014059,
+     "hi": 68.47509889451251,
+     "n_frames": 1691,
+     "frame_share": 0.26824238578680204,
+     "n_tracklets": 107,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "pts:pts2": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 60.72058175407668,
+     "lo": 50.31575553284817,
+     "hi": 69.75856374852658,
+     "n_frames": 2269,
+     "frame_share": 0.3599302030456853,
+     "n_tracklets": 91,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motLo": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 49.53799200168385,
+     "lo": 41.8983943488889,
+     "hi": 56.11590660644264,
+     "n_frames": 4751,
+     "frame_share": 0.7536484771573604,
+     "n_tracklets": 115,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    }
+   },
+   "all_primary_bins": {
+    "pts:pts0": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 33.46203071672355,
+     "lo": 25.902955231077613,
+     "hi": 40.63318299909585,
+     "n_frames": 2344,
+     "frame_share": 0.37182741116751267,
+     "n_tracklets": 99,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "pts:pts1": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 61.28030751034891,
+     "lo": 50.41322030014059,
+     "hi": 68.47509889451251,
+     "n_frames": 1691,
+     "frame_share": 0.26824238578680204,
+     "n_tracklets": 107,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "pts:pts2": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 60.72058175407668,
+     "lo": 50.31575553284817,
+     "hi": 69.75856374852658,
+     "n_frames": 2269,
+     "frame_share": 0.3599302030456853,
+     "n_tracklets": 91,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motLo": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 49.53799200168385,
+     "lo": 41.8983943488889,
+     "hi": 56.11590660644264,
+     "n_frames": 4751,
+     "frame_share": 0.7536484771573604,
+     "n_tracklets": 115,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motHi": {
+     "best_family": "mbptrack_yawalt",
+     "gap": 54.3979394719897,
+     "lo": 27.817465944942818,
+     "hi": 69.1881038647343,
+     "n_frames": 1553,
+     "frame_share": 0.2463515228426396,
+     "n_tracklets": 17,
+     "underpowered": true,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": false,
+     "kill_bin": false,
+     "go_bin": false
+    }
+   },
+   "kill_conditions_hold_on_all_eligible": true,
+   "go_bins": [],
+   "go_bins_ge_40pct": [],
+   "verdict_text": "KITTI side of rule: KILL conditions hold on every eligible decision bin (each bin with \u226520% of binned frames and \u226530 tracklets has learned \u2212 floor Success > 10 and a 95% lower bound > 5).",
+   "side_status": "KILL"
+  },
+  "nuscenes_side": {
+   "dataset": "nuScenes",
+   "eligible_bins": {
+    "pts:pts0": {
+     "best_family": "mbptrack",
+     "gap": 9.639018073463482,
+     "lo": 7.969945423505716,
+     "hi": 11.287044676750368,
+     "n_frames": 35909,
+     "frame_share": 0.5935470007768724,
+     "n_tracklets": 3304,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": false,
+     "go_bin": false
+    },
+    "pts:pts2": {
+     "best_family": "mbptrack",
+     "gap": 46.83399482831198,
+     "lo": 44.5684170108984,
+     "hi": 49.09475739232425,
+     "n_frames": 16629,
+     "frame_share": 0.27486404733962544,
+     "n_tracklets": 1601,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motLo": {
+     "best_family": "mbptrack",
+     "gap": 24.944282238442824,
+     "lo": 23.263684338729004,
+     "hi": 26.580333409852383,
+     "n_frames": 51375,
+     "frame_share": 0.8491875898775186,
+     "n_tracklets": 3087,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    }
+   },
+   "all_primary_bins": {
+    "pts:pts0": {
+     "best_family": "mbptrack",
+     "gap": 9.639018073463482,
+     "lo": 7.969945423505716,
+     "hi": 11.287044676750368,
+     "n_frames": 35909,
+     "frame_share": 0.5935470007768724,
+     "n_tracklets": 3304,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": false,
+     "go_bin": false
+    },
+    "pts:pts1": {
+     "best_family": "mbptrack",
+     "gap": 42.98926014319809,
+     "lo": 40.9572608853637,
+     "hi": 44.955639022612445,
+     "n_frames": 7961,
+     "frame_share": 0.1315889518835022,
+     "n_tracklets": 1989,
+     "underpowered": false,
+     "share_ge_20": false,
+     "share_ge_40": false,
+     "eligible": false,
+     "kill_bin": false,
+     "go_bin": false
+    },
+    "pts:pts2": {
+     "best_family": "mbptrack",
+     "gap": 46.83399482831198,
+     "lo": 44.5684170108984,
+     "hi": 49.09475739232425,
+     "n_frames": 16629,
+     "frame_share": 0.27486404733962544,
+     "n_tracklets": 1601,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": false,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motLo": {
+     "best_family": "mbptrack",
+     "gap": 24.944282238442824,
+     "lo": 23.263684338729004,
+     "hi": 26.580333409852383,
+     "n_frames": 51375,
+     "frame_share": 0.8491875898775186,
+     "n_tracklets": 3087,
+     "underpowered": false,
+     "share_ge_20": true,
+     "share_ge_40": true,
+     "eligible": true,
+     "kill_bin": true,
+     "go_bin": false
+    },
+    "mot:motHi": {
+     "best_family": "mbptrack",
+     "gap": 20.34798334064007,
+     "lo": 17.928472186814467,
+     "hi": 22.83286540045837,
+     "n_frames": 9124,
+     "frame_share": 0.15081241012248137,
+     "n_tracklets": 759,
+     "underpowered": false,
+     "share_ge_20": false,
+     "share_ge_40": false,
+     "eligible": false,
+     "kill_bin": false,
+     "go_bin": false
+    }
+   },
+   "kill_conditions_hold_on_all_eligible": false,
+   "go_bins": [],
+   "go_bins_ge_40pct": [],
+   "verdict_text": "nuScenes side of rule: KILL conditions do not hold on every eligible decision bin. The pts0 (<10 points) bin is eligible (59.4% of binned frames, 3,304 tracklets) and has best-learned \u2212 floor Success 9.64 [7.97, 11.29], which is neither a KILL cell (gap not > 10) nor a GO cell. The other eligible bins (pts2, motLo) meet the KILL cell condition. No eligible bin meets the GO cell condition.",
+   "side_status": "NEITHER"
+  },
+  "formal_status": "INCONCLUSIVE",
+  "verdict_text": "KITTI side of rule: KILL conditions hold on every eligible decision bin (each bin with \u226520% of binned frames and \u226530 tracklets has learned \u2212 floor Success > 10 and a 95% lower bound > 5). nuScenes side of rule: KILL conditions do not hold on every eligible decision bin. The pts0 (<10 points) bin is eligible (59.4% of binned frames, 3,304 tracklets) and has best-learned \u2212 floor Success 9.64 [7.97, 11.29], which is neither a KILL cell (gap not > 10) nor a GO cell. The other eligible bins (pts2, motLo) meet the KILL cell condition. No eligible bin meets the GO cell condition. The first-test rule returns INCONCLUSIVE. On KITTI Car, every eligible decision bin meets the KILL cell condition. On nuScenes Car, two eligible bins (pts2 / \u226525 points, and motLo / <2.5 m) also meet that condition, but the remaining eligible bin does not: pts0 (<10 points) holds 59.4% of binned frames (35,909 frames, 3,304 tracklets) and has best-learned (MBPTrack) \u2212 floor Success of 9.64 with 95% CI [7.97, 11.29]. That gap is not greater than 10, so the bin is not a KILL cell; it is also not a GO cell (gap is not \u2264 5, and the upper bound is not \u2264 10). The GO clause therefore does not fire (KITTI has no GO cell, including no \u226540% GO bin). Per the frozen pre-registration, TrackAny3D is to be added and the same rule re-applied once.",
+  "prose": "The first-test rule returns INCONCLUSIVE. On KITTI Car, every eligible decision bin meets the KILL cell condition. On nuScenes Car, two eligible bins (pts2 / \u226525 points, and motLo / <2.5 m) also meet that condition, but the remaining eligible bin does not: pts0 (<10 points) holds 59.4% of binned frames (35,909 frames, 3,304 tracklets) and has best-learned (MBPTrack) \u2212 floor Success of 9.64 with 95% CI [7.97, 11.29]. That gap is not greater than 10, so the bin is not a KILL cell; it is also not a GO cell (gap is not \u2264 5, and the upper bound is not \u2264 10). The GO clause therefore does not fire (KITTI has no GO cell, including no \u226540% GO bin). Per the frozen pre-registration, TrackAny3D is to be added and the same rule re-applied once.",
+  "m2track_pts0_note": "Per-family note, not used by the rule: M2-Track on the same pts0 bin has gap 1.49 with 95% CI [\u22120.29, 3.24], which would meet the GO cell condition. The frozen rule uses the best family by point-estimate Success in the bin (here MBPTrack, 52.43 vs M2-Track 44.28), so that M2-Track cell does not drive GO or KILL."
+ },
+ "R": {
+  "Car": {
+   "late": "mbptrack",
+   "R": 0.4899627420232363,
+   "lo": 0.4454456654692485,
+   "hi": 0.5319336165317962,
+   "n_valid": 10000,
+   "threshold": 1.2,
+   "P5_supported": false
+  },
+  "Pedestrian": {
+   "late": "mbptrack",
+   "R": 0.8788983071418717,
+   "lo": 0.8612405744803272,
+   "hi": 0.8953512437388477,
+   "n_valid": 10000,
+   "threshold": 1.2,
+   "P5_supported": false
+  },
+  "Truck": {
+   "late": "mbptrack",
+   "R": 0.5496735194147743,
+   "lo": 0.4498595924450345,
+   "hi": 0.6403258026071678,
+   "n_valid": 10000,
+   "threshold": 1.2,
+   "P5_supported": false
+  },
+  "Trailer": {
+   "late": "mbptrack",
+   "R": 0.4980810790474218,
+   "lo": 0.30680130283794477,
+   "hi": 0.6760076979570468,
+   "n_valid": 10000,
+   "threshold": 1.2,
+   "P5_supported": false
+  },
+  "Bus": {
+   "late": "mbptrack",
+   "R": 0.6387193826439066,
+   "lo": 0.46394849591210824,
+   "hi": 0.8022911653637521,
+   "n_valid": 10000,
+   "threshold": 1.2,
+   "P5_supported": false
+  }
+ },
+ "secondary_2_R_progress": {
+  "computed": false,
+  "reason": "BAT was not run on nuScenes; SECONDARY #2 needs BAT on nuScenes Car."
+ },
+ "overall_ope": {
+  "Car": {
+   "cv_snap": {
+    "success": 39.5886001963871,
+    "precision": 42.15569912249256
+   },
+   "last_box": {
+    "success": 57.38532396078492,
+    "precision": 63.57412833741174
+   },
+   "m2track": {
+    "success": 57.210679717576646,
+    "precision": 65.72635951308467
+   },
+   "mbptrack": {
+    "success": 62.45651428482364,
+    "precision": 70.4113998036129
+   }
+  },
+  "Pedestrian": {
+   "cv_snap": {
+    "success": 16.97106268998104,
+    "precision": 29.699265657447256
+   },
+   "last_box": {
+    "success": 21.419929575345353,
+    "precision": 33.32222289102236
+   },
+   "mbptrack": {
+    "success": 45.38048875914166,
+    "precision": 74.06092936467331
+   }
+  },
+  "Truck": {
+   "cv_snap": {
+    "success": 34.13925075439759,
+    "precision": 30.404614705232945
+   },
+   "last_box": {
+    "success": 62.667255464782514,
+    "precision": 63.200301759034375
+   },
+   "mbptrack": {
+    "success": 62.15684109810849,
+    "precision": 63.235813645396334
+   }
+  },
+  "Trailer": {
+   "cv_snap": {
+    "success": 39.16393198090692,
+    "precision": 31.75865155131265
+   },
+   "last_box": {
+    "success": 73.87902744630071,
+    "precision": 71.17467183770883
+   },
+   "mbptrack": {
+    "success": 65.07309069212411,
+    "precision": 61.30071599045346
+   }
+  },
+  "Bus": {
+   "cv_snap": {
+    "success": 26.98103623433796,
+    "precision": 20.48425330172706
+   },
+   "last_box": {
+    "success": 44.01710125296309,
+    "precision": 40.35218421943786
+   },
+   "mbptrack": {
+    "success": 55.0846596681341,
+    "precision": 51.34270233660684
+   }
+  }
+ }
+}

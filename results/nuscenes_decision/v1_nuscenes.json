@@ -1,0 +1,45 @@
+{
+ "role": "informational (V1 gates on KITTI Car only; KITTI gates already PASS)",
+ "protocol": "ope",
+ "dataset": "nuscenes",
+ "rule": "dated addendum 21 Nov 2026: within 1.0 Success of paper or documented checkpoint",
+ "rows": [
+  {
+   "success": 57.210679717576646,
+   "paper": 55.85,
+   "abs_diff_paper": 1.3606797175766445,
+   "within_1_of_paper": false,
+   "checkpoint": 57.22,
+   "abs_diff_checkpoint": 0.009320282423352921,
+   "within_1_of_checkpoint": true,
+   "pass": true,
+   "role": "informational",
+   "paper_source": "arXiv:2203.01730v1, Table 2",
+   "checkpoint_source": "Open3DSOT README Reproduction, mmtrack_nuscenes_car.ckpt",
+   "rule": "within 1.0 Success of either the paper value or the documented checkpoint value",
+   "display": "M2-Track",
+   "class": "Car",
+   "method": "m2track",
+   "precision": 65.72635951308467
+  },
+  {
+   "success": 62.45651428482364,
+   "paper": 62.47,
+   "abs_diff_paper": 0.013485715176358326,
+   "within_1_of_paper": true,
+   "checkpoint": null,
+   "abs_diff_checkpoint": null,
+   "within_1_of_checkpoint": null,
+   "pass": true,
+   "role": "informational",
+   "paper_source": "arXiv:2303.05071v1, Table 3",
+   "checkpoint_source": null,
+   "rule": "within 1.0 Success of the paper value (no documented checkpoint value)",
+   "display": "MBPTrack",
+   "class": "Car",
+   "method": "mbptrack",
+   "precision": 70.4113998036129
+  }
+ ],
+ "all_informational_pass": true
+}

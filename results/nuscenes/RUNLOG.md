@@ -121,3 +121,7 @@ Point bins: pts0 = <10, pts1 = 10–24, pts2 = ≥25. Motion: motLo = <2.5 m, mo
 | easy_primary | 581 | 73 | 44.28 / 63.33 | 19.61 / 30.94 | 76.46 / 83.77 | 86.88 / 94.26 | 73.02 / 91.17 |
 
 Secondary (point × motion grid, secondary hard) is in the eval JSON files and was not used for any decision.
+
+## 2026-11-22 10:22 IST — learned-tracker rescore and formal first-test decision
+
+The frozen floor outputs in this directory are unchanged. Learned-tracker dumps were re-scored with `ic001` and combined with the already-recorded KITTI-side result. Formal first-test verdict: **INCONCLUSIVE**. Full tables, V1 (informational), verification, and the per-bin gaps are in `results/nuscenes_decision/` and `RESULTS.md`.
