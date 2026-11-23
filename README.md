@@ -16,3 +16,5 @@ A training-free "motion floor" (world-frame constant velocity + an offset-preser
 - [`SECONDARY_ANALYSES.md`](SECONDARY_ANALYSES.md) — secondary analyses (ego-motion decomposition, BAT progress anchor, SOTracker rung, nuScenes fast-start floor, floor-gated hybrid). None of these is part of the frozen GO / KILL rule.
 
 Closest prior work: LiDAR-SOT (arXiv:2103.06028), TFTrack (arXiv:2609.07738), DMT (arXiv:2203.04232).
+
+- [SOT-M2 training plan (small pilot + full study)](PLAN_SOTM2_TRAINING.md), added 23 Nov 2026.
