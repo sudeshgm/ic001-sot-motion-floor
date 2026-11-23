@@ -11,7 +11,7 @@ part of this spec's compute; a resume chunk is a separate run recorded before it
 
 | Item | Pin |
 |---|---|
-| IC001 repo, branch `cpu-agent` | the commit that adds this file (record `git rev-parse HEAD` in `run_meta.txt`); code shipped as `code/ic001_sotm2_code.tgz` = `git archive --format=tar.gz -o ic001_sotm2_code.tgz HEAD gpu_jobs/sotm2` |
+| IC001 repo, branch `cpu-agent` | harness `d040ba4` (frozen prereg `3a7894a`); code shipped as `code/ic001_sotm2_code.tgz` = `git archive --format=tar.gz -o ic001_sotm2_code.tgz d040ba4 gpu_jobs/sotm2` |
 | Open3DSOT | `f08451d` ("Update README.md"), from the existing bundle `open3dsot_f08451d.tarball` |
 | Checkpoint | `mmtrack_nuscenes_car.ckpt`, 27,073,489 B, sha256 `3b19f52cc20c07f3f30cc0bf903c50f3bbd7039315785643b21a8a35332f0270` |
 | Harness | `gpu_jobs/sotm2/{train_eval.py, geom.py, decide.py, select_scenes.py, driver.sh}` |
@@ -33,10 +33,10 @@ the block from its last checkpoint (deterministic sample stream, so results are 
 
 | Step | What | Transfer | Stored |
 |---|---|---|---|
-| P1 | `v1.0-trainval_meta.tgz` (461,678,030 B): extract `v1.0-trainval/*.json` (the full tables; the box copy is val-only) | 0.46 GB | ≈ 2.5 GB JSON in `/workspace/ic001/runs/sotm2_stage1/meta/` |
-| P2 | **`v1.0-trainval07_blobs.tgz` (29,534,216,608 B = 27.5 GiB), streamed through `prep_train_crops.py --tar-stdin`**; only `train_track` Car tracklet crops (± 5 m) are written; the archive is never stored | **29.5 GB — above the 1 GB per-download limit; P2 does not start until it is cleared** | crops ≈ 2–4 GB (scene-0655 of v1.0-mini: 80 tracklets, 11,731 sweeps → 67 MB) |
+| P1 | `v1.0-trainval_meta.tgz` (461,678,030 B): extract `v1.0-trainval/*.json`, then `slim_meta.py` → train_track LIDAR_TOP tables in `meta_tt/` | 0.46 GB | 2.6 GB JSON + slim copy |
+| P2 | **`v1.0-trainval07_blobs.tgz` (29,534,216,608 B = 27.5 GiB), streamed by `prep_train_crops.py --url` (HTTP Range reconnect; bytes + sha256 in-stream)**; only `train_track` Car tracklet crops (± 5 m) are written; the archive is never stored | **29.5 GB — above the 1 GB per-download limit; P2 does not start until it is cleared** | **done:** 43 complete scenes, 40 chosen, 1,050 tracklets, 221,943 sweeps, 3,073,795,380 B |
 | P3 | `select_scenes.pick`: first 40 ranked complete scenes (stop if < 30); list → `data_manifest/sotm2_stage1_train_scenes.txt` | — | — |
-| P4 | checkpoint causal sweep-rate rollout on the training tracklets, 8 CPU shards: `train_eval.py rollout --device cpu --shard i/8` | — | < 0.1 GB |
+| P4 | checkpoint causal sweep-rate rollout on the training tracklets, 8 CPU shards: `train_eval.py rollout --device cpu --shard i/8` | — | 7.9 MB (done, 1,050 tracklets) |
 | P5 | evaluation set = kill-test crops (215 `trk_*.npz`, `index.json`, `bins.csv`, `probe_ref_frames.csv`; 1,534,882,802 B) | — | already on the box |
 | P6 | build `SOTM2S1_SHA256SUMS.txt` over every file; record train counts (scenes, tracklets, keyframes, sweeps) | — | — |
 
@@ -44,11 +44,11 @@ Commands (P2, on the box; `MIN_FREE_GB` floor as in `scripts/stream_nuscenes.sh`
 
 ```bash
 R=/workspace/ic001/runs/sotm2_stage1; export PYTHONPATH=/opt/ic001env/ov_o3d:/workspace/ic001_launch
-curl -sS -f --retry 5 https://motional-nuscenes.s3.amazonaws.com/public/v1.0/v1.0-trainval07_blobs.tgz \
- | /opt/ic001env/bin/python -m gpu_jobs.sotm2.prep_train_crops --meta $R/meta --version v1.0-trainval \
-     --scenes data_manifest/sotm2_stage1_train_track_rank.txt --work $R/work --out $R/ds/train --tar-stdin
+/opt/ic001env/bin/python -m gpu_jobs.sotm2.prep_train_crops --meta $R/meta_tt --version v1.0-trainval \
+     --scenes data_manifest/sotm2_stage1_train_track_rank.txt --work $R/work --out $R/train \
+     --url https://motional-nuscenes.s3.amazonaws.com/public/v1.0/v1.0-trainval07_blobs.tgz
 for i in 0 1 2 3 4 5 6 7; do /opt/ic001env/bin/python -m gpu_jobs.sotm2.train_eval rollout --device cpu \
-  --o3d <Open3DSOT f08451d> --ckpt <ckpt> --data $R/ds/train --out $R/ds/train/rollout --shard $i/8 & done; wait
+  --o3d <Open3DSOT f08451d> --ckpt <ckpt> --data $R/train --out $R/train/rollout --shard $i/8 & done; wait
 ```
 
 ### Private Kaggle dataset `sotm2-stage1-inputs` (new upload; the earlier nuScenes datasets were deleted)
@@ -56,12 +56,12 @@ for i in 0 1 2 3 4 5 6 7; do /opt/ic001env/bin/python -m gpu_jobs.sotm2.train_ev
 ```
 SOTM2S1_SHA256SUMS.txt
 eval/   trk_000..214.npz, index.json, bins.csv, probe_ref_frames.csv        1.53 GB
-train/  trk_*.npz, index.json, sotm2_stage1_train_scenes.txt, rollout/rollout_{0..7}of8.npz   ≈ 2–4 GB
+train/  trk_0000..1049.npz, index.json, sotm2_stage1_train_scenes.txt, rollout/rollout_{0..7}of8.npz   3.08 GB
 ckpt/   mmtrack_nuscenes_car.ckpt                                            27 MB
-code/   ic001_sotm2_code.tgz                                                 < 1 MB
+code/   ic001_sotm2_code.tgz  (git archive d040ba4 gpu_jobs/sotm2)          16 kB
 ```
 
-**Upload ≈ 3.6–5.6 GB, private (`isPrivate: true`; anonymous access must return 403).** The val-keyframe dataset
+**Upload 4,643,684,006 B (4.64 GB) of data files, 1,280 files + `SOTM2S1_SHA256SUMS.txt` + `MANIFEST.md`; upload-ready at `/workspace/ic001/runs/sotm2_stage1/kaggle_inputs/` (checksums also in `data_manifest/sotm2_stage1_kaggle_inputs_sha256.txt`), private (`isPrivate: true`; anonymous access must return 403).** The val-keyframe dataset
 `ic001-nuscenes-val-keyframes` (4.04 GiB) is **not** needed. Reused: `ic001-sot-bundle` (environment; must still
 exist). Kaggle output download ≈ 0.4 GB (four `*_last.pt` with Adam state ≈ 80 MB each, CSVs).
 
@@ -101,11 +101,11 @@ Evaluation ≈ 107k tracker steps (B and I at sweep rate, others at keyframes) �
 
 | Part | T4-h |
 |---|---|
-| setup + G1 | 0.15–0.25 |
+| setup + G1 + one-time training-point cache (5.3 GB, ≈ 150 s) | 0.2–0.3 |
 | C, I, D training | 0.3–0.6 |
 | A_ft training | 0.1–0.2 |
 | evaluation + decide | 0.3–0.5 |
-| **chunk 1 total** | **≈ 0.9–1.6 (cap 1.92)** |
+| **chunk 1 total** | **≈ 1.0–1.7 (cap 1.92)** |
 | **Stage 1 total** | **≈ 1–2 (one chunk expected; ≤ 3 chunks / 6 T4-h worst case)** |
 
 The plan's rough 10–20 T4-h assumed longer training; this pre-registration fixes a smaller budget (§5).
@@ -135,5 +135,6 @@ keep the dataset until that chunk is verified.
 - Kaggle's 2-batch-GPU-session limit has blocked pushes before; do not push repeatedly unattended.
 - torch 1.8 DataLoader workers have segfaulted on another job; the driver falls back to 0 workers (slower: may push
   training past the cap → rc 5, resume).
+- RAM: training points are 5.3 GB float32, memory-mapped from a one-time cache in `/tmp/sotm2s1/cache` (`SOTM2_CACHE`), shared by loader workers.
 - Point budget: busy scenes with 10-sweep buffers are slower per sample than the scene-0655 timing.
 - Small data / short training can understate D (KILL is soft, by pre-registration).

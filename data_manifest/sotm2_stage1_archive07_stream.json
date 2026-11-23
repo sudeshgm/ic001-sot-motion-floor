@@ -1,0 +1,6 @@
+{
+ "url": "https://motional-nuscenes.s3.amazonaws.com/public/v1.0/v1.0-trainval07_blobs.tgz",
+ "bytes": 29534216608,
+ "sha256": "70287e2d65386bce2d67001ef56f5c0abdd3dd95d1ec404c3e00a39208fa60b7",
+ "reconnects": 2
+}
