@@ -86,17 +86,58 @@ def to_global(raw, sd, by):
 
 
 def process(raw, fname, need, tracklets, by, work, offset):
+    p = None
     for tid, i in need[fname]:
         t = tracklets[tid]
-        p = to_global(raw, t["sd"][i], by)
+        if p is None:  # every (tid, i) of one file shares the same sample_data row
+            p = to_global(raw, t["sd"][i], by)
         c, wlh, q = t["boxes"][i]
         crop = crop_axis_aligned(p, c, wlh, q, offset).T.astype(np.float32)
         d = os.path.join(work, f"{tid:05d}"); os.makedirs(d, exist_ok=True)
         np.save(os.path.join(d, f"{i:05d}.npy"), crop)
 
 
+class RangeReader:
+    """Read-only stream over an HTTP object that reconnects with a Range header after a dropped connection,
+    so one pass over a large archive survives network drops. Counts bytes and sha256 of everything read."""
+
+    def __init__(self, url, retries=50, wait=15):
+        import hashlib
+        self.url, self.retries, self.wait = url, retries, wait
+        self.pos, self.sha, self.resp, self.reconnects = 0, hashlib.sha256(), None, 0
+
+    def _open(self):
+        import urllib.request
+        req = urllib.request.Request(self.url, headers={"Range": f"bytes={self.pos}-"} if self.pos else {})
+        self.resp = urllib.request.urlopen(req, timeout=120)
+        if self.pos and self.resp.status != 206:
+            raise IOError(f"server ignored Range (status {self.resp.status})")
+
+    def read(self, n=-1):
+        import time
+        for attempt in range(self.retries):
+            try:
+                if self.resp is None:
+                    self._open()
+                b = self.resp.read(n)
+                self.pos += len(b); self.sha.update(b)
+                return b
+            except Exception as e:  # dropped connection: reopen at the current offset
+                print(f"reconnect at {self.pos} after {type(e).__name__}: {e}", flush=True)
+                self.resp = None; self.reconnects += 1; time.sleep(self.wait)
+        raise IOError("too many reconnects")
+
+
 def iter_members(args, need):
-    if args.tar_stdin:
+    if args.url:
+        rr = RangeReader(args.url); args._reader = rr
+        with tarfile.open(fileobj=rr, mode="r|gz") as tf:
+            for m in tf:
+                if m.isfile() and m.name in need:
+                    yield m.name, tf.extractfile(m).read()
+        while rr.read(1 << 20):  # drain to EOF so bytes and sha256 cover the whole object
+            pass
+    elif args.tar_stdin:
         with tarfile.open(fileobj=sys.stdin.buffer, mode="r|gz") as tf:
             for m in tf:
                 if m.isfile() and m.name in need:
@@ -140,6 +181,7 @@ def main(argv=None):
     ap.add_argument("--n-target", type=int, default=N_TARGET); ap.add_argument("--n-min", type=int, default=N_MIN)
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--src-dir"); g.add_argument("--tar-stdin", action="store_true")
+    g.add_argument("--url", help="stream a .tgz over HTTP with Range-resume on dropped connections")
     args = ap.parse_args(argv)
     ranked = _read(args.scenes)
     T = load_tables(args.meta, args.version)
@@ -156,9 +198,19 @@ def main(argv=None):
         ok = all(s["filename"] in got for s in t["sd"])
         complete[t["scene"]] = complete.get(t["scene"], True) and ok
     done = [s for s, ok in complete.items() if ok]
-    open(os.path.join(args.out + "_complete_scenes.txt"), "w").write("\n".join(sorted(done)) + "\n")
-    chosen = set(pick(ranked, done, args.n_target, args.n_min))
+    found = sorted({t["scene"] for t in tracklets if any(s["filename"] in got for s in t["sd"])})
+    open(args.out + "_found_scenes.txt", "w").write("\n".join(found) + "\n")
+    open(args.out + "_complete_scenes.txt", "w").write("\n".join(sorted(done)) + "\n")
+    if getattr(args, "_reader", None) is not None:
+        rr = args._reader
+        json.dump(dict(url=args.url, bytes=rr.pos, sha256=rr.sha.hexdigest(), reconnects=rr.reconnects),
+                  open(args.out + "_stream.json", "w"), indent=1)
+        print("stream bytes", rr.pos, "sha256", rr.sha.hexdigest(), "reconnects", rr.reconnects, flush=True)
+    print("files read", len(got), "scenes found", len(found), "complete", len(done), flush=True)
+    chosen_l = pick(ranked, done, args.n_target, args.n_min)
+    chosen = set(chosen_l)
     idx = assemble(tracklets, chosen, args.work, args.out)
+    open(os.path.join(args.out, "sotm2_stage1_train_scenes.txt"), "w").write("\n".join(chosen_l) + "\n")
     print("scenes", len(chosen), "tracklets", len(idx), "keyframes", sum(t["n_key"] for t in idx),
           "sweeps", sum(t["n_sweep"] for t in idx))
 

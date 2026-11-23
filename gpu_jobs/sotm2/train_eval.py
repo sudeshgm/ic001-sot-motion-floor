@@ -209,12 +209,14 @@ def train(args):
 def rollout(args):
     H = Harness(args.o3d, args.ckpt, args.device)
     si, sn = map(int, args.shard.split("/"))
-    trk = load_tracklets(args.data, keep=lambda tid: tid % sn == si); net = H.load().eval(); res = {}; t0 = time.time()
-    for n, t in enumerate(trk):
+    tids = [t["tid"] for t in json.load(open(os.path.join(args.data, "index.json")))["tracklets"] if t["tid"] % sn == si]
+    net = H.load().eval(); res = {}; t0 = time.time()
+    for n, tid in enumerate(tids):  # one tracklet in memory at a time
+        t = load_tracklets(args.data, keep=lambda x: x == tid)[0]
         bs = H.run_chain(net, list(t["sw"]), H.box(t["gt"][0]))
         res[f"t{t['tid']}"] = np.array([np.r_[b.center, b.orientation.elements] for b in bs], np.float64)
         if n % 20 == 0:
-            print(f"rollout {n + 1}/{len(trk)} t={time.time() - t0:.0f}s", flush=True)
+            print(f"rollout {n + 1}/{len(tids)} t={time.time() - t0:.0f}s", flush=True)
     os.makedirs(args.out, exist_ok=True)
     np.savez_compressed(os.path.join(args.out, f"rollout_{si}of{sn}.npz"), **res)
 

@@ -108,3 +108,35 @@ def test_decide_max_inside_resample_is_conservative():
     rows, bins = _synthetic(0.05)
     r = decide.decide(rows, bins, n_boot=500)["cells"]["pts_lt10"]
     assert r["binding_baseline"] == "C" and r["ci95"][0] <= r["point"] <= r["ci95"][1]
+
+
+def test_range_reader_resumes_after_drop(monkeypatch):
+    import hashlib, urllib.request
+    from gpu_jobs.sotm2 import prep_train_crops as P
+    data = bytes(range(256)) * 400
+    state = {"opens": 0}
+
+    class Resp:
+        def __init__(self, start):
+            self.status = 206 if start else 200; self.buf = data[start:]; self.n = 0
+        def read(self, n=-1):
+            if state["opens"] == 1 and self.n >= 3:  # first connection drops after 3 reads
+                raise ConnectionResetError("drop")
+            self.n += 1
+            b, self.buf = (self.buf, b"") if n < 0 else (self.buf[:n], self.buf[n:])
+            return b
+
+    def fake_urlopen(req, timeout=0):
+        state["opens"] += 1
+        rng = req.headers.get("Range")
+        return Resp(int(rng.split("=")[1].rstrip("-")) if rng else 0)
+    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    rr = P.RangeReader("http://x", wait=0)
+    out = b""
+    while True:
+        b = rr.read(1000)
+        if not b:
+            break
+        out += b
+    assert out == data and rr.reconnects == 1 and rr.pos == len(data)
+    assert rr.sha.hexdigest() == hashlib.sha256(data).hexdigest()
