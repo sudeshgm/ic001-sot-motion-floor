@@ -44,3 +44,8 @@ Applies only to the first-test jobs (`m2track_first_test.md`, `mbptrack_first_te
 The SECONDARY jobs (`m2track_oxts_crop.md`, `bat_kitti_car.md`) are **not** part of V1 or of the frozen GO / KILL rule. Do not apply this stop rule to them.
 
 `trackany3d.md` uses the same ±1.0 Success tolerance under protocol ope. V1 is official KITTI Car Success within 1.0 of the paper value **73.4** (no class-specific documented checkpoint value). nuScenes Car (paper 59.30) is informational. Outside the KITTI Car tolerance → stop and report; no tuning.
+
+## SOT-M2 Stage 1 (`sotm2_stage1.md`)
+Separate study (`PREREG_SOTM2_STAGE1.md`): M2-Track fine-tuning arms C, I, D (+ A_ft) on nuScenes `train_track`
+crops, causal evaluation on the v1.0-mini kill-test set. Harness and driver in `gpu_jobs/sotm2/`; output format
+differs from the dump CSVs above (`frames.csv`: tid,k,arm,iou,dist,cx,cy,cz,yaw). Chunk 1 capped at 6,900 s on one free T4.

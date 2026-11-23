@@ -18,3 +18,4 @@ A training-free "motion floor" (world-frame constant velocity + an offset-preser
 Closest prior work: LiDAR-SOT (arXiv:2103.06028), TFTrack (arXiv:2609.07738), DMT (arXiv:2203.04232).
 
 - [SOT-M2 training plan (small pilot + full study)](PLAN_SOTM2_TRAINING.md), added 23 Nov 2026.
+- [SOT-M2 Stage 1 pre-registration](PREREG_SOTM2_STAGE1.md) and [GPU job spec](gpu_jobs/sotm2_stage1.md) (`gpu_jobs/sotm2/`).
