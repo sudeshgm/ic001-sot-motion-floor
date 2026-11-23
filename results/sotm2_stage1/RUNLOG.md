@@ -19,3 +19,19 @@
 - A_ft, the full 215-tracklet eval, the row-count check, decide.py and G2 were not run. No verdict is possible yet.
 - All 20 output files match SHA256SUMS_outputs.txt (sha256sum -c rc=0).
 - Next: a resume chunk with the remaining 1000 steps per arm, then A_ft, eval and decision.
+
+## Chunk 2 (resume, T4, 4805 s wall): COMPLETE, rc=0
+- C, I, D resumed from step 1000 and reached 2000/2000. A_ft was skipped for cap (reference only; never blocks the rule, PREREG item 10).
+- Row counts: frames=23370, b_sweep_boxes=44693. G1 max|dIoU| = 1.0e-06. G2: A 53.954, B 39.413 (both within ±0.1).
+- All 33 output files match SHA256SUMS_outputs.txt. Copies of decision.json, the logs and the training curves are in chunk2/.
+
+## Stage 1 decision (PREREG_SOTM2_STAGE1 §6): INCONCLUSIVE
+| cell | D | C | I | Δ = D − max(C,I) | 95% CI | SE | binding |
+|---|---|---|---|---|---|---|---|
+| pts<10 (2,482 fr) | 41.93 | 46.03 | 15.36 | −4.10 | [−6.11, −2.20] | 1.00 | C |
+| moving (1,116 fr) | 29.19 | 23.45 | 31.57 | −2.38 | [−8.04, +2.33] | 2.62 | I |
+
+- GO fails in both cells.
+- KILL holds in pts<10 but not in moving, where the CI upper bound of +2.33 is not below +2.0. So the rule gives INCONCLUSIVE.
+- The self-aligned buffer (D) is clearly worse than retrained ego-frame accumulation (C) on sparse targets. On moving targets it beats C (+5.7) but not interpolated-box training (I).
+- Stage 2 is conditioned on GO and is not triggered.

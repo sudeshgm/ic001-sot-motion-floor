@@ -1,0 +1,19 @@
+rc=0
+wall_s=4805
+paid=0
+gpu=Tesla T4
+cap_s=6900 steps=2000 block=500 batch=100
+finished_at=2026-11-23T11:32:01Z
+inputs sha OK (139s)
+env OK (233s)
+G1 probe OK rows 82 max|dIoU| 1.0000000000287557e-06 (249s)
+block C step=1500 dt=831s (1084s)
+block I step=1500 dt=482s (1568s)
+block D step=1500 dt=558s (2128s)
+block C step=2000 dt=499s (2630s)
+block I step=2000 dt=481s (3113s)
+block D step=2000 dt=559s (3674s)
+C, I, D budgets complete (3677s)
+A_ft skipped/partial for cap (reference only)
+rows OK frames=23370 b_sweep=44693 (4804s)
+G2 OK A 53.954 B 39.413; verdict INCONCLUSIVE (4805s)

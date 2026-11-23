@@ -1,0 +1,27 @@
+{
+ "verdict": "INCONCLUSIVE",
+ "cells": {
+  "pts_lt10": {
+   "point": -4.098,
+   "ci95": [
+    -6.107,
+    -2.2
+   ],
+   "se": 0.995,
+   "binding_baseline": "C",
+   "go": false,
+   "kill": true
+  },
+  "moving": {
+   "point": -2.384,
+   "ci95": [
+    -8.035,
+    2.33
+   ],
+   "se": 2.618,
+   "binding_baseline": "I",
+   "go": false,
+   "kill": false
+  }
+ }
+}

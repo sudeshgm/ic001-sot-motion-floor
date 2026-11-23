@@ -1,0 +1,153 @@
+{
+ "per_arm": {
+  "A": {
+   "overall_o3d": {
+    "success": 53.954,
+    "precision": 62.734
+   },
+   "overall_nonfirst": {
+    "success": 51.734,
+    "precision": 60.937
+   },
+   "pts_lt10": {
+    "success": 41.243,
+    "precision": 50.504
+   },
+   "moving": {
+    "success": 29.104,
+    "precision": 30.773
+   },
+   "moving_and_pts_lt10": {
+    "success": 11.469,
+    "precision": 9.932
+   }
+  },
+  "B": {
+   "overall_o3d": {
+    "success": 39.413,
+    "precision": 45.939
+   },
+   "overall_nonfirst": {
+    "success": 36.492,
+    "precision": 43.333
+   },
+   "pts_lt10": {
+    "success": 24.232,
+    "precision": 29.938
+   },
+   "moving": {
+    "success": 36.868,
+    "precision": 40.88
+   },
+   "moving_and_pts_lt10": {
+    "success": 17.032,
+    "precision": 18.194
+   }
+  },
+  "C": {
+   "overall_o3d": {
+    "success": 56.553,
+    "precision": 65.813
+   },
+   "overall_nonfirst": {
+    "success": 54.458,
+    "precision": 64.165
+   },
+   "pts_lt10": {
+    "success": 46.031,
+    "precision": 57.102
+   },
+   "moving": {
+    "success": 23.445,
+    "precision": 23.535
+   },
+   "moving_and_pts_lt10": {
+    "success": 12.457,
+    "precision": 10.571
+   }
+  },
+  "D": {
+   "overall_o3d": {
+    "success": 54.718,
+    "precision": 63.865
+   },
+   "overall_nonfirst": {
+    "success": 52.535,
+    "precision": 62.123
+   },
+   "pts_lt10": {
+    "success": 41.934,
+    "precision": 52.325
+   },
+   "moving": {
+    "success": 29.185,
+    "precision": 30.276
+   },
+   "moving_and_pts_lt10": {
+    "success": 13.19,
+    "precision": 12.006
+   }
+  },
+  "I": {
+   "overall_o3d": {
+    "success": 32.195,
+    "precision": 36.272
+   },
+   "overall_nonfirst": {
+    "success": 28.925,
+    "precision": 33.199
+   },
+   "pts_lt10": {
+    "success": 15.355,
+    "precision": 18.039
+   },
+   "moving": {
+    "success": 31.568,
+    "precision": 34.465
+   },
+   "moving_and_pts_lt10": {
+    "success": 12.279,
+    "precision": 11.614
+   }
+  }
+ },
+ "n_frames": {
+  "overall_o3d": 4674,
+  "overall_nonfirst": 4459,
+  "pts_lt10": 2482,
+  "moving": 1116,
+  "moving_and_pts_lt10": 587
+ },
+ "n_tracklets": 215,
+ "cells": {
+  "pts_lt10": {
+   "point": -4.098,
+   "ci95": [
+    -6.107,
+    -2.2
+   ],
+   "se": 0.995,
+   "binding_baseline": "C",
+   "go": false,
+   "kill": true
+  },
+  "moving": {
+   "point": -2.384,
+   "ci95": [
+    -8.035,
+    2.33
+   ],
+   "se": 2.618,
+   "binding_baseline": "I",
+   "go": false,
+   "kill": false
+  }
+ },
+ "verdict": "INCONCLUSIVE",
+ "bootstrap": {
+  "B": 10000,
+  "seed": 0,
+  "unit": "tracklet (paired across arms)",
+  "ci": "percentile 95%"
+ }
+}
