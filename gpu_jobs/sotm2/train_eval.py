@@ -39,6 +39,37 @@ class Sweeps:
 
 
 def load_tracklets(data, keep=None):
+    """Tracklets of --data. With SOTM2_CACHE set and keep=None, the decompressed points are cached once as one
+    uncompressed .npy and memory-mapped by every later call (round-robin blocks; shared by loader workers)."""
+    cache = os.environ.get("SOTM2_CACHE")
+    if cache and keep is None:
+        return _load_cached(data, cache)
+    return _load(data, keep)
+
+
+def _load_cached(data, cache):
+    import hashlib, pickle
+    cache = os.path.join(cache, hashlib.sha1(os.path.abspath(data).encode()).hexdigest()[:12])  # one per data dir
+    os.makedirs(cache, exist_ok=True)
+    fp, fm = os.path.join(cache, "pts_all.npy"), os.path.join(cache, "meta.pkl")
+    if not (os.path.exists(fp) and os.path.exists(fm)):
+        trk = _load(data, None)
+        sizes = [len(t["sw"].P) for t in trk]
+        mm = np.lib.format.open_memmap(fp + ".tmp", mode="w+", dtype=np.float32, shape=(sum(sizes), 3))
+        o = 0
+        for t, n in zip(trk, sizes):
+            mm[o:o + n] = t["sw"].P; t["base"] = o; o += n
+        mm.flush(); del mm
+        meta = [{k: (v.off if k == "sw" else v) for k, v in t.items()} for t in trk]
+        pickle.dump(meta, open(fm + ".tmp", "wb")); os.replace(fp + ".tmp", fp); os.replace(fm + ".tmp", fm)
+    P = np.load(fp, mmap_mode="r"); meta = pickle.load(open(fm, "rb")); out = []
+    for t in meta:
+        off = t["sw"]; t = dict(t); b = t.pop("base")
+        t["sw"] = Sweeps(P[b:b + off[-1]], off); out.append(t)
+    return out
+
+
+def _load(data, keep):
     idx = json.load(open(os.path.join(data, "index.json")))["tracklets"]
     out = []
     for t in idx:

@@ -39,7 +39,7 @@ O3D=$(dirname "$(find "$S/o3d" -name main.py -print -quit)")
 CK="$IN/ckpt/mmtrack_nuscenes_car.ckpt"
 echo "3b19f52cc20c07f3f30cc0bf903c50f3bbd7039315785643b21a8a35332f0270  $CK" | sha256sum -c --quiet || fatal 22 "M2 ckpt sha"
 PY=/opt/ic001env/bin/python; export PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 PYTHONDONTWRITEBYTECODE=1
-export PYTHONPATH=/opt/ic001env/ov_o3d:$S/repo
+export PYTHONPATH=/opt/ic001env/ov_o3d:$S/repo SOTM2_CACHE=$S/cache  # decompressed training points, built once
 $PY -c "import torch;print(torch.__version__, torch.cuda.is_available(), torch.cuda.get_device_name(0))" > "$W/env_check.txt" 2>&1 || fatal 22 "torch/cuda"
 st "env OK ($(el)s)"
 TE="$PY -m gpu_jobs.sotm2.train_eval"; COMMON=(--o3d "$O3D" --ckpt "$CK")
