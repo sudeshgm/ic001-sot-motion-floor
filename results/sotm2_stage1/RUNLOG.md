@@ -12,3 +12,10 @@
   was restarted), finished ≈ 08:52: 1,050/1,050 tracklets, 221,943 rows = sweeps, all finite, unit quaternions, frame 0 = GT (|Δc| = 0).
 - P5/P6 `kaggle_inputs/` assembled: 1,280 files, 4.64 GB; checksums `data_manifest/sotm2_stage1_kaggle_inputs_sha256.txt`.
   Eval files verified against the kill-test SOTM2_SHA256SUMS before copying.
+
+## Chunk 1 (T4, 3662 s wall, cap 6900 s): PARTIAL, rc=5
+- Inputs sha, env, checkpoint sha: OK. G1 probe: 82 rows, max|dIoU| = 1.0e-06 (pass).
+- Training reached step 1000/2000 for C, I and D (500-step blocks of 483–827 s). Stopped because the time left was below the eval reserve.
+- A_ft, the full 215-tracklet eval, the row-count check, decide.py and G2 were not run. No verdict is possible yet.
+- All 20 output files match SHA256SUMS_outputs.txt (sha256sum -c rc=0).
+- Next: a resume chunk with the remaining 1000 steps per arm, then A_ft, eval and decision.
