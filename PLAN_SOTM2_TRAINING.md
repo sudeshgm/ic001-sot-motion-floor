@@ -1,11 +1,11 @@
-# SOT-M2 training plan (added 23 Nov 2026 at Sudesh's request; owner: IC001 CPU Agent)
+# SOT-M2 training plan (added 23 Nov 2026 at Sudesh's request)
 
 Idea: SOT-M2, a 20 Hz recurrent LiDAR tracker with keyframe-only loss and a self-aligned target-frame buffer.
-Seeded by IC001 findings. Idea Creator parked it after Archive's THINK MORE r1.
+Seeded by IC001 findings. Parked after a THINK MORE review (round 1).
 
 ## Evidence so far
 Inference-only 5-arm kill test, nuScenes v1.0-mini, 215 Car tracklets.
-Prereg sha256 c71fee2d...0cd8; files in /workspace/gpubot/sotm2-killtest/.
+Prereg sha256 c71fee2d...0cd8; files from the SOT-M2 kill-test run.
 
 | | M2-Track | TrackAny3D |
 |---|---|---|
@@ -32,7 +32,7 @@ Stats: paired tracklet bootstrap, 10k resamples, 95% CI, every effect >= 2x SE.
   Evaluate on mini's 9 non-train_track scenes, plus a held-out val slice if the download allows.
 - **Training:** fine-tune the existing M2-Track nuScenes Car checkpoint for a few epochs, with the same budget for C, I and D.
 - **Compute:** rough guess 10-20 free T4-h. The first go/no-go chunk must stay at <= ~2 T4-h; run M2-Track only.
-  Free GPU only (Kaggle hiddenslave, then Modal, then Colab) via GPU Bot.
+  Free GPU only (Kaggle, then Modal, then Colab).
 - **Pre-register before running:**
   - GO: D - max(C, I) >= +2 Success on pts<10 or moving, lower CI > 0.
   - KILL: D <= max(C, I) + 0.5 on both cells with CI upper < +2.
@@ -48,6 +48,6 @@ Stats: paired tracklet bootstrap, 10k resamples, 95% CI, every effect >= 2x SE.
 - **Report:** cost per keyframe and FPS at 20 Hz.
 
 ## Rules
-- Usage: at >= 60% weekly usage, start nothing; ask Grok Bot (e4586dec) for Sudesh's yes.
+- Usage: at >= 60% weekly usage, start nothing until Sudesh says yes.
 - No paid compute or closed models without Sudesh's explicit approval.
 - nuScenes-derived outputs stay private.

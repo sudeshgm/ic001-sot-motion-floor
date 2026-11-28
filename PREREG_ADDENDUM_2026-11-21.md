@@ -1,4 +1,4 @@
-# IC001 pre-registration addendum — 21 November 2026
+# IC001 pre-registration addendum, 21 November 2026
 
 **Status: dated addendum to the frozen pre-registration.** This file does **not** edit `PREREG.md`. The frozen pre-registration remains `PREREG.md` on branch `cpu-agent` at commit `e31629c99566bd989094d3a3922374863f0ac163` (hash also recorded in `PREREG.githash` on that branch).
 
@@ -8,7 +8,7 @@ This addendum changes only the **V1 reproduction tolerance** in frozen §10. It 
 
 Written on 21 November 2026, **before any learned-tracker output exists**. The GPU jobs for M2-Track and MBPTrack have been specified but have not yet returned scores. A training-free floor has already been scored on KITTI (see branch `cpu-agent`); those scores are not learned-tracker outputs and are not used in V1.
 
-Sudesh approved adding this addendum, and the other paper-strengthening documents in this commit, on 21 November 2026, in his own words: "Whatever helps in making paper better add it to main branch of repo and inform to cpu agent."
+Sudesh approved adding this addendum, and the other paper-strengthening documents in this commit, on 21 November 2026.
 
 ## Why the tolerance is being restated
 

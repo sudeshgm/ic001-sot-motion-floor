@@ -2,29 +2,29 @@
 
 **Status: SECONDARY.** Nothing in this file is part of the frozen GO / KILL decision rule, the frozen floor, or frozen V1. All of it is to be labelled SECONDARY (or, for #5, a follow-up that runs only after a primary GO) in `RESULTS.md`. The frozen pre-registration is `PREREG.md` on branch `cpu-agent` at `e31629c`; the only change to that document is the dated V1 tolerance restatement in `PREREG_ADDENDUM_2026-11-21.md`.
 
-Source: Idea Advocate notes of 21 November 2026 (`/workspace/idea_advocate/notes/20261121_IC001.md`), added to `main` at Sudesh's instruction: "Whatever helps in making paper better add it to main branch of repo and inform to cpu agent."
+Source: notes of 21 November 2026, added to `main` at Sudesh's instruction.
 
 GPU compute, where needed, is **free Kaggle T4 only**. A private Kaggle dataset is already approved for the first-test jobs.
 
 ## Caveats that apply to the whole study
 
-**F2 — power, KITTI motion axis.** A GT-only census (21 Nov 2026, no tracker scores) found that the KITTI Car high-motion bin (≥0.5 m world-frame displacement) has **17 tracklets**, below the frozen §9 minimum of 30. Pedestrian high motion has 6 frames in 6 tracklets. All KITTI point bins have ≥30 tracklets, so they need no merge. Primary-easy (≥50 points and low motion) covers 51.2% of Car frames (112 tracklets) and 89.2% of Pedestrian frames. On KITTI, GO / KILL will therefore rest on the point bins; any motion claim has to come from nuScenes. The Car high-motion bin cannot drive a decision.
+**F2: power, KITTI motion axis.** A GT-only census (21 Nov 2026, no tracker scores) found that the KITTI Car high-motion bin (≥0.5 m world-frame displacement) has **17 tracklets**, below the frozen §9 minimum of 30. Pedestrian high motion has 6 frames in 6 tracklets. All KITTI point bins have ≥30 tracklets, so they need no merge. Primary-easy (≥50 points and low motion) covers 51.2% of Car frames (112 tracklets) and 89.2% of Pedestrian frames. On KITTI, GO / KILL will therefore rest on the point bins; any motion claim has to come from nuScenes. The Car high-motion bin cannot drive a decision.
 
-**F3 — unread literature threat.** SPSOT (*Self-Supervised Point Cloud Single Object Tracking*, Liu, Hui et al., ICRA 2026, DOI 10.1109/ICRA57385.2026.11696284; code https://github.com/lyhnsn/SPSOT) is a self-supervised tracker with a "simple motion filter." The full text was unread as of 21 November 2026 (IEEE / closed access). It is a learned (self-supervised) detector plus filter, not a training-free floor, and the abstract reports no per-bin analysis. If the paper has a "motion filter only" ablation on KITTI or nuScenes, that line would foreshadow the floor number. Someone with IEEE access should read Tables 1–3 and the ablations before the paper is written. No scoop of the floor study was found as of that date.
+**F3: unread literature threat.** SPSOT (*Self-Supervised Point Cloud Single Object Tracking*, Liu, Hui et al., ICRA 2026, DOI 10.1109/ICRA57385.2026.11696284; code https://github.com/lyhnsn/SPSOT) is a self-supervised tracker with a "simple motion filter." The full text was unread as of 21 November 2026 (IEEE / closed access). It is a learned (self-supervised) detector plus filter, not a training-free floor, and the abstract reports no per-bin analysis. If the paper has a "motion filter only" ablation on KITTI or nuScenes, that line would foreshadow the floor number. Someone with IEEE access should read Tables 1–3 and the ablations before the paper is written. No scoop of the floor study was found as of that date.
 
 ## Run order, and what a formal KILL would do
 
-1. **#1 and #2 ride with the GPU jobs.** Both need only about 0.3 T4-h each (≤0.6 T4-h together) in the same Open3DSOT / MBPTrack environment as the first test. Add the extra jobs (the oxts-compensated M2-Track crop, and BAT) to `gpu_jobs` and route them through Idea Launcher to GPU Bot, on the free Kaggle T4 only.
+1. **#1 and #2 ride with the GPU jobs.** Both need only about 0.3 T4-h each (≤0.6 T4-h together) in the same Open3DSOT / MBPTrack environment as the first test. Add the extra jobs (the oxts-compensated M2-Track crop, and BAT) to `gpu_jobs` and run them on the free Kaggle T4 only.
 2. **#3 and #4 are CPU only.** #3 starts with a short timing check. #4 needs the nuScenes val stream and a GT count of fast-start tracklets first.
 3. **#5 runs only if the primary result is GO.**
 
 **Early KITTI floor context.** On the frozen heading rule, the KITTI Car floor scores **23.9 / 30.2** Success / Precision under the standard protocol (120 tracklets, 6,424 frames), against published learned scores of **65.5** (M2-Track) and **73.4** (MBPTrack). No KITTI point or motion bin was above 27 Success. A labelled post-hoc velocity-heading check made the floor worse (8.8 / 7.9), so heading is not what holds the floor down. A **formal KILL** still waits on the learned trackers' per-bin scores and on nuScenes. If that formal KILL is called, **#2–#5 become moot** for the paper as planned. **#1 and #2 still serve as a cheap diagnostic write-up** (attribution of any remaining KITTI gap, and where published progress sat), at ≤0.6 T4-h.
 
-Advocate's verdict, recorded here as context only: as frozen, the study is likely an RA-L / ICRA / IROS paper; main track is reachable but not likely (subjectively about 1 in 4) and would need a primary GO plus one striking secondary among #4, #1, or #2.
+A recorded verdict, kept here as context only: as frozen, the study is likely an RA-L / ICRA / IROS paper; main track is reachable but not likely (subjectively about 1 in 4) and would need a primary GO plus one striking secondary among #4, #1, or #2.
 
 ---
 
-## #1 — Ego-motion decomposition, plus an oxts-compensated M2-Track crop (KITTI)
+## #1: Ego-motion decomposition, plus an oxts-compensated M2-Track crop (KITTI)
 
 **Failure it fixes.** The study as frozen is an audit of one task. On KITTI it is also unfair in one respect: Open3DSOT's learned trackers run in the sensor frame and never use `oxts`, while the floor is ego-compensated. Part of any floor ≈ learned tie, or of the learned trackers' KITTI error, could be privileged ego pose rather than "motion is enough."
 
@@ -46,7 +46,7 @@ Advocate's verdict, recorded here as context only: as frozen, the study is likel
 
 ---
 
-## #2 — BAT progress anchor (R_progress), plus a zero-compute published per-bin table
+## #2: BAT progress anchor (R_progress), plus a zero-compute published per-bin table
 
 **Failure it fixes.** The field's "gains are hard-case gains" belief is untested on the standard Open3DSOT protocol, and the frozen study demoted the original P2B→later share analysis (P5) because no P2B checkpoint is available. BAT is a 2021 Open3DSOT checkpoint that can stand in as the old anchor. A published-table meta-analysis can still bring in ≥8 methods at no compute cost.
 
@@ -74,7 +74,7 @@ Rival predictions: H-hard (recent gains = sparse / occlusion robustness) predict
 
 ---
 
-## #3 — A stronger training-free rung: SOTracker on KITTI Car
+## #3: A stronger training-free rung: SOTracker on KITTI Car
 
 **Failure it fixes.** The closest prior, LiDAR-SOT, already points in this direction, and reviewers can call the frozen floor (constant velocity plus a centroid snap, with no shape term and no yaw update) a strawman. The known training-free tracker is SOTracker.
 
@@ -91,7 +91,7 @@ Rival predictions: H-hard (recent gains = sparse / occlusion robustness) predict
 
 ---
 
-## #4 — Pre-declared gated-association fast-start floor (nuScenes)
+## #4: Pre-declared gated-association fast-start floor (nuScenes)
 
 **Failure it fixes.** This is the only proposed route to a *floor beats every learned tracker* finding, on a slice where published learned trackers already fail badly. "Motion matters" does not predict a floor win here.
 
@@ -110,7 +110,7 @@ Rival predictions: H-window (the target leaves the learned search window) says l
 
 ---
 
-## #5 — Floor-gated hybrid (follow-up only after a primary GO)
+## #5: Floor-gated hybrid (follow-up only after a primary GO)
 
 **Failure it fixes.** Even after a GO, the audit still has no deployable consequence on the efficiency axis the field already values (for example TFTrack's claim of about 50% fewer FLOPs).
 

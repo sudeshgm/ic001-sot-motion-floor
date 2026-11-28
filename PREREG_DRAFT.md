@@ -1,6 +1,6 @@
-# ⚠️ DRAFT — NOT THE FROZEN PRE-REGISTRATION ⚠️
-**IC001 pre-registration, draft v0 (21 Nov 2026, IST), for Sudesh to review.** It becomes binding only after Sudesh approves it and the Idea Agent commits it with a recorded git hash, **before any tracker output or floor score is seen**. Nothing here authorizes downloads, GPU use or runs.
-Source text: `idea_writeup_v2.md` §2–§9 (Creator, 16 Nov) with Idea Archive's three mandatory fixes (16 Nov ACCEPT, round 2) applied. Changes from v2 are marked **[FIX a/b/c]** or **[NEW]**.
+# ⚠️ DRAFT: NOT THE FROZEN PRE-REGISTRATION ⚠️
+**IC001 pre-registration, draft v0 (21 Nov 2026, IST), for Sudesh to review.** It becomes binding only after Sudesh approves it and it is committed with a recorded git hash, **before any tracker output or floor score is seen**. Nothing here authorizes downloads, GPU use or runs.
+Source text: `idea_writeup_v2.md` §2–§9 (16 Nov) with the three mandatory review fixes (16 Nov ACCEPT, round 2) applied. Changes from v2 are marked **[FIX a/b/c]** or **[NEW]**.
 
 ## 1. Question
 On the standard Open3DSOT LiDAR 3D-SOT protocol, how much of learned Success does a training-free motion floor already reach on GT-defined easy frames, and how concentrated is the remaining gap (and the published leaderboard gain) in hard frames?
@@ -20,14 +20,14 @@ On the standard Open3DSOT LiDAR 3D-SOT protocol, how much of learned Success doe
 - **Headline three-family claims on Car only [FIX c]**; Pedestrian/other classes are reported per family where checkpoints exist.
 
 ## 4. Bins (GT attributes only, fixed now)
-- Point count inside GT box — nuScenes: <10, 10–24, ≥25 (merge to <25 / ≥25 if a cell has <30 tracklets). KITTI: <50, 50–199, ≥200 (merge to <200 / ≥200; then tracklet-level tertiles computed before scores are seen).
+- Point count inside GT box. nuScenes: <10, 10–24, ≥25 (merge to <25 / ≥25 if a cell has <30 tracklets). KITTI: <50, 50–199, ≥200 (merge to <200 / ≥200; then tracklet-level tertiles computed before scores are seen).
 - Motion (GT world-frame centre displacement between consecutive frames): KITTI <0.5 m vs ≥0.5 m; nuScenes <2.5 m vs ≥2.5 m (both 5 m/s).
 - KITTI occlusion (0 vs 1–2): secondary only.
 - **Hard** = low-point ∪ high-motion cells; **Easy** = the complement.
 
 ## 5. Protocols
-- **(a) Standard OPE — headline.** Frame-1 GT only.
-- **(b) One-step re-init — diagnostic.** GT box at t−1 (and t−2 for the floor's velocity) at every frame. If (a) and (b) disagree on a bin, both are reported and the bin is not claimed as a hard-frame advantage from (a) alone.
+- **(a) Standard OPE (headline).** Frame-1 GT only.
+- **(b) One-step re-init (diagnostic).** GT box at t−1 (and t−2 for the floor's velocity) at every frame. If (a) and (b) disagree on a bin, both are reported and the bin is not claimed as a hard-frame advantage from (a) alone.
 
 ## 6. Predicted effects (numbers, before data)
 KITTI (Car + Pedestrian):
@@ -39,7 +39,7 @@ nuScenes:
 Leaderboard gain concentration **[FIX b]**:
 - P5. For the gain G from the earlier to the later tracker, **concentration ratio R = (share of G in hard bins) / (share of frames in hard bins) > 1.2, with the tracklet-bootstrap 95% CI excluding 1.**
   - Share of G in hard bins = Σ_{b∈hard} n_b·(S_late,b − S_early,b) / Σ_b n_b·(S_late,b − S_early,b), n_b = frames in bin b. Share of frames = Σ_{b∈hard} n_b / Σ_b n_b.
-  - v2 named P2B → TrackAny3D. **[NEW] Open question for Sudesh/Idea Agent:** Open3DSOT ships no P2B checkpoint (BAT is there). Choose before freezing: (i) find an official P2B checkpoint, (ii) use BAT → TrackAny3D, or (iii) in the first test use floor → best learned as G (labelled secondary). Not decidable after seeing numbers.
+  - v2 named P2B → TrackAny3D. **[NEW] Open question for Sudesh:** Open3DSOT ships no P2B checkpoint (BAT is there). Choose before freezing: (i) find an official P2B checkpoint, (ii) use BAT → TrackAny3D, or (iii) in the first test use floor → best learned as G (labelled secondary). Not decidable after seeing numbers.
   - If the denominator gain Σ is ≤ 2 Success points in total, R is not reported (undefined).
 
 ## 7. Decision rule for the first test
